@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components DEMO - mjs</title>
+    <style>
+        /* Your CSS styles go here */
+    </style>
+</head>
+<body>
+    <stg-counter></stg-counter>
+    <stg-chat-search></stg-chat-search>
+
+    <!-- 
+    Most modern browsers support ES modules. 
+    However, there are still some relatively recent browsers that do not support <script type="module">. 
+    Here are a few:
+        - Internet Explorer 11 and earlier: Internet Explorer does not support ES modules at all.
+        - Microsoft Edge (Legacy): The legacy version of Microsoft Edge (before the switch to Chromium) does not support ES modules.
+        - Safari 10.1 and earlier: Safari added support for ES modules in version 11.
+        - Firefox 59 and earlier: Firefox added support for ES modules in version 60.
+        - Chrome 60 and earlier: Chrome added support for ES modules in version 61.
+    -->
+    
+    <!-- Load ES module scripts - if supported by the web browser -->
+    <script type="module" src="ai.search.web.components.20240812173708.es.js"></script>
+    
+    <!-- Fallback for older browsers - if the browser does not support script type="module" and es files -->
+    <script nomodule src="ai.search.web.components.20240812173708.umd.js"></script>
+</body>
+</html>
