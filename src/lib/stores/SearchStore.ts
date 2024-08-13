@@ -1,41 +1,44 @@
 import { writable } from 'svelte/store';
+import { type SearchStartRequest } from '$lib/types/SearchStartRequest.ts';
+import { type SearchStartResponse } from '$lib/types/SearchStartResponse.ts';
 
-export type SearchStartParams = {
-	language?: 'it' | 'de' | 'fr' | 'en';
+const startSearch = async ({ apiBaseUrl, language = 'en' }: SearchStartRequest) => {
+	let url = `${apiBaseUrl}/search/start`;
+	const queryParams = new URLSearchParams();
+
+	if (language) queryParams.append('l', language);
+
+	if (queryParams.toString()) {
+		url += `?${queryParams.toString()}`;
+	}
+
+	const res = await fetch(url, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+	return await res.json();
 };
 
-const PUBLIC_BACKEND_BASE_URL = 'http://localhost:8099';
-
-const useSearch = () => {
-	const _search = {};
-
-	const { subscribe, set } = writable(_search);
+export const useSearch = () => {	
+	const { set, update, subscribe } = writable<SearchStartResponse>();
 
 	return {
 		subscribe,
-		set: (search: object) => set(search),
-        start: async ({ language }: SearchStartParams = {}) => {
-            const queryParams = new URLSearchParams();
+		set,
+		update,
+        start: async ({ apiBaseUrl, language }: SearchStartRequest): Promise<SearchStartResponse> => {
+			if (!apiBaseUrl) {
+				throw new Error('apiBaseUrl is required');
+			}
 
-            if (language) queryParams.append('l', language);
-
-            let url = `${PUBLIC_BACKEND_BASE_URL}/search/start`;
-
-            if (queryParams.toString()) {
-                url += `?${queryParams.toString()}`;
-              }
-
-			const res = await fetch(url, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-
-			const response = await res.json();
+            const response = await startSearch({ apiBaseUrl, language });
+			set(response);
 			return response;
 		}
 	};
 };
 
-export const search = useSearch();
+export const searchStore = useSearch();

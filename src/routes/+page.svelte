@@ -1,7 +1,6 @@
 <script>
     import svelteLogo from '../assets/svelte.svg';
-    import Counter from '$lib/components/Counter.svelte';
-    import ChatSearch from '$lib/components/ChatSearch.svelte';
+    import AiSearchContainer from '$lib/components/AiSearchContainer.svelte';
 </script>
 
 <main>
@@ -10,14 +9,12 @@
         <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
       </a>
     </div>
-  
-    <div class="card">
-      <Counter />
-    </div>
-  
-    <div class="card">
-      <ChatSearch />
-    </div>
+
+    <AiSearchContainer
+      apiBaseUrl="http://localhost:8099"
+      language="it"
+    ></AiSearchContainer>
+
 </main>
 
 <style>

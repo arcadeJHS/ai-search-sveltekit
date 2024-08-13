@@ -5,17 +5,18 @@ import replace from '@rollup/plugin-replace';
 
 const LIBRARY_PREFIX = 'stg';
 
-const getTimestamp = () => {
-	const now = new Date();
-	return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
-};
+// const getTimestamp = () => {
+// 	const now = new Date();
+// 	return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
+// };
 
 export default defineConfig({
 	build: {
 		lib: {
 			entry: resolve(__dirname, 'src/lib/index.ts'),
 			name: 'AiSearchWebComponents',
-			fileName: (format) => `ai.search.web.components.${getTimestamp()}.${format}.js`,
+			// fileName: (format) => `ai.search.web.components.${getTimestamp()}.${format}.js`,
+			fileName: (format) => `ai.search.web.components.${format}.js`,
 			formats: ['es', 'umd']
 		},
 		outDir: 'dist-web-components'
@@ -30,5 +31,10 @@ export default defineConfig({
 				customElement: true 
 			} 
 		})
-	]
+	],
+	resolve: {
+        alias: {
+            '$lib': resolve(__dirname, 'src/lib')
+        }
+    }
 });

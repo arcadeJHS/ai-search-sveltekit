@@ -9,8 +9,11 @@
     </style>
 </head>
 <body>
-    <stg-counter></stg-counter>
-    <stg-chat-search></stg-chat-search>
+
+    <stg-ai-search-container
+        api-base-url="http://localhost:8099"
+        language="it"
+    ></stg-ai-search-container>
 
     <!-- 
     Most modern browsers support ES modules. 
@@ -24,9 +27,9 @@
     -->
     
     <!-- Load ES module scripts - if supported by the web browser -->
-    <script type="module" src="ai.search.web.components.20240812173708.es.js"></script>
+    <script type="module" src="ai.search.web.components.es.js"></script>
     
     <!-- Fallback for older browsers - if the browser does not support script type="module" and es files -->
-    <script nomodule src="ai.search.web.components.20240812173708.umd.js"></script>
+    <script nomodule src="ai.search.web.components.umd.js"></script>
 </body>
 </html>

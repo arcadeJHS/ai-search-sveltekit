@@ -35,7 +35,7 @@ npm run build:webcomponents
 
 This command builds the components in `dist-web-components` folder, in `es` e `umd` formats.
 
-Then include the compiled js library in a html page, and use the web components (see `/DEMO/index.html`):
+Then include the compiled js library in a html page, and use the web components (see `/public/index.html`):
 
 ```html
 <!DOCTYPE html>
@@ -49,8 +49,11 @@ Then include the compiled js library in a html page, and use the web components 
     </style>
 </head>
 <body>
-    <stg-counter></stg-counter>
-    <stg-chat-search></stg-chat-search>
+
+    <stg-ai-search-container
+        api-base-url="http://localhost:8099"
+        language="it"
+    ></stg-ai-search-container>
 
     <!-- 
     Most modern browsers support ES modules. 
@@ -64,10 +67,10 @@ Then include the compiled js library in a html page, and use the web components 
     -->
     
     <!-- Load ES module scripts - if supported by the web browser -->
-    <script type="module" src="ai.search.web.components.20240812173708.es.js"></script>
+    <script type="module" src="ai.search.web.components.es.js"></script>
     
     <!-- Fallback for older browsers - if the browser does not support script type="module" and es files -->
-    <script nomodule src="ai.search.web.components.20240812173708.umd.js"></script>
+    <script nomodule src="ai.search.web.components.umd.js"></script>
 </body>
 </html>
 ```
@@ -89,3 +92,25 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+## Web components showcase
+
+The `public` folder is just a showcase of the final product/use.
+
+Run:
+
+```bash
+node publish.js
+```
+
+after:
+
+```bash
+npm run build:webcomponents
+```
+
+Or simply run:
+
+```bash
+npm run build:webcomponents:publish
+```
