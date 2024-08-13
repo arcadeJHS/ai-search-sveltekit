@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { searchStore } from '../stores/SearchStore.ts';
+	export let session: string | null;
 </script>
 
-{#if $searchStore}
-  <div>
-    <pre>{$searchStore.session}</pre>
-  </div>
-{/if}
+<div>
+  <pre>{session}</pre>
+</div>

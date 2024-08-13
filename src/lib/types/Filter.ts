@@ -1,4 +1,4 @@
-import { type AllowedLanguages } from './AllowedLanguages.ts';
+import type { AllowedLanguages } from './AllowedLanguages.ts';
 
 export enum ShowType {
     EventoAziendale = 'Evento Aziendale',
