@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+const customElement = process.env.CUSTOM_ELEMENT === 'true';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -15,7 +17,7 @@ const config = {
 	},
 
 	compilerOptions: {
-		customElement: false
+		customElement: customElement
 	}
 };
 

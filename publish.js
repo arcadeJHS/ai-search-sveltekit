@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const sourceDir = path.resolve(__dirname, 'dist-web-components');
-const targetDir = path.resolve(__dirname, 'public');
+const targetDir = path.resolve(__dirname, 'DEMO');
 
 function copyFiles(srcDir, destDir) {
     if (!fs.existsSync(destDir)) {
