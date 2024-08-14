@@ -9,13 +9,12 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { searchStore } from '../stores/SearchStore.ts';
+	import { searchStore } from '$lib/stores/SearchStore.ts';
 	import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
-    import SessionToken from './SessionToken.svelte';
-	import Chat from '$lib/components/Chat.svelte';
 	import type { UserInput } from '$lib/types/UserInput.ts';
 	import { type Message, MessageRole } from '$lib/types/Message.ts';
-	import SearchResults from '$lib/components/SearchResults.svelte';
+	import Chat from './Chat.svelte';
+	import SearchResults from './SearchResults.svelte';
 
 	export let apiBaseUrl: string;
 	export let language: AllowedLanguages;
@@ -44,11 +43,7 @@
 
 <div class="ai-search-container">
 	<div class="column left">
-		<!-- <pre>{JSON.stringify($searchStore, null, 2)}</pre>
-
-		{#if $searchStore}
-			<SessionToken session="{$searchStore.session}"></SessionToken>
-		{/if} -->
+		<!-- <pre>{JSON.stringify($searchStore, null, 2)}</pre> -->
 
 		{#if $searchStore}
 			<Chat messages={$searchStore.messages} on:userInput={onUserInput} />

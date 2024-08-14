@@ -1,6 +1,6 @@
 <script>
     import svelteLogo from '../assets/svelte.svg';
-    import AiSearchContainer from '$lib/components/AiSearchContainer.svelte';
+    import AiSearchContainer from '$lib/components/AiSearch/AiSearchContainer.svelte';
 </script>
 
 <main>

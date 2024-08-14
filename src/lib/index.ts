@@ -1,1 +1,1 @@
-export { default as AiSearchContainer } from './components/AiSearchContainer.svelte';
+export * from './components/AiSearch/index.ts';
