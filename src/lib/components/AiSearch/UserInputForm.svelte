@@ -16,7 +16,7 @@ const dispatchUserInput = (content: UserInput) => {
 
 <form class="ai-chat-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
 	<input class="ai-chat-user-input-form-input" bind:value={userInput} />
-	<button type="submit" class="ai-chat-user-input-form-button">Ask AI</button>
+	<!-- <button type="submit" class="ai-chat-user-input-form-button">Ask AI</button> -->
 
     <Button type="submit" color="primary" outline>Search</Button>
 </form>
@@ -38,7 +38,7 @@ const dispatchUserInput = (content: UserInput) => {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
-.ai-chat-user-input-form-button {
+/* .ai-chat-user-input-form-button {
     margin-left: 0.1rem;
     background: white;
     font-family: var(--font-body);
@@ -46,5 +46,5 @@ const dispatchUserInput = (content: UserInput) => {
     border: 1px solid var(--color-text);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-}
+} */
 </style>
