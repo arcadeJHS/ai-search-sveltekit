@@ -15,6 +15,7 @@
 	import { type Message, MessageRole } from '$lib/types/Message.ts';
 	import Chat from './Chat.svelte';
 	import SearchResults from './SearchResults.svelte';
+	import { Styles } from '@sveltestrap/sveltestrap';
 
 	export let apiBaseUrl: string;
 	export let language: AllowedLanguages;
@@ -40,6 +41,8 @@
 		const responsee = await searchStore.search(content);
 	};
 </script>
+
+<Styles />
 
 <div class="ai-search-container">
 	<div class="column left">

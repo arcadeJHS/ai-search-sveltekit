@@ -1,6 +1,7 @@
 <script lang="ts">
 import { createEventDispatcher } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
+import { Button } from '@sveltestrap/sveltestrap';
 
 const dispatch = createEventDispatcher();
 
@@ -16,6 +17,8 @@ const dispatchUserInput = (content: UserInput) => {
 <form class="ai-chat-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
 	<input class="ai-chat-user-input-form-input" bind:value={userInput} />
 	<button type="submit" class="ai-chat-user-input-form-button">Ask AI</button>
+
+    <Button type="submit" color="primary" outline>Search</Button>
 </form>
 
 <style>
