@@ -15,6 +15,7 @@
 	import { type Message, MessageRole } from '$lib/types/Message.ts';
 	import Chat from './Chat.svelte';
 	import SearchResults from './SearchResults.svelte';
+	import '$lib/styles.css';
 
 	export let apiBaseUrl: string;
 	export let language: AllowedLanguages;
