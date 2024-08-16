@@ -114,3 +114,11 @@ Or simply run:
 ```bash
 npm run build:webcomponents:publish
 ```
+
+## Mockup UI
+
+Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la UX/UI:
+
+![Mockup UI landing AI search](MOCKUP_UI/mock_01_inizio.png)
+
+![Mockup UI AI search chat interaction](MOCKUP_UI/mock_02_chat.png)
