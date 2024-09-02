@@ -95,7 +95,7 @@ You can preview the production build with `npm run preview`.
 
 ## Web components showcase
 
-The `public` folder is just a showcase of the final product/use.
+The `DEMO` folder is just a showcase of the final product/use.
 
 Run:
 
@@ -122,3 +122,41 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 ![Mockup UI landing AI search](MOCKUP_UI/mock_01_inizio.png)
 
 ![Mockup UI AI search chat interaction](MOCKUP_UI/mock_02_chat.png)
+
+
+# Riepilogo su come usare i vari repo per lo sviluppo
+
+/**
+ * Repo: symfony-web-app-docker (stg-dockerized)
+ * Docker-compose che tira su sito PHP Stagend, Keycloak, AI Search API e LLM...
+ * branch: main
+ *
+ * Documentazione:
+ * - README.md esaustivo su come mettere in piedi tutto l'ambiente usando Docker
+ * - folder DOCUMENTAZIONE: con dettagli sull'implmnetazione di AB Variants, Keycloak e AI Search (mock compresi)
+ */
+git clone git@bitbucket.org:exm-stagend/symfony-web-app-docker.git
+
+
+/**
+ * Repo: stg-service
+ * Sito PHP Stagend
+ * Branch: exm-ai-search
+ *  
+ * Documentazione:
+ * - documentazione principalmente gestita da stagend. Si veda invece README.md nel repo symfony-web-app-docker
+ */
+git clone git@bitbucket.org:exm-stagend/stg-service.git
+
+
+/**
+ * Repo: ai-search-web-components
+ * Sveltekit project e web components per implementazione ricerca AI
+ * branch: sveltestrap
+ *
+ * Documentazione:
+ * - README.md: spiega a linee generali il progetto, come sviluppare e come compilare i web components da usare nel sito Stagend
+ * - folder DEMO: contiene una semplice demo dell'uso dei web components generati in una pagina HTML
+ * - folder MOCKUP_UI: contiene alcune immagini con un'idea di possible UX/UI
+ */
+git clone git@bitbucket.org:exm-stagend/ai-search-web-components.git
