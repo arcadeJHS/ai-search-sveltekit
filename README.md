@@ -15,10 +15,10 @@ Everything inside `src/lib` is part of your library, everything inside `src/rout
 
 Here we are using the Svelte's Custom Elements API: `https://svelte.dev/docs/custom-elements-api`.
 
-Build Svelte components defined in `src/lib` into framework-agnostic custom elements.
+Build Svelte components defined in `src/lib/web-components` into framework-agnostic custom elements.
 
 ### How To
-Create Svelte components in `src/lib`, adding the Svelte element on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
+Create Svelte components in `src/lib/components`, then wrap them as web components in the folder `src/lib/web-components`, adding the Svelte element on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
 
 ```html
 <svelte:options customElement="PREFIX-counter" />
@@ -26,6 +26,8 @@ Create Svelte components in `src/lib`, adding the Svelte element on top of the c
 
 > **Note:** The "PREFIX-" prefix allows you to define prefixed custom elements. 
 > Define it in `vite.webcomponents.config`, setting a value for the variable `LIBRARY_PREFIX`.
+
+Define which components you want to expose, exporting them in the `src/lib/web-components/index.ts` file.
 
 Then run:
 
@@ -45,15 +47,26 @@ Then include the compiled js library in a html page, and use the web components 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Components DEMO - mjs</title>
     <style>
-        /* Your CSS styles go here */
+        <!-- Your page custom CSS styles go here -->
+        <link rel="stylesheet" href="ai.search.web.components.css">
     </style>
 </head>
 <body>
 
-    <stg-ai-search-container
+    <stg-ai-search-core
         api-base-url="http://localhost:8099"
-        language="it"
-    ></stg-ai-search-container>
+        language="it">
+    </stg-ai-search-core>
+
+    <div class="ai-search-container">
+        <div class="column left">
+            <stg-ai-search-chat></stg-ai-search-chat>
+        </div>
+        
+        <div class="column right">
+            <stg-ai-search-results></stg-ai-search-results>
+        </div>
+    </div>
 
     <!-- 
     Most modern browsers support ES modules. 
@@ -75,6 +88,8 @@ Then include the compiled js library in a html page, and use the web components 
 </html>
 ```
 
+> Note: the `stg-ai-search-core` component is reuired: it define common styles, stores, and event bus.
+
 ## Building a svelte library
 
 To build your library:
@@ -95,7 +110,7 @@ You can preview the production build with `npm run preview`.
 
 ## Web components showcase
 
-The `DEMO` folder is just a showcase of the final product/use.
+The `DEMO` folder is just a showcase of the final product/use (open ìndex.html` file with a web server - for instance `http-server` with Nodejs - to see it).
 
 Run:
 

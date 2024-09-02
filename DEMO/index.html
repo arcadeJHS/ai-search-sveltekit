@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Components DEMO - mjs</title>
+
+    <!-- Sample page style -->
+    <link rel="stylesheet" href="ai.search.web.components.css">
 </head>
 <body>
 
-    <stg-ai-search-container
+    <stg-ai-search-core
         api-base-url="http://localhost:8099"
-        language="it"
-    ></stg-ai-search-container>
+        language="it">
+    </stg-ai-search-core>
+
+    <div class="ai-search-container">
+        <div class="column left">
+            <stg-ai-search-chat></stg-ai-search-chat>
+        </div>
+        
+        <div class="column right">
+            <stg-ai-search-results></stg-ai-search-results>
+        </div>
+    </div>
 
     <!-- 
     Most modern browsers support ES modules. 

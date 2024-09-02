@@ -1,1 +1,2 @@
-export * from './components/AiSearch/index.ts';
+export * from './components/index.ts';
+export * from './web-components/index.ts';

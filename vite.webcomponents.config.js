@@ -24,7 +24,7 @@ export default defineConfig({
 	plugins: [
 		replace({
 			preventAssignment: true,
-			'PREFIX': LIBRARY_PREFIX ?? 'stg',
+			'PREFIX': LIBRARY_PREFIX ?? 'stg'
 		}),
 		svelte({ 
 			compilerOptions: { 
