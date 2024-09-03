@@ -13,8 +13,11 @@
     </a>
   </div>
 
+  <!-- TEST: 
+    apiBaseUrl="http://localhost:8099" 
+  -->
   <WcAiSearchAppShell
-    apiBaseUrl="http://localhost:8099/search"
+    apiBaseUrl="http://192.168.50.58:9910"
     language="it"
   ></WcAiSearchAppShell>
 

@@ -1013,7 +1013,7 @@ function Xt(l, e = le) {
 }
 var ml = /* @__PURE__ */ ((l) => (l.User = "user", l.Agent = "agent", l))(ml || {});
 const sr = async (l, { language: e = "en" }) => {
-  let t = `${l}/start`;
+  let t = `${l}/search/start`;
   const s = new URLSearchParams();
   return e && s.append("l", e), s.toString() && (t += `?${s.toString()}`), await (await fetch(t, {
     method: "GET",
@@ -1022,7 +1022,7 @@ const sr = async (l, { language: e = "en" }) => {
     }
   })).json();
 }, nr = async (l, { session: e, message: t }) => {
-  const s = `${l}/message/${e}`;
+  const s = `${l}/search/message/${e}`;
   return await (await fetch(s, {
     method: "POST",
     headers: {

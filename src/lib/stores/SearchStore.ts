@@ -7,7 +7,7 @@ import type { SearchMessageRequest } from '$lib/types/SearchMessageRequest.ts';
 import type { SearchMessageResponse } from '$lib/types/SearchMessageResponse.ts';
 
 const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<SearchStartResponse> => {
-	let url = `${apiBaseUrl}/start`;
+	let url = `${apiBaseUrl}/search/start`;
 	
 	const queryParams = new URLSearchParams();
 
@@ -28,7 +28,7 @@ const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStart
 };
 
 const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMessageRequest): Promise<SearchMessageResponse> => {
-	const url = `${apiBaseUrl}/message/${session}`;
+	const url = `${apiBaseUrl}/search/message/${session}`;
 
 	const res = await fetch(url, {
 		method: 'POST',
