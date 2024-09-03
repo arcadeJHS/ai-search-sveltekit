@@ -1,7 +1,7 @@
 <script>
   import svelteLogo from '../assets/svelte.svg';
   import { searchStore } from '$lib/stores/SearchStore.ts';
-  import AiSearchCore from '$lib/components/AiSearchCore.svelte';
+  import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import AiSearchChat from '$lib/components/AiSearchChat.svelte';
   import AiSearchResults from '$lib/components/AiSearchResults.svelte';
 </script>
@@ -13,10 +13,10 @@
     </a>
   </div>
 
-  <AiSearchCore
+  <WcAiSearchAppShell
     apiBaseUrl="http://localhost:8099"
     language="it"
-  ></AiSearchCore>
+  ></WcAiSearchAppShell>
 
   <div class="ai-search-container">
     <div class="column left">

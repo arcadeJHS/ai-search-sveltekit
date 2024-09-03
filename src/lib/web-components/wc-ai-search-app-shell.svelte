@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-	tag: 'PREFIX-ai-search-core',
+	tag: 'PREFIX-ai-search-app-shell',
 	shadow: 'none',
 	props: {
 		apiBaseUrl: { reflect: true, type: 'String', attribute: 'api-base-url' },
@@ -8,14 +8,17 @@
 }} />
 
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { searchStore } from '$lib/stores/SearchStore.ts';
 	import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
-	import AiSearchCore from '$lib/components/AiSearchCore.svelte';
+	import { Styles } from '@sveltestrap/sveltestrap';
 
 	export let apiBaseUrl: string;
 	export let language: AllowedLanguages;
+
+	onMount(async () => {
+		await searchStore.start(apiBaseUrl, { language });
+	});
 </script>
 
-<AiSearchCore
-	apiBaseUrl={apiBaseUrl}
-	language={language}
-></AiSearchCore>
+<Styles />
