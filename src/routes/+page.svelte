@@ -14,7 +14,7 @@
   </div>
 
   <WcAiSearchAppShell
-    apiBaseUrl="http://localhost:8099"
+    apiBaseUrl="http://localhost:8099/search"
     language="it"
   ></WcAiSearchAppShell>
 
