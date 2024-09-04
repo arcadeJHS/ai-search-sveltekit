@@ -17,7 +17,7 @@
     apiBaseUrl="http://localhost:8099" 
   -->
   <WcAiSearchAppShell
-    apiBaseUrl="http://192.168.50.58:9910"
+    baseUrl="http://192.168.50.58:9910"
     language="it"
   ></WcAiSearchAppShell>
 

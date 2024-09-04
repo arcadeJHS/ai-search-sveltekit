@@ -2,7 +2,7 @@
 	tag: 'PREFIX-ai-search-app-shell',
 	shadow: 'none',
 	props: {
-		apiBaseUrl: { reflect: true, type: 'String', attribute: 'api-base-url' },
+		baseUrl: { reflect: true, type: 'String', attribute: 'base-url' },
 		language: { reflect: true, type: 'String', attribute: 'language' }
 	},
 }} />
@@ -13,11 +13,11 @@
 	import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 	import { Styles } from '@sveltestrap/sveltestrap';
 
-	export let apiBaseUrl: string;
+	export let baseUrl: string;
 	export let language: AllowedLanguages;
 
 	onMount(async () => {
-		await searchStore.start(apiBaseUrl, { language });
+		await searchStore.start(baseUrl, { language });
 	});
 </script>
 
