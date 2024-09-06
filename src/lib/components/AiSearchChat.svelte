@@ -69,9 +69,6 @@ onMount(() => {
 
 <style>
 .ai-chat {
-    --font-body: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
-	--color-text: rgba(18, 18, 18, 0.8);
-
     display: flex; 
     flex-direction: column; 
     flex-grow: 1;
@@ -79,10 +76,9 @@ onMount(() => {
 
     height: 400px;
     max-height: 400px;
-    
-    color: var(--color-text);
 
     border: 1px solid orange;
+    padding: 1rem;
 }
 .ai-chat-messages {
     display: flex;

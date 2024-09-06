@@ -32,6 +32,8 @@ they can onyl receive `props` from parent, and emit events with svelte's `create
 
 Then wrap the component into an "web component" in `src/lib/web-components`. Here you can link its props and events to the store.
 
+Also, define implementation specific css styles on the wrapped component in `src/lib/web-components`. The original component should be as generic an reusable as possible.
+
 For a simple example see `/Users/jhs/EXMACHINA/ai-search-sveltekit/src/lib/components/AiSearchUserInputForm.svelte` and `src/lib/web-components/wc-ai-search-user-input-form.svelte`.
 
 > **Note:** The "PREFIX-" prefix allows you to define prefixed custom elements. 

@@ -21,6 +21,16 @@ export default defineConfig({
 			fileName: (format) => `ai.search.web.components.${format}.js`,
 			formats: ['es', 'umd']
 		},
+		rollupOptions: {
+            output: {
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === 'style.css') {
+                        return 'ai.search.web.components.css';
+                    }
+                    return assetInfo.name;
+                }
+            }
+        },
 		outDir: 'dist-web-components'
 	},
 	plugins: [

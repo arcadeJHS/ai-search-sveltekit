@@ -27,4 +27,24 @@
     };
 </script>
 
-<AiSearchUserInputForm on:userInput={onUserInput} />
+<div class="fixed-bottom-centered">
+    <AiSearchUserInputForm on:userInput={onUserInput}></AiSearchUserInputForm>
+</div>
+
+<style>
+.fixed-bottom-centered {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 33vw;
+    width: 100%;
+
+    z-index: 10;
+
+    background-color: #faf3ee;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 10px 10px 11px -4px rgba(0,0,0,0.16);
+}
+</style>
