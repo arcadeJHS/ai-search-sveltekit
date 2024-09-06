@@ -23,6 +23,9 @@ const dispatchUserInput = (content: UserInput) => {
 
 <style>
 .ai-chat-user-input-form {
+    --font-body: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
+	--color-text: rgba(18, 18, 18, 0.8);
+    
     display: flex;
     justify-content: space-between;
     padding-top: 1rem;

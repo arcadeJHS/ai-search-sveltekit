@@ -18,11 +18,21 @@ Here we are using the Svelte's Custom Elements API: `https://svelte.dev/docs/cus
 Build Svelte components defined in `src/lib/web-components` into framework-agnostic custom elements.
 
 ### How To
-Create Svelte components in `src/lib/components`, then wrap them as web components in the folder `src/lib/web-components`, adding the Svelte element on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
+Create Svelte components in `src/lib/components`, then wrap them as web components in the folder `src/lib/web-components`, adding the Svelte `svelte:options customElement` on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
 
 ```html
 <svelte:options customElement="PREFIX-counter" />
 ```
+
+The logic is simple:
+
+as a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`:
+
+they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
+
+Then wrap the component into an "web component" in `src/lib/web-components`. Here you can link its props and events to the store.
+
+For a simple example see `/Users/jhs/EXMACHINA/ai-search-sveltekit/src/lib/components/AiSearchUserInputForm.svelte` and `src/lib/web-components/wc-ai-search-user-input-form.svelte`.
 
 > **Note:** The "PREFIX-" prefix allows you to define prefixed custom elements. 
 > Define it in `vite.webcomponents.config`, setting a value for the variable `LIBRARY_PREFIX`.

@@ -1,5 +1,5 @@
 <script>
-  import svelteLogo from '../assets/svelte.svg';
+  import svelteLogo from '/src/assets/svelte.svg';
   import { searchStore } from '$lib/stores/SearchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import AiSearchChat from '$lib/components/AiSearchChat.svelte';

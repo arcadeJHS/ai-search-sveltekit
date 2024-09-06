@@ -5,6 +5,8 @@ import replace from '@rollup/plugin-replace';
 
 const LIBRARY_PREFIX = 'stg';
 
+process.env.CUSTOM_ELEMENT = true;
+
 // const getTimestamp = () => {
 // 	const now = new Date();
 // 	return `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getSeconds()).padStart(2, '0')}`;
@@ -26,7 +28,7 @@ export default defineConfig({
 			preventAssignment: true,
 			'PREFIX': LIBRARY_PREFIX ?? 'stg'
 		}),
-		svelte({ 
+		svelte({
 			compilerOptions: { 
 				customElement: true 
 			} 
