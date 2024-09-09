@@ -1,8 +1,12 @@
 @value variables: "./variables.module.css";
-@value dark, lightGrey, fontSansSerif from variables;
+@value fontSansSerif from variables;
 
 .base {
     font-family: fontSansSerif;
-    border: 1px solid lightGrey;
-    color: dark;
+}
+
+.noBorder,
+.noBorder:focus {
+    border: 0!important;
+    box-shadow: none!important;
 }

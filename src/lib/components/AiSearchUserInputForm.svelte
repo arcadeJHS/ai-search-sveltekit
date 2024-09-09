@@ -1,37 +1,77 @@
 <script lang="ts">
 import { createEventDispatcher } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
-import { Button } from '@sveltestrap/sveltestrap';
+import { Input, Button, Icon } from '@sveltestrap/sveltestrap';
 import input from '$lib/styles/input.module.css';
+import textarea from '$lib/styles/textarea.module.css';
+import button from '$lib/styles/button.module.css';
 
 const dispatch = createEventDispatcher();
 
+let inner: HTMLDivElement;
 let userInput: UserInput;
+
+const resize = () => {
+    inner.style.height = 'auto';
+
+    if (userInput) {
+        inner.style.height = `${inner.scrollHeight}px`;
+    }
+};
 
 const dispatchUserInput = (content: UserInput) => {
     if (!userInput) { return; }
     dispatch('userInput', { content });
     userInput = undefined;
+    resize();
+};
+
+const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        dispatchUserInput(userInput);
+    }
 };
 </script>
 
-<form class="ai-chat-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
-	<input class={`${input.base} ai-chat-user-input-form-input`} bind:value={userInput} />
-    <Button type="submit" color="primary">Search</Button>
+<form class="d-flex justify-content-between gap-3 bg-white border rounded p-2" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
+    <Input 
+        class={`${input.base} ${input.noBorder} ${textarea.limitMaxHeight}`} 
+        type="textarea" 
+        rows="1"
+        on:input={resize}
+        on:keydown={handleKeyDown}
+        bind:value={userInput}
+        bind:inner />
+
+    <div class="d-flex fs-2 text-primary align-items-end">
+        <button type="submit" class="btn rounded-circle d-flex justify-content-center align-items-center fs-2 text-white border-0" disabled={!userInput}>
+            <div class="d-flex justify-content-center align-items-center">
+                <Icon name="arrow-up-short" class={`${button.noPadding}`} />
+            </div>
+        </button>
+    </div>
 </form>
 
 <style>
-.ai-chat-user-input-form {    
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
+button {
+    width: 2rem;
+    height: 2rem;
+    background-color: orange!important;
 }
-.ai-chat-user-input-form-input {
-    display: flex;
-    flex-grow: 1;
-    line-height: 2em;
-    padding: 0 0.5rem;
+button:hover {
+    opacity: 0.8;
+}
+/* 
+ Warning:
+ if you want to override a Svelte component css using a class, using traditional css (NOT CSS modules, which already override, as local styles) given the fact the css is scoped to the components, you must use the :global() selector.
+ Example:
+
+ <Input class="ai-chat-user-input-form-input" type="textarea" bind:value={userInput} />
+
+ :global(.ai-chat-user-input-form-input) {
     font-size: 0.8em;
-    border-radius: 4px;
+    color: #fc0
 }
+*/
 </style>

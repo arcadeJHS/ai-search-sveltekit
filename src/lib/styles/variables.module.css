@@ -5,8 +5,12 @@
     Variables names inspired by Bootstrap 5
     https://getbootstrap.com/docs/5.0/customize/css-variables/
 */
-
 @value fontSansSerif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 @value lightGrey: #ced4da;
 @value dark: #222921;
 @value red: #ff0000;
+
+/* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
+@value small: (min-width: 576px);
+@value medium: (min-width: 768px);
+@value large: (min-width: 992px);
