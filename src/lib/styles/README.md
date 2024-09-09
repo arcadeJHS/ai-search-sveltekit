@@ -2,6 +2,8 @@
 
 For an illuminating introduction read:
 
+- https://github.com/css-modules/css-modules/tree/master
+
 - https://glenmaddern.com/articles/css-modules
 
 - https://www.barbarianmeetscoding.com/notes/css-modules/
@@ -10,4 +12,4 @@ For an illuminating introduction read:
 
 > Note:
 > CSS modules are CSS-in-JS. Please use with moderation, only if necessary.
-> Primarily use Svelte's scoped styles.
+> Primarily use Svelte's scoped styles (or Bootstrap 5 classes).

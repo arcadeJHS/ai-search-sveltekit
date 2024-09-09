@@ -151,6 +151,14 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 ![Mockup UI AI search chat interaction](MOCKUP_UI/mock_02_chat.png)
 
 
+## Technologies
+
+- Svelte to develop and build web components
+- Sveltestrap as components library (when and only if required)
+- Bootstrap 5 for styles
+- CSS modules (https://github.com/css-modules/css-modules/tree/master) for defininig scoped and reusable css rules
+
+
 # Riepilogo su come usare i vari repo per lo sviluppo
 
 /**
