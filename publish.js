@@ -10,27 +10,51 @@ const sourceDir = path.resolve(__dirname, 'dist-web-components');
 const targetDir = path.resolve(__dirname, 'DEMO');
 
 // Autopublish to local stagend website. Customize your folder path
-const stagendWebsiteDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
+const stagendWebsiteJsDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
+const stagendWebsiteCssDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/css';
 
-function copyFiles(srcDir, destDir) {
-    if (!fs.existsSync(destDir)) {
-        fs.mkdirSync(destDir, { recursive: true });
+function copyFiles(srcDir, jsDestDir, cssDestDir) {
+    if (!fs.existsSync(jsDestDir)) {
+        fs.mkdirSync(jsDestDir, { recursive: true });
+    }
+
+    if (cssDestDir && !fs.existsSync(cssDestDir)) {
+        fs.mkdirSync(cssDestDir, { recursive: true });
     }
 
     const entries = fs.readdirSync(srcDir, { withFileTypes: true });
 
     for (let entry of entries) {
         const srcPath = path.join(srcDir, entry.name);
-        const destPath = path.join(destDir, entry.name);
+        const jsDestPath = path.join(jsDestDir, entry.name);
+        const cssDestPath = cssDestDir ? path.join(cssDestDir, entry.name) : null;
 
         if (entry.isDirectory()) {
-            copyFiles(srcPath, destPath);
+            copyFiles(srcPath, jsDestDir, cssDestDir);
         } else {
-            fs.copyFileSync(srcPath, destPath);
+            const ext = path.extname(entry.name);
+            if (ext === '.js') {
+                fs.copyFileSync(srcPath, jsDestPath);
+                console.log(`Copied ${entry.name} from ${srcDir} to ${jsDestDir}`);
+            } else if (ext === '.css' && cssDestDir && cssDestPath) {
+                fs.copyFileSync(srcPath, cssDestPath);
+                console.log(`Copied ${entry.name} from ${srcDir} to ${cssDestDir}`);
+            }
         }
     }
 }
 
-copyFiles(sourceDir, targetDir);
-copyFiles(sourceDir, stagendWebsiteDir);
-console.log(`Files copied from ${sourceDir} to ${targetDir}`);
+console.log(`
+#############################
+### Copying files - BEGIN ###
+#############################
+`);
+
+copyFiles(sourceDir, targetDir, targetDir);
+copyFiles(sourceDir, stagendWebsiteJsDir, stagendWebsiteCssDir);
+
+console.log(`
+#############################
+### Copying files - END   ###
+#############################
+`);

@@ -1,0 +1,16 @@
+@value variables: "./variables.module.css";
+@value medium from variables;
+
+.resizeNone {
+    resize: none;
+}
+
+.limitMaxHeight {
+    composes: resizeNone;
+
+    max-height: 20vh;
+
+    @media medium {
+        max-height: 35vh;
+    }
+}

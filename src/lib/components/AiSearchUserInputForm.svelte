@@ -1,8 +1,9 @@
 <script lang="ts">
 import { createEventDispatcher } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
-import { Input, Button, Icon } from '@sveltestrap/sveltestrap';
+import { Input, Icon } from '@sveltestrap/sveltestrap';
 import input from '$lib/styles/input.module.css';
+import font from '$lib/styles/font.module.css';
 import textarea from '$lib/styles/textarea.module.css';
 import button from '$lib/styles/button.module.css';
 
@@ -36,7 +37,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
 <form class="d-flex justify-content-between gap-3 bg-white border rounded p-2" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
     <Input 
-        class={`${input.base} ${input.noBorder} ${textarea.limitMaxHeight}`} 
+        class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`} 
         type="textarea" 
         rows="1"
         on:input={resize}

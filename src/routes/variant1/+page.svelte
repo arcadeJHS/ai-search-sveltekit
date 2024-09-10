@@ -1,7 +1,7 @@
 <script>
   import { searchStore } from '$lib/stores/SearchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
-  import AiSearchChat from '$lib/components/AiSearchChat.svelte';
+  import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
   import AiSearchResults from '$lib/components/AiSearchResults.svelte';
   import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
 </script>
@@ -12,7 +12,7 @@
     language="it">
   </WcAiSearchAppShell>
 
-  <AiSearchChat messages={$searchStore.messages}></AiSearchChat>
+  <WcAiSearchMessages></WcAiSearchMessages>
 
   <WcAiSearchFloatingUserInput></WcAiSearchFloatingUserInput>
 

@@ -7,7 +7,7 @@ import AiSearchUserInputForm from './AiSearchUserInputForm.svelte';
 
 export let messages;
 
-let aiChatMessagesContainer: HTMLDivElement;
+let inner: HTMLDivElement;
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -28,8 +28,8 @@ const onUserInput = async (event: CustomEvent) => {
 
 const scrollToLastMessage = async () => {
   await tick();
-  aiChatMessagesContainer?.scrollTo({
-    top: aiChatMessagesContainer.scrollHeight,
+  inner?.scrollTo({
+    top: inner.scrollHeight,
     left: 0,
     behavior: 'smooth'
   });
@@ -45,14 +45,14 @@ onMount(() => {
 });
 </script>
 
-<div class="ai-chat">
+<div class="ai-search-chat">
     <!--
     Play with bootstrap 5 responsive classes: 
     https://getbootstrap.com/docs/5.0/utilities/display/
 
     <div class="ai-chat-messages d-none d-md-block"></div>
     -->
-    <div class="ai-chat-messages" bind:this={aiChatMessagesContainer}>    
+    <div class="ai-search-chat-messages" bind:this={inner}>    
         {#each messages as message}
             <div style="margin: 1rem 0;">
                 <pre>{JSON.stringify(message, null, 2)}</pre>
@@ -68,7 +68,7 @@ onMount(() => {
 </div>
 
 <style>
-.ai-chat {
+.ai-search-chat {
     display: flex; 
     flex-direction: column; 
     flex-grow: 1;
@@ -80,7 +80,7 @@ onMount(() => {
     border: 1px solid orange;
     padding: 1rem;
 }
-.ai-chat-messages {
+.ai-search-chat-messages {
     display: flex;
     flex-direction: column;
     flex-grow: 1;

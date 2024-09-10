@@ -9,54 +9,61 @@
     <link rel="stylesheet" href="ai.search.web.components.css">
 
     <style>
-        .ai-search-container {
-            --font-body: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
-            --color-text: rgba(18, 18, 18, 0.8);
-
+        .site-ai-search {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 3fr;
             gap: 0.2rem;
             height: 100%;
             width: 100%;
-            font-family: var(--font-body);
             font-size: 1.2em;
-            color: var(--color-text);
         }
-        .ai-search-container * {
+        .site-ai-search * {
             box-sizing: border-box;
         }
-        .column {
+        .site-ai-search__column {
             display: flex;
             flex-direction: column;
             overflow-y: hidden;
-            padding: 1rem;
         }
-        .left {
-            border-right: 1px solid var(--color-text);
+        .site-ai-search__column--left {
+            /* border-right: 1px solid var(--color-text); */
+        }
+        .site-ai-search__messages {
+            max-height: 45vh;
         }
     </style>
 </head>
 <body>
 
-    <!-- Con modello mock: 
-        apiBaseUrl="http://localhost:8099" 
-    -->
-    <stg-ai-search-app-shell
-        base-url="http://192.168.50.58:9910"
-        language="it">
-    </stg-ai-search-app-shell>
-
-    <div class="ai-search-container">
-        <div class="column left">
-            <stg-ai-search-chat></stg-ai-search-chat>
+    <div>
+        <!-- Con modello mock: 
+            apiBaseUrl="http://localhost:8099" 
+        -->
+        <stg-ai-search-app-shell
+            base-url="http://192.168.50.58:9910"
+            language="it">
+        </stg-ai-search-app-shell>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+    
+                    <div class="site-ai-search">
+                        <div class="site-ai-search__column site-ai-search__column--left">
+                            <stg-ai-search-messages class="site-ai-search__messages"></stg-ai-search-messages>
+                        </div>
+                        
+                        <div class="site-ai-search__column">
+                            <stg-ai-search-results></stg-ai-search-results>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
         </div>
-        
-        <div class="column right">
-            <stg-ai-search-results></stg-ai-search-results>
-        </div>
+    
+        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
     </div>
-
-    <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
 
     <!-- 
     Most modern browsers support ES modules. 
