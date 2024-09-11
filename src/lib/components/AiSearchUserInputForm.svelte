@@ -54,7 +54,7 @@ onMount(() => {
 });
 </script>
 
-<form class="d-flex justify-content-between gap-3 bg-white border rounded p-2" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
+<form class="d-flex justify-content-between gap-3 bg-white border rounded p-2 ai-search-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
     <Input 
         class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`} 
         type="textarea" 
@@ -82,6 +82,17 @@ button {
 }
 button:hover {
     opacity: 0.8;
+}
+:global(.ai-search-user-input-form textarea) {
+    /*
+     * Set the height of the textarea to the initial height (the value for "initialTextareaHeight").
+     * You can pass a custom height defining the "--textarea-height" css variable as a prop from parent component:
+
+     * <AiSearchUserInputForm --textarea-height="6rem" />;
+     *
+     * The default height is 6rem.
+     */
+    height: var(--textarea-height, "6rem");
 }
 /* 
  Warning:

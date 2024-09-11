@@ -34,6 +34,7 @@
     class:wc-ai-search-floating-user-input--static={$userMessagesStore.length <= 0}>
     <div class="shadow rounded p-2 bg-light">
         <AiSearchUserInputForm
+            --textarea-height="6rem"
             isFollowup={$userMessagesStore.length > 0}
             on:userInput={onUserInput} />
     </div>
@@ -54,9 +55,9 @@
         max-width: 30vw;
     }
 }
-:global(.wc-ai-search-floating-user-input--static textarea) {
+/* :global(.wc-ai-search-floating-user-input--static textarea) {
     height: 6rem;
-}
+} */
 .wc-ai-search-floating-user-input--fixed {
     position: fixed;
     bottom: 0;
