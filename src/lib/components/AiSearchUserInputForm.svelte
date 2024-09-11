@@ -1,11 +1,10 @@
 <script lang="ts">
 import { createEventDispatcher, onMount } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
-import { Input, Icon } from '@sveltestrap/sveltestrap';
 import input from '$lib/styles/input.module.css';
 import font from '$lib/styles/font.module.css';
 import textarea from '$lib/styles/textarea.module.css';
-import button from '$lib/styles/button.module.css';
+import AiSearchMessageSubmitButton from './AiSearchMessageSubmitButton.svelte';
 
 export let placeholder: string = "How can I help you organizing your event?";
 export let followUpPlaceholder: string = "Do you want to add more details?";
@@ -13,7 +12,7 @@ export let isFollowup: boolean = false;
 
 const dispatch = createEventDispatcher();
 
-let inner: HTMLDivElement;
+let inner: HTMLTextAreaElement;
 let userInput: UserInput;
 let initialTextareaHeight: string;
 
@@ -54,36 +53,38 @@ onMount(() => {
 });
 </script>
 
-<form class="d-flex justify-content-between gap-3 bg-white border rounded p-2 ai-search-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
-    <Input 
-        class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`} 
-        type="textarea" 
+<form class="ai-search-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
+    <textarea
+        class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
         rows="1"
         on:input={resize}
         on:keydown={handleKeyDown}
         bind:value={userInput}
-        bind:inner 
+        bind:this={inner} 
         placeholder={isFollowup ? followUpPlaceholder : placeholder} />
 
-    <div class="d-flex fs-2 text-primary align-items-end">
-        <button type="submit" class="btn rounded-circle d-flex justify-content-center align-items-center fs-2 text-white border-0" disabled={!userInput}>
-            <div class="d-flex justify-content-center align-items-center">
-                <Icon name="arrow-up-short" class={`${button.noPadding}`} />
-            </div>
-        </button>
+    <div class="ai-search-user-input-form__submit-container">
+        <AiSearchMessageSubmitButton disabled={!userInput} />
     </div>
 </form>
 
 <style>
-button {
-    width: 2rem;
-    height: 2rem;
-    background-color: orange!important;
+.ai-search-user-input-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
 }
-button:hover {
-    opacity: 0.8;
+.ai-search-user-input-form__submit-container {
+    display: flex;
+    align-items: flex-end;
 }
-:global(.ai-search-user-input-form textarea) {
+textarea {
+    width: 100%;
+
     /*
      * Set the height of the textarea to the initial height (the value for "initialTextareaHeight").
      * You can pass a custom height defining the "--textarea-height" css variable as a prop from parent component:
@@ -94,16 +95,4 @@ button:hover {
      */
     height: var(--textarea-height, "6rem");
 }
-/* 
- Warning:
- if you want to override a Svelte component css using a class, using traditional css (NOT CSS modules, which already override, as local styles) given the fact the css is scoped to the components, you must use the :global() selector.
- Example:
-
- <Input class="ai-chat-user-input-form-input" type="textarea" bind:value={userInput} />
-
- :global(.ai-chat-user-input-form-input) {
-    font-size: 0.8em;
-    color: #fc0
-}
-*/
 </style>

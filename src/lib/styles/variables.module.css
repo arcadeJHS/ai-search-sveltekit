@@ -6,7 +6,8 @@
     https://getbootstrap.com/docs/5.0/customize/css-variables/
 */
 @value fontSansSerif: "Montserrat", sans-serif;
-@value lightGrey: #ced4da;
+@value light: #f8f9fa;
+@value lightGrey: #dee2e6;
 @value dark: #222921;
 @value red: #ff0000;
 

@@ -1,5 +1,7 @@
 .noBorder,
-.noBorder:focus {
+.noBorder:focus,
+.noBorder:focus-visible {
     border: 0!important;
     box-shadow: none!important;
+    outline: none!important;
 }

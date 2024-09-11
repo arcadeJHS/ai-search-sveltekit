@@ -29,10 +29,10 @@
 </script>
 
 <div 
-    class="p-2 wc-ai-search-floating-user-input"
+    class="wc-ai-search-floating-user-input"
     class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length > 0}
     class:wc-ai-search-floating-user-input--static={$userMessagesStore.length <= 0}>
-    <div class="shadow rounded p-2 bg-light">
+    <div>
         <AiSearchUserInputForm
             --textarea-height="6rem"
             isFollowup={$userMessagesStore.length > 0}
@@ -43,6 +43,13 @@
 <style>
 .wc-ai-search-floating-user-input {
     width: 100%;
+    padding: 0.5rem;
+}
+.wc-ai-search-floating-user-input > div {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 .wc-ai-search-floating-user-input--static {
     display: flex;
