@@ -1,5 +1,5 @@
 <script lang="ts">
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, onMount } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { Input, Icon } from '@sveltestrap/sveltestrap';
 import input from '$lib/styles/input.module.css';
@@ -7,13 +7,27 @@ import font from '$lib/styles/font.module.css';
 import textarea from '$lib/styles/textarea.module.css';
 import button from '$lib/styles/button.module.css';
 
+export let placeholder: string = "How can I help you organizing your event?";
+export let followUpPlaceholder: string = "Do you want to add more details?";
+export let isFollowup: boolean = false;
+
 const dispatch = createEventDispatcher();
 
 let inner: HTMLDivElement;
 let userInput: UserInput;
+let initialTextareaHeight: string;
+
+const resetTextareaHeight = () => {
+    inner.style.height = 'auto';
+};
 
 const resize = () => {
-    inner.style.height = 'auto';
+    resetTextareaHeight();
+    
+    if (!isFollowup && inner.scrollHeight < parseFloat(initialTextareaHeight)) { 
+        inner.style.height = initialTextareaHeight;
+        return; 
+    }
 
     if (userInput) {
         inner.style.height = `${inner.scrollHeight}px`;
@@ -24,7 +38,7 @@ const dispatchUserInput = (content: UserInput) => {
     if (!userInput) { return; }
     dispatch('userInput', { content });
     userInput = undefined;
-    resize();
+    resetTextareaHeight();
 };
 
 const handleKeyDown = (event: KeyboardEvent) => {
@@ -33,6 +47,11 @@ const handleKeyDown = (event: KeyboardEvent) => {
         dispatchUserInput(userInput);
     }
 };
+
+onMount(() => {
+    // set initial textarea height when the component is mounted
+    initialTextareaHeight = inner.clientHeight + 'px';
+});
 </script>
 
 <form class="d-flex justify-content-between gap-3 bg-white border rounded p-2" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
@@ -43,7 +62,8 @@ const handleKeyDown = (event: KeyboardEvent) => {
         on:input={resize}
         on:keydown={handleKeyDown}
         bind:value={userInput}
-        bind:inner />
+        bind:inner 
+        placeholder={isFollowup ? followUpPlaceholder : placeholder} />
 
     <div class="d-flex fs-2 text-primary align-items-end">
         <button type="submit" class="btn rounded-circle d-flex justify-content-center align-items-center fs-2 text-white border-0" disabled={!userInput}>

@@ -7,3 +7,8 @@ export type Message = {
 	role: MessageRole;
 	content: string;
 };
+
+export type UserMessage = {
+	role: MessageRole.User;
+	content: string;
+};

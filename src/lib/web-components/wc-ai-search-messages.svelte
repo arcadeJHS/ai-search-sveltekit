@@ -5,18 +5,12 @@
 
 <script lang="ts">
     import AiSearchmessages from '$lib/components/AiSearchMessages.svelte';
-    import { searchStore } from '$lib/stores/SearchStore.ts';
-    import { MessageRole } from '$lib/types/Message.ts';
-
-    let userMessages = [];
-
-    // In this version of the component, we are showing only messages with role 'user', so we filter out 'agent' generated messages
-    $: userMessages = $searchStore.messages.filter(message => message.role === MessageRole.User);
+    import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
 </script>
 
 <div class="wc-ai-search-messages">
-    {#if $searchStore}
-        <AiSearchmessages messages={userMessages} />
+    {#if $userMessagesStore}
+        <AiSearchmessages messages={$userMessagesStore} />
     {/if}
 </div>
 

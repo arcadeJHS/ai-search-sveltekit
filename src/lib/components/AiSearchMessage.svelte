@@ -14,11 +14,12 @@
     /* background: #14c5cc; */
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    border: 1px solid #14c5cc;
-    color: #14c5cc;
+    border: 2px solid #ffc573;
 }
 .ai-search-message > p {
-    color: #14c5cc;
     font-weight: bold;
+}
+.ai-search-message > div {
+    color: #14c5cc;
 }
 </style>

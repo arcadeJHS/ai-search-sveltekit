@@ -2,7 +2,7 @@
 	"name": "ai-search-sveltekit",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build && npm run package",
 		"build:webcomponents": "vite -c vite.webcomponents.config.js build",
 		"build:webcomponents:publish": "npm run build:webcomponents && node publish.js",

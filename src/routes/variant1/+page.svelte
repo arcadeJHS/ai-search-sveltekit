@@ -2,7 +2,7 @@
   import { searchStore } from '$lib/stores/SearchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
-  import AiSearchResults from '$lib/components/AiSearchResults.svelte';
+  import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
   import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
 </script>
 
@@ -12,15 +12,51 @@
     language="it">
   </WcAiSearchAppShell>
 
-  <WcAiSearchMessages></WcAiSearchMessages>
+  <WcAiSearchFloatingUserInput />
 
-  <WcAiSearchFloatingUserInput></WcAiSearchFloatingUserInput>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
 
-  <AiSearchResults results={$searchStore.selections}></AiSearchResults>
+        <div class="site-ai-search">
+          <div class="site-ai-search__column site-ai-search__column--left">
+            <div class="site-ai-search__messages">
+              <WcAiSearchMessages />
+            </div>
+          </div>
+          
+          <div class="site-ai-search__column">
+            <WcAiSearchResults />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </main>
 
 <style>
-  main {
-    padding: 1rem;
-  }
+.site-ai-search {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 0.2rem;
+  height: 100%;
+  width: 100%;
+  font-size: 1.2em;
+}
+.site-ai-search * {
+  box-sizing: border-box;
+}
+.site-ai-search__column {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+.site-ai-search__column--left {
+  /* border-right: 1px solid var(--color-text); */
+}
+.site-ai-search__messages {
+  max-height: 45vh;
+}
 </style>
