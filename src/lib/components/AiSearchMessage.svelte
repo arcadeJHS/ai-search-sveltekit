@@ -11,9 +11,9 @@
     
 <style>
 .ai-search-message {
-    /* background: #14c5cc; */
     padding: 0.5rem 1rem;
     border-radius: 20px;
+    border-top-left-radius: 0;
     border: 2px solid #80f1f1;
 }
 .ai-search-message > p {

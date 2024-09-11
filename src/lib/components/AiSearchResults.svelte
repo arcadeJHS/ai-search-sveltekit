@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let results;
+    import { type Selection } from '$lib/types/Selection.ts';
+
+    export let results: Selection[];
 </script>
 
 <div>    
