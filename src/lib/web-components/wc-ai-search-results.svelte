@@ -4,12 +4,22 @@
 }} />
 
 <script lang="ts">
-    import AiSearchResults from '$lib/components/AiSearchResults.svelte';
-
-    // Here we are using SearchStore as a central store/event bus to share data and events among components
     import { searchStore } from '$lib/stores/SearchStore.ts';
+    import WcAiSearchResult from '$lib/web-components/wc-ai-search-result.svelte'; 
 </script>
 
 {#if $searchStore}
-    <AiSearchResults results={$searchStore.selections} />
+
+    <div class="container">
+        <div id="profiles_container" class="row row-cols-1 row-cols-md-4 g-4">
+
+            {#each $searchStore.selections as result}
+
+                <WcAiSearchResult {result} />
+
+            {/each}
+
+        </div>
+    </div>
+    
 {/if}

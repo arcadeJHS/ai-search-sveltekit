@@ -1,4 +1,5 @@
 import { type ArtistType, type ArtistSubType } from './Filter.ts';
+import { type ArtistLevel } from './ArtistLevel.ts';
 
 export type Selection = {
     // LLM API core fields
@@ -10,23 +11,26 @@ export type Selection = {
 
     // Stagend specific fields
     displayName?: string;
-    aiQuoteAvg?: string | number;
+    aiQuoteAvg?: number;
     artistType?: ArtistType;
-    bookings?: string | number;
+    bookings?: number;
     offer?: string;
     currency?: string;
     musician?: boolean;
     tagline?: string;
-    ratingVotes?: string | number;
-    ratingStars?: string | number;
+    ratingVotes?: number;
+    ratingStars?: number;
     nickName?: string;
     userBookPlace?: string;
     city?: string;
     country?: string;
+    location?: string;
     subtypes?: ArtistSubType[];
     imageUrl?: string;
     whois?: string;
     videoYtId?: string;
     itemprop_desc?: string;
     cachet_min?: string;
+    telephone: string;
+    level_css: ArtistLevel;
 };

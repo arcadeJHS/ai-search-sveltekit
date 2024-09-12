@@ -1,0 +1,1 @@
+export type ArtistLevel = 'free' | 'trial' | 'newcomeer' | 'rockstar';
