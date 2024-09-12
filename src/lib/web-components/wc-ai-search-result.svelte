@@ -81,7 +81,7 @@
         Originale:
         <div class="card h-100" <?php if($highlight): ?>style="border: 4px solid #ff9128;"<?php endif; ?>>
     -->
-    <div class="card h-100">
+    <div class="card h-100 wc-ai-search-result">
         <!-- 
             TODO:
             Qui occorre implementare show/hide play icon.
@@ -89,7 +89,7 @@
             Originale:
             <div class="top-area-images" id="video-container-<?php echo $profile->getId(); ?>" <?php if($video): ?>onmouseover="showPlayIcon(<?php echo $profile->getId(); ?>)" onmouseout="hidePlayIcon(<?php echo $profile->getId(); ?>)"<?php endif; ?>>
         -->
-        <div class="top-area-images" id="video-container-{result.id}">
+        <div class="wc-ai-search-result__top-area-images" id="video-container-{result.id}">
             <meta itemprop="name" content="{result.displayName}">
             <span itemprop="telephone" content="{result.telephone}"></span>
             {#if result.aiQuoteAvg}
@@ -106,9 +106,9 @@
                 <?php if($video): ?>onclick="loadVideo(<?php echo $profile->getId(); ?>)"<?php endif; ?>
             -->
             <img 
+                class="card-img-top"
                 id="thumbnail-{result.id}"
-                itemprop="image" 
-                class="card-img-top" 
+                itemprop="image"
                 src="{result.imageUrl}"
                 alt="{result.displayName}"
                 title="{getTitle(result)}">
@@ -119,12 +119,16 @@
                     Qui occorre implementare:
 
                     onclick="loadVideo(<?php echo $profile->getId(); ?>)"
-
-                    Le icone di font-awesome (o equivalente):
-                    class="fa-duotone fa-circle-play fa-2xl" style="--fa-primary-opacity: 0; --fa-secondary-color: #e66f00;--fa-secondary-opacity: 0.8;"
                 -->
-                <span class="play-icon" id="play-icon-{result.id}">
-                    <i class="fa-duotone fa-circle-play fa-2xl" style="--fa-primary-opacity: 0; --fa-secondary-color: #e66f00;--fa-secondary-opacity: 0.8;"></i>
+                <span class="wc-ai-search-result__play-icon" id="play-icon-{result.id}">
+                    <!-- 
+                        font-awesome svg icon: 
+                        fas fa-play-circle"
+                        https://fontawesome.com/v5/icons/play-circle?f=classic&s=solid&pc=%23e66f00&sc=%23e66f00
+                    -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
+                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"/>
+                    </svg>
                 </span>
                 <!-- 
                     TODO:
@@ -147,7 +151,7 @@
                 </div>
             {/if}
 
-            {#if result.bookings > 0}
+            {#if result.bookings && result.bookings > 0}
                 <div class="date-area">
                     <p><span class="book">{result.bookings}</span> Verified Bookings</p>
                 </div>
@@ -206,3 +210,28 @@
         </div>
     </div>
 </div>
+
+<style>
+.wc-ai-search-result {
+    border: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .10);
+    background-color: #ffffff;
+    border-radius: 7px;
+    margin-bottom: 22px;
+}
+.wc-ai-search-result__top-area-images {
+    position: relative;
+}
+.wc-ai-search-result__play-icon {
+    display: block;
+    height: 58px;
+    position: absolute;
+    bottom: 58px;
+    right: 10px;
+    opacity: 0.8;
+}
+.wc-ai-search-result__play-icon > svg {
+    height: 100%;
+    fill: #e66f00;
+}
+</style>

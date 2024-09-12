@@ -14,7 +14,10 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     border-top-left-radius: 0;
-    border: 2px solid #80f1f1;
+    /* border: 2px solid #80f1f1; */
+
+    border: 0;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, .10);
 }
 .ai-search-message > p {
     font-weight: bold;

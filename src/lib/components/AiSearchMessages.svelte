@@ -43,5 +43,6 @@ https://getbootstrap.com/docs/5.0/utilities/display/
     display: flex;
     flex-direction: column-reverse;
     gap: 0.5rem;
+    padding: 0.5rem;
 }
 </style>

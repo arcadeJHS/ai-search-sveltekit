@@ -10,16 +10,20 @@
 
 {#if $searchStore}
 
-    <div class="container">
-        <div id="profiles_container" class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="container wc-ai-search-results">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
 
             {#each $searchStore.selections as result}
-
                 <WcAiSearchResult {result} />
-
             {/each}
 
         </div>
     </div>
     
 {/if}
+
+<style>
+.wc-ai-search-results {
+    padding: 0.5rem;
+}
+</style>
