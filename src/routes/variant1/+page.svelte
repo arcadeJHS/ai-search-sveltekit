@@ -14,7 +14,7 @@
     apiBaseUrl="http://192.168.50.58:9910" 
   -->
   <WcAiSearchAppShell
-    baseUrl="http://localhost:8099"
+    baseUrl="http://192.168.50.58:9910"
     language="it">
   </WcAiSearchAppShell>
 
@@ -49,7 +49,6 @@
   gap: 0.2rem;
   height: 100%;
   width: 100%;
-  font-size: 1.2em;
 }
 .site-ai-search * {
   box-sizing: border-box;
@@ -58,9 +57,6 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-}
-.site-ai-search__column--left {
-  /* border-right: 1px solid var(--color-text); */
 }
 .site-ai-search__messages {
   max-height: 45vh;

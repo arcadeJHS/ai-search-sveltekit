@@ -98,6 +98,11 @@ export const useSearch = () => {
 			if (!session) {
 				throw new Error('Session is required');
 			}
+
+			_searchStore.update((self: SearchThread) => {
+				self.selections = [];
+				return self;
+			});
 			
 			const response: SearchMessageResponse = await _searchMessage(BASE_URL, {
 				session: session, 

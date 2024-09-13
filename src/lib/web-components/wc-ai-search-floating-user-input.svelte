@@ -4,11 +4,15 @@
 }} />
 
 <script lang="ts">
+    import { onMount } from 'svelte';
     import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte';
     import { searchStore } from '$lib/stores/SearchStore.ts';
     import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
     import type { UserInput } from '$lib/types/UserInput.ts';
     import { type Message, MessageRole } from '$lib/types/Message.ts';
+    import { observeBorderRadius } from '../utils/observeBorderRadius.ts';
+
+    let inner: HTMLElement;
 
     const onUserInput = async (event: CustomEvent) => {
         const content: UserInput = event.detail.content;
@@ -26,13 +30,21 @@
 
         const response = await searchStore.search(content);
     };
+
+    onMount(() => {
+        return observeBorderRadius({
+            elements: [inner], 
+            thresholds: [50]
+        });
+    });
+
 </script>
 
 <div 
     class="wc-ai-search-floating-user-input"
     class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length > 0}
     class:wc-ai-search-floating-user-input--static={$userMessagesStore.length <= 0}>
-    <div>
+    <div bind:this={inner}>
         <AiSearchUserInputForm
             --textarea-height="6rem"
             isFollowup={$userMessagesStore.length > 0}
@@ -47,7 +59,6 @@
 }
 .wc-ai-search-floating-user-input > div {
     padding: 0.5rem;
-    border-radius: 0.25rem;
     background-color: #f8f9fa;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }

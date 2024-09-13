@@ -5,6 +5,7 @@ import input from '$lib/styles/input.module.css';
 import font from '$lib/styles/font.module.css';
 import textarea from '$lib/styles/textarea.module.css';
 import AiSearchMessageSubmitButton from './AiSearchMessageSubmitButton.svelte';
+import { observeBorderRadius } from '../utils/observeBorderRadius.ts';
 
 export let placeholder: string = "How can I help you organizing your event?";
 export let followUpPlaceholder: string = "Do you want to add more details?";
@@ -12,24 +13,25 @@ export let isFollowup: boolean = false;
 
 const dispatch = createEventDispatcher();
 
-let inner: HTMLTextAreaElement;
+let textareaEl: HTMLTextAreaElement;
+let formEl: HTMLFormElement;
 let userInput: UserInput;
 let initialTextareaHeight: string;
 
 const resetTextareaHeight = () => {
-    inner.style.height = 'auto';
+    textareaEl.style.height = 'auto';
 };
 
 const resize = () => {
     resetTextareaHeight();
 
-    if (!isFollowup && inner.scrollHeight < parseFloat(initialTextareaHeight)) { 
-        inner.style.height = initialTextareaHeight;
+    if (!isFollowup && textareaEl.scrollHeight < parseFloat(initialTextareaHeight)) { 
+        textareaEl.style.height = initialTextareaHeight;
         return; 
     }
 
     if (userInput) {
-        inner.style.height = `${inner.scrollHeight}px`;
+        textareaEl.style.height = `${textareaEl.scrollHeight}px`;
     }
 };
 
@@ -49,19 +51,26 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
 onMount(() => {
     // set initial textarea height when the component is mounted
-    initialTextareaHeight = inner.clientHeight + 'px';
-    inner.style.height = initialTextareaHeight;
+    initialTextareaHeight = textareaEl.clientHeight + 'px';
+    textareaEl.style.height = initialTextareaHeight;
+    return observeBorderRadius({ 
+        elements: [formEl, textareaEl], 
+        thresholds: [32, 30]
+    });
 });
 </script>
 
-<form class="ai-search-user-input-form" on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
+<form 
+    class="ai-search-user-input-form" 
+    on:submit|preventDefault={() => { dispatchUserInput(userInput); }}
+    bind:this={formEl}>
     <textarea
         class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
         rows="1"
         on:input={resize}
         on:keydown={handleKeyDown}
         bind:value={userInput}
-        bind:this={inner} 
+        bind:this={textareaEl} 
         placeholder={isFollowup ? followUpPlaceholder : placeholder} />
 
     <div class="ai-search-user-input-form__submit-container">
@@ -76,8 +85,8 @@ onMount(() => {
     gap: 1rem;
     background-color: #ffffff;
     border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
     padding: 0.5rem;
+    border-radius: 9999px;
 }
 .ai-search-user-input-form__submit-container {
     display: flex;

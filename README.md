@@ -21,7 +21,7 @@ Build Svelte components defined in `src/lib/web-components` into framework-agnos
 Create Svelte components in `src/lib/components`, then wrap them as web components in the folder `src/lib/web-components`, adding the Svelte `svelte:options customElement` on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
 
 ```html
-<svelte:options customElement="PREFIX-counter" />
+<svelte:options customElement="webcomponent-counter" />
 ```
 
 The logic is simple:
@@ -38,7 +38,7 @@ Also, define implementation specific css styles on the wrapped component in `src
 
 For a simple example see `/Users/jhs/EXMACHINA/ai-search-sveltekit/src/lib/components/AiSearchUserInputForm.svelte` and `src/lib/web-components/wc-ai-search-user-input-form.svelte`.
 
-> **Note:** The "PREFIX-" prefix allows you to define prefixed custom elements. 
+> **Note:** The "webcomponent-" prefix allows you to define prefixed custom elements. 
 > Define it in `vite.webcomponents.config`, setting a value for the variable `LIBRARY_PREFIX`.
 
 Define which components you want to expose, exporting them in the `src/lib/web-components/index.ts` file.
