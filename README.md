@@ -156,8 +156,8 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 ## Technologies
 
 - Svelte to develop and build web components
-- Sveltestrap as components library (when and only if required)
-- Bootstrap 5 for styles
+- Sveltestrap as components library (only if and when required)
+- Bootstrap 5 for styles (only if and when required)
 - CSS modules (https://github.com/css-modules/css-modules/tree/master) for defininig scoped and reusable css rules
 
 

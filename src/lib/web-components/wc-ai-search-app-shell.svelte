@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-	tag: 'PREFIX-ai-search-app-shell',
+	tag: 'webcomponent-ai-search-app-shell',
 	shadow: 'none',
 	props: {
 		baseUrl: { reflect: true, type: 'String', attribute: 'base-url' },

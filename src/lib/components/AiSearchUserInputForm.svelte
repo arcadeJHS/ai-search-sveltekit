@@ -22,7 +22,7 @@ const resetTextareaHeight = () => {
 
 const resize = () => {
     resetTextareaHeight();
-    
+
     if (!isFollowup && inner.scrollHeight < parseFloat(initialTextareaHeight)) { 
         inner.style.height = initialTextareaHeight;
         return; 
@@ -50,6 +50,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 onMount(() => {
     // set initial textarea height when the component is mounted
     initialTextareaHeight = inner.clientHeight + 'px';
+    inner.style.height = initialTextareaHeight;
 });
 </script>
 

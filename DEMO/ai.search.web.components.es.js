@@ -1442,7 +1442,7 @@ function Kr(l, e, t) {
     p.key === "Enter" && !p.shiftKey && (p.preventDefault(), d(o));
   };
   qe(() => {
-    u = n.clientHeight + "px";
+    u = n.clientHeight + "px", t(3, n.style.height = u, n);
   });
   function g() {
     o = this.value, t(4, o);

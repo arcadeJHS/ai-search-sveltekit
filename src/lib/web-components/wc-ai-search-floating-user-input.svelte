@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-	tag: 'PREFIX-ai-search-floating-user-input',
+	tag: 'webcomponent-ai-search-floating-user-input',
 	shadow: 'none'
 }} />
 

@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-	tag: 'PREFIX-ai-search-result',
+	tag: 'webcomponent-ai-search-result',
 	shadow: 'none'
 }} />
 
