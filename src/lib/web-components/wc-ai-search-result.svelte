@@ -169,7 +169,7 @@
             {#if result.subtypes}
                 <p class="wc-ai-search-result__card-text wc-ai-search-result__card-text--shorted mb-3">{getSubtypesString(result.subtypes)}</p>
             {/if}
-            <div class="col-12 pb-3" itemtype="http://schema.org/PostalAddress" itemscope itemprop="address">
+            <div class="col-12 pb-3 wc-ai-search-result__city" itemtype="http://schema.org/PostalAddress" itemscope itemprop="address">
                 {#if result.location}
                     <Fa icon={faLocationDot} />
                     <span itemprop="addressLocality">{result.location}</span>
@@ -336,6 +336,10 @@ p.wc-ai-search-result__card-text--shorted {
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-height: 36px;
+}
+.wc-ai-search-result__city span {
+    font-family: Montserrat;
+    font-size: 14px;
 }
 .wc-ai-search-result__ratting-area {
     display: flex;
