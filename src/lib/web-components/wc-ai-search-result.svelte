@@ -7,7 +7,7 @@
     import type { ArtistSubType } from '$lib/types/Filter.ts';
     import { type Selection } from '$lib/types/Selection.ts';
     import Fa from 'svelte-fa';
-    import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+    import { faCirclePlay, faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
 
     export let result: Selection;
 
@@ -132,8 +132,8 @@
                     onclick="stopVideo(<?php echo $profile->getId(); ?>)"
                 -->
                 <div id="video-overlay-{result.id}"></div>
-                <iframe id="video-player-{result.id}" width="100%" height="315" vid="{result.videoYtId}" src="" frameborder="0" style="display:none;" allow="autoplay" title="video player"></iframe>
-                <div id="video-controls-{result.id}" class="video-controls"  style="display: none;">
+                <iframe class="wc-ai-search-result__video-player-iframe" id="video-player-{result.id}" width="100%" height="315" vid="{result.videoYtId}" src="" frameborder="0" allow="autoplay" title="video player"></iframe>
+                <div id="video-controls-{result.id}" class="wc-ai-search-result__video-controls">
                     <!-- 
                         TODO:
 
@@ -147,48 +147,53 @@
             {/if}
 
             {#if result.bookings && result.bookings > 0}
-                <div class="date-area">
-                    <p><span class="book">{result.bookings}</span> Verified Bookings</p>
+                <div class="wc-ai-search-result__date-area">
+                    <p><span class="wc-ai-search-result__book">{result.bookings}</span> Verified Bookings</p>
                 </div>
             {/if}
             
-            <div class="membership-area">
+            <div class="wc-ai-search-result__membership-area">
                 {#if result.level_css}
                     <span class="{result.level_css}"></span>
                 {/if}
             </div>
         </div>
         
-        <div class="card-body">
-            <h5 class="card-title shorted" itemprop="description" content="{result.itemprop_desc}">{result.tagline}</h5>
-            <p class="card-text shorted mb-3">{getSubtypesString(result.subtypes)}</p>
-            <div class="col-12 city text-begin pb-3" itemtype="http://schema.org/PostalAddress" itemscope="" itemprop="address">
+        <div class="card-body wc-ai-search-result__card-body">
+            <h5 
+                class="card-title wc-ai-search-result__card-title wc-ai-search-result__card-title--shorted" 
+                itemprop="description" 
+                content="{result.itemprop_desc}">
+                {result.tagline}
+            </h5>
+            {#if result.subtypes}
+                <p class="wc-ai-search-result__card-text wc-ai-search-result__card-text--shorted mb-3">{getSubtypesString(result.subtypes)}</p>
+            {/if}
+            <div class="col-12 pb-3" itemtype="http://schema.org/PostalAddress" itemscope itemprop="address">
                 {#if result.location}
-                    <!-- 
-                        TODO:
-                        Qui occorre implementare le icone di font-awesome (o equivalente):
-                        class="fal fa-map-marker-alt fa-lg"
-                    -->
-                    <i class="fal fa-map-marker-alt fa-lg"></i> <span itemprop="addressLocality">{result.location}</span>
+                    <Fa icon={faLocationDot} />
+                    <span itemprop="addressLocality">{result.location}</span>
                 {/if}
             </div>
-            <div class="ratting-area">
-                <div class="ratting" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <div class="wc-ai-search-result__ratting-area">
+                <div class="wc-ai-search-result__ratting" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                     <meta itemprop="bestRating" content="10">
                     <meta itemprop="ratingValue" content="{result.ratingStars}">
                     <meta itemprop="reviewCount" content="{result.ratingVotes}">
                     <h2>
-                        <i class="fas fa-star {!!result.ratingVotes ? 'fa-lg' : 'grey fa-lg'}"></i>
-                        {getRatingStars(result.ratingStars) || ''}
+                        <Fa icon={faStar} color={!!result.ratingVotes ? '#ffd528' : '#e3e3e3'} size="lg" />
+                        {#if result.ratingStars}
+                            {getRatingStars(result.ratingStars)}
+                        {/if}
                     </h2>
                     <p>{result.ratingVotes} Reviews</p>
                 </div>
 
-                <div class="price">
+                <div class="wc-ai-search-result__price">
                     <p>from</p>
                     <h2>
                         {#if result.cachet_min}
-                            {result.cachet_min}<span>{result.currency}</span>
+                            {result.cachet_min} <span>{result.currency}</span>
                         {:else}
                             on request
                         {/if}
@@ -201,7 +206,7 @@
                 evento:
                 onclick="stopAllVideos()"
             -->
-            <a itemprop="url" class="btnclick" title="{result.itemprop_desc}" href="/{result.nickName}">Show more</a>
+            <a itemprop="url" class="wc-ai-search-result__show-more" title="{result.itemprop_desc}" href="/{result.nickName}" target="_blank">Show more</a>
         </div>
     </div>
 </div>
@@ -219,8 +224,193 @@
 }
 .wc-ai-search-result__play-icon {
     position: absolute;
-    bottom: 58px;
+    bottom: 12px;
     right: 12px;
     opacity: 0.8;
+}
+.wc-ai-search-result__video-player-iframe {
+    display: none;
+    border-radius: 6px;
+}
+.wc-ai-search-result__video-controls {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 6px 0;
+    border-radius: 0 0 6px 6px;
+}
+/* .wc-ai-search-result__video-controls button {
+    margin: 0 6px;
+    min-width: 31px;
+    border-radius: 6px;
+    background-color: #FF9128;
+    border: none;
+} */
+.wc-ai-search-result__date-area {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    height: auto;
+    top: auto;
+}
+.wc-ai-search-result__date-area p {
+    margin: 0;
+    width: auto;
+    display: inline-block;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    background: #353F47;
+    padding: 5px 16px;
+    border-radius: 4px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+}
+.wc-ai-search-result__date-area p span.wc-ai-search-result__book {
+    font-weight: bold;
+}
+.wc-ai-search-result__membership-area {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    height: auto;
+}
+.wc-ai-search-result__membership-area span {
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    padding-bottom: 44px;
+}
+.wc-ai-search-result__membership-area span.rockstar {
+    background-image: url(/mem-rockstar.png);
+}
+.wc-ai-search-result__membership-area span.newcomer { 
+  background-image: url("/mem-newcomer.png");
+}
+.wc-ai-search-result__membership-area span.free { 
+  background-image: url("/mem-free.png");
+}
+.wc-ai-search-result__membership-area span.trial { 
+  background-image: url("/mem-trial.png");
+}
+.wc-ai-search-result__card-body {
+    background-color: transparent !important;
+    padding-bottom: 0;
+    border: none !important;
+}
+.wc-ai-search-result__card-title {
+    position: relative;
+    margin-bottom: 10px;
+    color: #3B3923;
+    font-weight: bold;
+    font-size: 15px;
+}
+.wc-ai-search-result__card-title--shorted {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 54px;
+}
+p.wc-ai-search-result__card-text {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #3b3923;
+}
+p.wc-ai-search-result__card-text--shorted {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 36px;
+}
+.wc-ai-search-result__ratting-area {
+    display: flex;
+    justify-content: space-between;
+    min-height: 45px;
+}
+.wc-ai-search-result__ratting h2 {
+    font-size: 16px;
+    color: #7E7D7E;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px 0px;
+}
+.wc-ai-search-result__ratting p {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #7e7d7e;
+    padding: 5px 0px;
+}
+.wc-ai-search-result__price {
+    padding-left: 47px;
+    min-height: 37px;
+}
+.wc-ai-search-result__price p {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #4e4e4e;
+    margin: 0px 0px;
+}
+.wc-ai-search-result__price h2 {
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #4e4e4e;
+    padding: 0px;
+    margin: 0px 0px;
+}
+.wc-ai-search-result__price h2 span {
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #4e4e4e;
+}
+.wc-ai-search-result__show-more {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #FF9128;
+    border: 1px solid #FF9128;
+    padding: 13px 20px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-top: 15px;
 }
 </style>
