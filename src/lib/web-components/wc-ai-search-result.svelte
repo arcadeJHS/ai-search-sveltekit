@@ -6,6 +6,8 @@
 <script lang="ts">
     import type { ArtistSubType } from '$lib/types/Filter.ts';
     import { type Selection } from '$lib/types/Selection.ts';
+    import Fa from 'svelte-fa';
+    import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 
     export let result: Selection;
 
@@ -121,14 +123,7 @@
                     onclick="loadVideo(<?php echo $profile->getId(); ?>)"
                 -->
                 <span class="wc-ai-search-result__play-icon" id="play-icon-{result.id}">
-                    <!-- 
-                        font-awesome svg icon: 
-                        fas fa-play-circle"
-                        https://fontawesome.com/v5/icons/play-circle?f=classic&s=solid&pc=%23e66f00&sc=%23e66f00
-                    -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor">
-                        <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"/>
-                    </svg>
+                    <Fa icon={faCirclePlay} color="#e66f00" size="3x" />
                 </span>
                 <!-- 
                     TODO:
@@ -223,15 +218,9 @@
     position: relative;
 }
 .wc-ai-search-result__play-icon {
-    display: block;
-    height: 58px;
     position: absolute;
     bottom: 58px;
-    right: 10px;
+    right: 12px;
     opacity: 0.8;
-}
-.wc-ai-search-result__play-icon > svg {
-    height: 100%;
-    fill: #e66f00;
 }
 </style>

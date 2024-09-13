@@ -148,9 +148,15 @@ npm run build:webcomponents:publish
 
 Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la UX/UI:
 
-![Mockup UI landing AI search](MOCKUP_UI/mock_01_inizio.png)
+![Mockup UI 1](MOCKUP_UI/01.png)
 
-![Mockup UI AI search chat interaction](MOCKUP_UI/mock_02_chat.png)
+![Mockup UI 2](MOCKUP_UI/02.png)
+
+![Mockup UI 3](MOCKUP_UI/03.png)
+
+![Mockup UI 4](MOCKUP_UI/04.png)
+
+![Mockup UI 5](MOCKUP_UI/05.png)
 
 
 ## Technologies
@@ -159,6 +165,17 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 - Sveltestrap as components library (only if and when required)
 - Bootstrap 5 for styles (only if and when required)
 - CSS modules (https://github.com/css-modules/css-modules/tree/master) for defininig scoped and reusable css rules
+- Font-awesome icons through the "svelte-fa" package 
+  - Library: https://cweili.github.io/svelte-fa/
+  - Icons packages: https://www.npmjs.com/search?q=%40fortawesome%20svg%20icons
+  - Font-awesome catalog: https://fontawesome.com/v6/search?o=r&m=free&s=solid
+
+    ```js
+    import Fa from 'svelte-fa';
+    import { faUser } from '@fortawesome/free-regular-svg-icons';
+
+    <Fa icon={faUser} />
+    ```
 
 
 # Riepilogo su come usare i vari repo per lo sviluppo
