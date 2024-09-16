@@ -60,7 +60,7 @@
 .wc-ai-search-floating-user-input > div {
     padding: 0.5rem;
     background-color: #f8f9fa;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
 }
 .wc-ai-search-floating-user-input--static {
     display: flex;
