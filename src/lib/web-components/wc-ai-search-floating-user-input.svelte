@@ -10,7 +10,7 @@
     import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
     import type { UserInput } from '$lib/types/UserInput.ts';
     import { type Message, MessageRole } from '$lib/types/Message.ts';
-    import { observeBorderRadius } from '../utils/observeBorderRadius.ts';
+    import { observeElementHeight, updateBorderRadius } from '../utils/index.ts';
 
     let inner: HTMLElement;
 
@@ -32,10 +32,11 @@
     };
 
     onMount(() => {
-        return observeBorderRadius({
-            elements: [inner], 
-            thresholds: [50]
-        });
+        const observeElement = observeElementHeight(inner, (element: HTMLElement, height: number) => updateBorderRadius(element, height,50));
+
+        return () => {
+            if (observeElement) observeElement();
+        };
     });
 
 </script>

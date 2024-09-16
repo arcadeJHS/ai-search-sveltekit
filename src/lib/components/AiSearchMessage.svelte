@@ -17,7 +17,7 @@
     /* border: 2px solid #80f1f1; */
 
     border: 0;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, .3);
+    box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15);
 }
 .ai-search-message > p {
     font-weight: bold;
