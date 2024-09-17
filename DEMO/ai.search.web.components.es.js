@@ -3024,14 +3024,14 @@ function Fo(l) {
 }
 function Do(l, e, t) {
   let { result: s } = e;
-  const i = (o) => o < 500 ? "$" : o < 1500 ? "$$" : "$$$", r = (o) => o == null ? void 0 : o.join(", ");
-  function a(o) {
-    const u = o.subtypes ? r(o.subtypes) : null;
-    return [o.artistType, u, o.location].filter(Boolean).join(" - ");
+  const i = (u) => u < 500 ? "$" : u < 1500 ? "$$" : "$$$", r = (u) => u == null ? void 0 : u.join(", ");
+  function a(u) {
+    const f = u.subtypes ? r(u.subtypes) : null;
+    return [u.artistType, f, u.location].filter(Boolean).join(" - ");
   }
-  const n = (o) => o ? Math.round(o / 2 * 100) / 100 : 0;
-  return l.$$set = (o) => {
-    "result" in o && t(0, s = o.result);
+  const n = (u) => u ? Math.round(u / 2 * 100) / 100 : 0;
+  return console.log(!1), l.$$set = (u) => {
+    "result" in u && t(0, s = u.result);
   }, l.$$.update = () => {
     l.$$.dirty & /*result*/
     1;

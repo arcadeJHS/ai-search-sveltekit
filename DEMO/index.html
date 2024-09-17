@@ -11,10 +11,14 @@
     <style>
         .site-ai-search {
             display: grid;
-            grid-template-columns: 2fr 5fr;
+            /* grid-template-columns: 2fr 5fr; */
             gap: 0.2rem;
             height: 100%;
             width: 100%;
+
+            @media (min-width: 768px) {
+                grid-template-columns: 2fr 5fr; 
+            }
         }
         .site-ai-search * {
             box-sizing: border-box;
@@ -26,6 +30,11 @@
         }
         .site-ai-search__messages {
             max-height: 45vh;
+            display: none;
+
+            @media (min-width: 768px) {
+                display: block; 
+            }
         }
     </style>
 </head>
@@ -43,7 +52,8 @@
             language="it">
         </stg-ai-search-app-shell>
 
-        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
+        <!-- <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input> -->
+        <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant>
     
         <div class="container">
             <div class="row">
