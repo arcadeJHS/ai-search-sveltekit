@@ -1,0 +1,10 @@
+@value variables: "./variables.module.css";
+@value white from variables;
+
+.offcanvasBottomShow {
+    background-color: white!important;
+    border: 0!important;
+    height: 100vh!important;
+    width: 100%!important;
+}
+

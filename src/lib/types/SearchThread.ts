@@ -9,4 +9,5 @@ export interface SearchThread {
     messages: Message[];
     filters: Filter[];
     selections: Selection[];
+    isSearching: boolean;
 };

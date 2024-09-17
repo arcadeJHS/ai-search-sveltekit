@@ -18,6 +18,7 @@
 
     border: 0;
     box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15);
+    box-sizing:border-box;
 }
 .ai-search-message > p {
     font-weight: bold;

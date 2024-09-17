@@ -6,9 +6,12 @@
 <script lang="ts">
     import AiSearchmessages from '$lib/components/AiSearchMessages.svelte';
     import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+
+    let className: string = '';
+    export { className as class };
 </script>
 
-<div class="wc-ai-search-messages">
+<div class={`wc-ai-search-messages ${className}`}>
     {#if $userMessagesStore}
         <AiSearchmessages messages={$userMessagesStore} />
     {/if}

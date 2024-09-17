@@ -3,7 +3,8 @@
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
   import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
-  import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  // import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input-variant.svelte';
 </script>
 
 <main>
@@ -18,7 +19,8 @@
     language="it">
   </WcAiSearchAppShell>
 
-  <WcAiSearchFloatingUserInput />
+  <!-- <WcAiSearchFloatingUserInput /> -->
+  <WcAiSearchFloatingUserInputVariant />
 
   <div class="container">
     <div class="row">
@@ -45,10 +47,14 @@
 <style>
 .site-ai-search {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  /* grid-template-columns: fr 5fr; */
   gap: 0.2rem;
   height: 100%;
   width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 5fr; 
+  }
 }
 .site-ai-search * {
   box-sizing: border-box;
@@ -60,5 +66,10 @@
 }
 .site-ai-search__messages {
   max-height: 45vh;
+  display: none;
+  
+  @media (min-width: 768px) {
+    display: block; 
+  }
 }
 </style>

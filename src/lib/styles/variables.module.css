@@ -10,6 +10,7 @@
 @value lightGrey: #dee2e6;
 @value dark: #222921;
 @value red: #ff0000;
+@value white: #ffffff;
 
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
 @value small: (min-width: 576px);

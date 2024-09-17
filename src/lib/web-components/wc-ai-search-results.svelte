@@ -4,14 +4,38 @@
 }} />
 
 <script lang="ts">
+    import { tick, onMount } from 'svelte';
     import { searchStore } from '$lib/stores/SearchStore.ts';
+    import AiSearchSearchingIcon from '$lib/components/AiSearchSearchingIcon.svelte';
     import WcAiSearchResult from '$lib/web-components/wc-ai-search-result.svelte'; 
+
+    const scrollToTop = async () => {
+        await tick();
+        if (typeof window !== 'undefined') {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    $: {
+        $searchStore.selections;
+        scrollToTop();
+    }
+
+    onMount(() => {
+        scrollToTop();
+    });
 </script>
 
 {#if $searchStore}
 
     <div class="container wc-ai-search-results">
         <div class="row row-cols-1 row-cols-md-4 g-4">
+
+            <AiSearchSearchingIcon searching={$searchStore.isSearching} />
 
             {#each $searchStore.selections as result}
                 <WcAiSearchResult {result} />

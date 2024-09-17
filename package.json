@@ -58,6 +58,7 @@
 	"type": "module",
 	"private": true,
 	"dependencies": {
+		"@fortawesome/free-regular-svg-icons": "^6.6.0",
 		"@fortawesome/free-solid-svg-icons": "^6.6.0",
 		"@sveltestrap/sveltestrap": "^6.2.7",
 		"svelte-fa": "^4.0.2"

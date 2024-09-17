@@ -51,7 +51,8 @@ export const useSearch = () => {
 		l: null,
 		messages: [],
 		filters: [],
-		selections: []
+		selections: [],
+		isSearching: false
 	});
 
 	return {
@@ -101,6 +102,7 @@ export const useSearch = () => {
 
 			_searchStore.update((self: SearchThread) => {
 				self.selections = [];
+				self.isSearching = true;
 				return self;
 			});
 			
@@ -120,6 +122,7 @@ export const useSearch = () => {
 				self.messages = [...self.messages, chatMessage];
 				self.filters = filters;
 				self.selections = selection;
+				self.isSearching = false;
 				return self;
 			});
 
