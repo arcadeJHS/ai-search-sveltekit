@@ -5,6 +5,18 @@ import type { SearchThread } from '$lib/types/SearchThread.ts';
 import { type Message, MessageRole } from '$lib/types/Message.ts';
 import type { SearchMessageRequest } from '$lib/types/SearchMessageRequest.ts';
 import type { SearchMessageResponse } from '$lib/types/SearchMessageResponse.ts';
+import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
+
+const emptyStore = (): SearchThread => {
+	return {
+		session: null,
+		l: null,
+		messages: [],
+		filters: [],
+		selections: [],
+		isSearching: false
+	};
+}
 
 const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<SearchStartResponse> => {
 	let url = `${apiBaseUrl}/search/start`;
@@ -45,17 +57,11 @@ const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMe
 
 export const useSearch = () => {
 	let BASE_URL: string;
+	let LANGUAGE: AllowedLanguages;
 
-	const _searchStore = writable<SearchThread>({
-		session: null,
-		l: null,
-		messages: [],
-		filters: [],
-		selections: [],
-		isSearching: false
-	});
+	const _searchStore = writable<SearchThread>(emptyStore());
 
-	return {
+	const _methods = {
 		subscribe: _searchStore.subscribe,
 		set: _searchStore.set,
 		update: _searchStore.update,
@@ -70,6 +76,9 @@ export const useSearch = () => {
 				language 
 			});
 			const { session, l, message, filters, selection } = response;
+
+			LANGUAGE = l;
+
 			const chatMessage: Message = {
 				role: MessageRole.Agent,
 				content: message
@@ -85,6 +94,10 @@ export const useSearch = () => {
 			});
 
 			return response;
+		},
+		reset: async () => {
+			_searchStore.update(emptyStore);
+			return await _methods.start(BASE_URL, { language: LANGUAGE });
 		},
 		addMessage: (message: Message) => {
 			_searchStore.update((self: SearchThread) => {
@@ -129,6 +142,8 @@ export const useSearch = () => {
 			return response;
 		}
 	};
+
+	return _methods;
 };
 
 export const searchStore = useSearch();

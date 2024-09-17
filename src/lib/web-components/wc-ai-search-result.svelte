@@ -40,7 +40,6 @@
      * ====>
      */
     const isDev = import.meta.env.MODE === 'development';
-    console.log(isDev);
     const handleResultChange = () => {
         if (isDev) {
             result = {

@@ -25,6 +25,8 @@ const resetTextareaHeight = () => {
 };
 
 const resize = () => {
+    if (!textareaEl) { return; }
+    
     resetTextareaHeight();
 
     if (!isFollowup && textareaEl.scrollHeight < parseFloat(initialTextareaHeight)) { 
@@ -73,6 +75,8 @@ onMount(() => {
       if (observeSubmitButtonContainer) observeSubmitButtonContainer();
     };
 });
+
+$: isFollowup, resize();
 </script>
 
 <form 

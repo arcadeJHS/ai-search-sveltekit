@@ -4,6 +4,7 @@
 }} />
 
 <script lang="ts">
+    import { tick } from 'svelte';
     import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
     import { searchStore } from '$lib/stores/SearchStore.ts';
     import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
@@ -40,6 +41,11 @@
     const toggle = () => {
         isOpen = !isOpen;
     };
+
+    const newSearch = async () => {
+        await searchStore.reset();
+        await tick();
+    };
 </script>
 
 <div 
@@ -50,9 +56,9 @@
         {#if $searchStore.session}
             <div class="wc-ai-search-floating-user-input__actions">
                 <!-- {$userMessagesStore[($userMessagesStore.length-1)].content} -->
-                <div class="wc-ai-search-floating-user-input__actions__new-search">
+                <button class="wc-ai-search-floating-user-input__actions__new-search" on:click={newSearch}>
                     NUOVA RICERCA
-                </div>
+                </button>
 
                 <button on:click={toggle} class="wc-ai-search-floating-user-input__actions__open-messages">
                     <Fa icon={faComment} size="2x" color="#2d9bf0" />
@@ -141,7 +147,6 @@
     text-decoration: underline;
 }
 .wc-ai-search-floating-user-input__actions button {
-    border-radius: 50%;
     border: 0;
     margin: 0;
     padding: 0;
@@ -149,6 +154,8 @@
     cursor: pointer;
 }
 .wc-ai-search-floating-user-input__actions__open-messages {
+    border-radius: 50%;
+
     @media (min-width: 768px) {
         display: none;
     }
