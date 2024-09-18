@@ -12,13 +12,11 @@ export let message;
 <style>
 .ai-search-message {
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dcdcdd;
+    border-radius: 10px;
     border-top-left-radius: 0;
-    /* border: 2px solid #80f1f1; */
-
-    border: 0;
-    box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15);
-    box-sizing:border-box;
+    /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
 }
 .ai-search-message > p {
     font-weight: bold;

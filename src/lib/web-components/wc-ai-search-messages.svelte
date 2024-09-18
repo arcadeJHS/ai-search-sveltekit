@@ -23,6 +23,6 @@ export { className as class };
     overflow-y: auto;
 
     /* Gives space to scroll bar */
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
 }
 </style>

@@ -29,7 +29,9 @@
         <div class="site-ai-search">
           <div class="site-ai-search__column site-ai-search__column--left">
             <div class="site-ai-search__messages">
-              <WcAiSearchNewSearchButton />
+              <div class="site-ai-search__messages__new-search-button">
+                <WcAiSearchNewSearchButton />
+              </div>
               <WcAiSearchMessages />
             </div>
           </div>
@@ -66,11 +68,14 @@
   overflow-y: hidden;
 }
 .site-ai-search__messages {
-  max-height: 45vh;
+  /* max-height: 45vh; */
   display: none;
   
   @media (min-width: 768px) {
     display: block; 
   }
+}
+.site-ai-search__messages__new-search-button {
+  margin: 0.8rem 0;
 }
 </style>

@@ -2336,7 +2336,7 @@ class mn extends G {
 }
 Y(mn, { messages: {} }, [], [], !0);
 function Eo(l) {
-  Re(l, "svelte-1ptor2j", ".ai-search-message.svelte-1ptor2j.svelte-1ptor2j{padding:0.5rem 1rem;border-radius:20px;border-top-left-radius:0;border:0;box-shadow:2px 3px 0.4rem rgba(0, 0, 0, .15);box-sizing:border-box}.ai-search-message.svelte-1ptor2j>p.svelte-1ptor2j{font-weight:bold}.ai-search-message.svelte-1ptor2j>div.svelte-1ptor2j{color:#2d9bf0}");
+  Re(l, "svelte-1mpnklr", ".ai-search-message.svelte-1mpnklr.svelte-1mpnklr{padding:0.5rem 1rem;background-color:#ffffff;border:1px solid #dcdcdd;border-radius:10px;border-top-left-radius:0}.ai-search-message.svelte-1mpnklr>p.svelte-1mpnklr{font-weight:bold}.ai-search-message.svelte-1mpnklr>div.svelte-1mpnklr{color:#2d9bf0}");
 }
 function Po(l) {
   let e, t, s = (
@@ -2345,7 +2345,7 @@ function Po(l) {
   ), i, r, a;
   return {
     c() {
-      e = P("div"), t = P("p"), i = ge(s), r = se(), a = P("div"), a.textContent = "Show results >", p(t, "class", Et(`${Pl.base}`) + " svelte-1ptor2j"), p(a, "class", Et(`${Pl.base}`) + " svelte-1ptor2j"), p(e, "class", "ai-search-message svelte-1ptor2j");
+      e = P("div"), t = P("p"), i = ge(s), r = se(), a = P("div"), a.textContent = "Show results >", p(t, "class", Et(`${Pl.base}`) + " svelte-1mpnklr"), p(a, "class", Et(`${Pl.base}`) + " svelte-1mpnklr"), p(e, "class", "ai-search-message svelte-1mpnklr");
     },
     m(n, o) {
       B(n, e, o), M(e, t), M(t, i), M(e, r), M(e, a);
@@ -2381,7 +2381,7 @@ class gn extends G {
 }
 Y(gn, { message: {} }, [], [], !0);
 function Lo(l) {
-  Re(l, "svelte-xad3pr", ".ai-search-messages.svelte-xad3pr{display:flex;flex-direction:column-reverse;gap:0.5rem;padding:0.5rem}");
+  Re(l, "svelte-19v8aqi", ".ai-search-messages.svelte-19v8aqi{display:flex;flex-direction:column-reverse;gap:0.5rem}");
 }
 function zs(l, e, t) {
   const s = l.slice();
@@ -2431,7 +2431,7 @@ function So(l) {
       e = P("div");
       for (let a = 0; a < i.length; a += 1)
         i[a].c();
-      p(e, "class", "ai-search-messages svelte-xad3pr");
+      p(e, "class", "ai-search-messages svelte-19v8aqi");
     },
     m(a, n) {
       B(a, e, n);
@@ -2512,7 +2512,7 @@ const Io = {
   icon: [512, 512, [128489, 61669], "f075", "M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9l.3-.5z"]
 }, Ml = Hr(st, (l) => l.messages.filter((e) => e.role === zt.User));
 function To(l) {
-  Re(l, "svelte-1y9t7ov", ".wc-ai-search-messages.svelte-1y9t7ov{height:100%;overflow-y:auto;padding-right:1rem}");
+  Re(l, "svelte-kb5yr9", ".wc-ai-search-messages.svelte-kb5yr9{height:100%;overflow-y:auto}");
 }
 function Cs(l) {
   let e, t;
@@ -2553,7 +2553,7 @@ function Mo(l) {
   return {
     c() {
       e = P("div"), i && i.c(), p(e, "class", t = Et(`wc-ai-search-messages ${/*className*/
-      l[0]}`) + " svelte-1y9t7ov");
+      l[0]}`) + " svelte-kb5yr9");
     },
     m(r, a) {
       B(r, e, a), i && i.m(e, null), s = !0;
@@ -2565,7 +2565,7 @@ function Mo(l) {
         i = null;
       }), re()), (!s || a & /*className*/
       1 && t !== (t = Et(`wc-ai-search-messages ${/*className*/
-      r[0]}`) + " svelte-1y9t7ov")) && p(e, "class", t);
+      r[0]}`) + " svelte-kb5yr9")) && p(e, "class", t);
     },
     i(r) {
       s || (v(i), s = !0);
