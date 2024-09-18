@@ -4,13 +4,15 @@
 }} />
 
 <script lang="ts">
+import { onMount } from 'svelte';
 import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
 import { searchStore } from '$lib/stores/SearchStore.ts';
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { type Message, MessageRole } from '$lib/types/Message.ts';
-import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
-import AiSearchMessagesOffcanvasShowButton from '$lib/components/AiSearchMessagesOffcanvasShowButton.svelte';
+import { observeElementHeight, updateBorderRadius } from '../utils/index.js';
+
+let inner: HTMLElement;
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -26,21 +28,23 @@ const onUserInput = async (event: CustomEvent) => {
 
     searchStore.addMessage(message);
 
-    return await searchStore.search(content);
+    const response = await searchStore.search(content);
 };
+
+onMount(() => {
+    const observeElement = observeElementHeight(inner, (element: HTMLElement, height: number) => updateBorderRadius(element, height,50));
+
+    return () => {
+        if (observeElement) observeElement();
+    };
+});
 </script>
 
 <div 
     class="wc-ai-search-floating-user-input"
     class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length}
     class:wc-ai-search-floating-user-input--static={!$userMessagesStore.length}>
-    <div>
-        {#if $searchStore.session}
-            <div class="wc-ai-search-floating-user-input__actions">
-                <WcAiSearchNewSearchButton />
-                <AiSearchMessagesOffcanvasShowButton class="wc-ai-search-floating-user-input__actions__open-messages" />
-            </div>
-        {/if}
+    <div bind:this={inner}>
         <AiSearchUserInputFormVariant
             --textarea-height="6rem"
             isFollowup={!!$userMessagesStore.length}
@@ -51,72 +55,36 @@ const onUserInput = async (event: CustomEvent) => {
 <style>
 .wc-ai-search-floating-user-input {
     width: 100%;
-
-    @media (min-width: 768px) {
-        padding-bottom: 0.5rem;
-    }
+    padding: 0.5rem;
 }
 .wc-ai-search-floating-user-input > div {
+    padding: 0.5rem;
     background-color: #f2f2f6;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
 }
 .wc-ai-search-floating-user-input--static {
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
 }
 .wc-ai-search-floating-user-input--static > div {
     flex-grow: 1;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
 
     @media (min-width: 768px) {
         max-width: 30vw;
-        border-radius: 0.5rem;
     }
 }
+/* :global(.wc-ai-search-floating-user-input--static textarea) {
+    height: 6rem;
+} */
 .wc-ai-search-floating-user-input--fixed {
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
-    
-    border-radius: 0.5rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
 
     @media (min-width: 768px) {
         max-width: 33vw;
-        box-shadow: none;
-        border-bottom-left-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-    }
-}
-.wc-ai-search-floating-user-input--fixed > div {
-    border-radius: 0;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    padding: 0.5rem 0.5rem 1.5rem;
-
-    @media (min-width: 768px) {
-        border-radius: 0.5rem;
-    }
-}
-.wc-ai-search-floating-user-input__actions {
-    display: none;
-}
-.wc-ai-search-floating-user-input--fixed > div .wc-ai-search-floating-user-input__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0.5rem 1rem;
-}
-:global(.wc-ai-search-floating-user-input__actions__open-messages) {
-    @media (min-width: 768px) {
-        display: none;
     }
 }
 </style>

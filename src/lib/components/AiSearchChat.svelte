@@ -3,7 +3,7 @@ import { tick, onMount } from 'svelte';
 import { searchStore } from '$lib/stores/SearchStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { type Message, MessageRole } from '$lib/types/Message.ts';
-import AiSearchUserInputForm from './AiSearchUserInputForm.svelte';
+import AiSearchUserInputForm from './AiSearchUserInputFormVariant.svelte';
 
 export let messages;
 

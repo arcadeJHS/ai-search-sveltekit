@@ -1,10 +1,9 @@
 <script>
-  import { searchStore } from '$lib/stores/SearchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
   import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
-  // import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
-  import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input-variant.svelte';
+  import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  // import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 </script>
 
@@ -20,8 +19,8 @@
     language="it">
   </WcAiSearchAppShell>
 
-  <!-- <WcAiSearchFloatingUserInput /> -->
-  <WcAiSearchFloatingUserInputVariant />
+  <WcAiSearchFloatingUserInput />
+  <!-- <WcAiSearchFloatingUserInputVariant /> -->
 
   <div class="container">
     <div class="row">

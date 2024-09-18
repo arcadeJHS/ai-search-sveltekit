@@ -214,3 +214,12 @@ git clone git@bitbucket.org:exm-stagend/stg-service.git
  * - folder MOCKUP_UI: contiene alcune immagini con un'idea di possible UX/UI
  */
 git clone git@bitbucket.org:exm-stagend/ai-search-web-components.git
+
+
+# TODO
+
+- i18n
+- implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati
+- implementare error handleing delle chiamate alle API e notifica dell'errore sulla UI
+- gestire un "array" di risultati di ricerca, in modo da poter navigare avanti e indietro tra i risultati relativi alle varie query dell'utente
+- implementare un virtual scroll per i risultati di ricerca?

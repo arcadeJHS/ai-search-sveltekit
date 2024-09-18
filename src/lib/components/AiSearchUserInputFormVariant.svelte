@@ -4,9 +4,9 @@ import type { UserInput } from '$lib/types/UserInput.ts';
 import input from '$lib/styles/input.module.css';
 import font from '$lib/styles/font.module.css';
 import textarea from '$lib/styles/textarea.module.css';
-import { observeElementHeight } from '../utils/index.ts';
+import { observeElementHeight, updateBorderRadius } from '../utils/index.js';
 import Fa from 'svelte-fa';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faCircleArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 export let placeholder: string = "How can I help you organizing your event?";
 export let followUpPlaceholder: string = "Do you want to add more details?";
@@ -15,6 +15,7 @@ export let isFollowup: boolean = false;
 const dispatch = createEventDispatcher();
 
 let textareaEl: HTMLTextAreaElement;
+let formEl: HTMLFormElement;
 let submitButtonContainerEl: HTMLElement;
 let userInput: UserInput;
 let initialTextareaHeight: string;
@@ -25,7 +26,7 @@ const resetTextareaHeight = () => {
 
 const resize = () => {
     if (!textareaEl) { return; }
-
+    
     resetTextareaHeight();
 
     if (!isFollowup && textareaEl.scrollHeight < parseFloat(initialTextareaHeight)) { 
@@ -43,7 +44,6 @@ const dispatchUserInput = (content: UserInput) => {
     dispatch('userInput', { content });
     userInput = undefined;
     resetTextareaHeight();
-    textareaEl.blur();
 };
 
 const handleKeyDown = (event: KeyboardEvent) => {
@@ -61,6 +61,8 @@ onMount(() => {
     // Automatically focus on textarea
     textareaEl.focus();
 
+    const observeForm = observeElementHeight(formEl, (element: HTMLElement, height: number) => updateBorderRadius(element, height, 42));
+    const observeTextarea = observeElementHeight(textareaEl, (element: HTMLElement, height: number) => updateBorderRadius(element, height, 32));
     const observeSubmitButtonContainer = observeElementHeight(submitButtonContainerEl, (element: HTMLElement, height: number) => {
         const threshold = 42;
         element.style.alignItems = height > threshold ? 'flex-end' : 'center';
@@ -68,6 +70,8 @@ onMount(() => {
     });
      
     return () => {
+      if (observeForm) observeForm();
+      if (observeTextarea) observeTextarea();
       if (observeSubmitButtonContainer) observeSubmitButtonContainer();
     };
 });
@@ -77,7 +81,8 @@ $: isFollowup, resize();
 
 <form 
     class="ai-search-user-input-form"
-    on:submit|preventDefault={() => { dispatchUserInput(userInput); }}>
+    on:submit|preventDefault={() => { dispatchUserInput(userInput); }}
+    bind:this={formEl}>
 
     <textarea
         name="user-input"
@@ -91,7 +96,7 @@ $: isFollowup, resize();
 
     <div class="ai-search-user-input-form__submit-container" bind:this={submitButtonContainerEl}>
         <button type="submit" disabled={!userInput}>
-            <Fa icon={faPaperPlane} color="#ffa500" />
+            <Fa icon={faCircleArrowUp} color="#ffa500" />
         </button>
     </div>
 </form>
@@ -101,14 +106,13 @@ $: isFollowup, resize();
     display: flex;
     border: 1px solid #dee2e6;
     background-color: #ffffff;
-    border-radius: 0.5rem;
 }
 .ai-search-user-input-form textarea {
     justify-content: space-between;
     gap: 1rem;
     background-color: #ffffff;
     padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px;
     flex-grow: 1;
     margin-right: 0.5rem;
     width: 100%;
@@ -131,7 +135,7 @@ $: isFollowup, resize();
 }
 .ai-search-user-input-form__submit-container button {
     background-color: #ffffff!important;    
-    font-size: 1.5rem;
+    font-size: 2rem;
     border-radius: 50%;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     cursor: pointer;
@@ -139,8 +143,6 @@ $: isFollowup, resize();
     border: 0;
     margin: 0;
     padding: 0;
-    padding-right: 0.3rem;
-    padding-bottom: 0.2rem;
     width: auto;
     display: flex;
 }

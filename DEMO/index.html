@@ -52,8 +52,8 @@
             language="it">
         </stg-ai-search-app-shell>
 
-        <!-- <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input> -->
-        <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant>
+        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
+        <!-- <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant> -->
     
         <div class="container">
             <div class="row">
@@ -61,8 +61,10 @@
     
                     <div class="site-ai-search">
                         <div class="site-ai-search__column site-ai-search__column--left">
-                            <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
-                            <stg-ai-search-messages class="site-ai-search__messages"></stg-ai-search-messages>
+                            <div class="site-ai-search__messages">
+                                <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
+                                <stg-ai-search-messages></stg-ai-search-messages>
+                            </div>
                         </div>
                         
                         <div class="site-ai-search__column">
