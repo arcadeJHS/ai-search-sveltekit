@@ -51,7 +51,7 @@ npm run build:webcomponents
 
 This command builds the components in `dist-web-components` folder, in `es` e `umd` formats.
 
-Then include the compiled js library in a html page, and use the web components (see `/public/index.html`):
+Then include the compiled js library in a html page, and use the web components (see `/DEMO/index.html`):
 
 ```html
 <!DOCTYPE html>
@@ -60,27 +60,77 @@ Then include the compiled js library in a html page, and use the web components 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Components DEMO - mjs</title>
+
+    <!-- Sample page style -->
+    <link rel="stylesheet" href="ai.search.web.components.css">
+
     <style>
-        <!-- Your page custom CSS styles go here -->
-        <link rel="stylesheet" href="ai.search.web.components.css">
+        .site-ai-search {
+            display: grid;
+            /* grid-template-columns: 2fr 5fr; */
+            gap: 0.2rem;
+            height: 100%;
+            width: 100%;
+
+            @media (min-width: 768px) {
+                grid-template-columns: 2fr 5fr; 
+            }
+        }
+        .site-ai-search * {
+            box-sizing: border-box;
+        }
+        .site-ai-search__column {
+            display: flex;
+            flex-direction: column;
+            overflow-y: hidden;
+        }
+        .site-ai-search__messages {
+            max-height: 45vh;
+            display: none;
+
+            @media (min-width: 768px) {
+                display: block; 
+            }
+        }
     </style>
 </head>
 <body>
+    <main>
+        <!-- MOCK: 
+            apiBaseUrl="http://localhost:8099" 
+        -->
+        <!-- ONLINE API: 
+            apiBaseUrl="http://192.168.50.58:9910" 
+        -->
+        <stg-ai-search-app-shell
+            base-url="http://192.168.50.58:9910"
+            language="it">
+        </stg-ai-search-app-shell>
 
-    <stg-ai-search-core
-        api-base-url="http://localhost:8099"
-        language="it">
-    </stg-ai-search-core>
-
-    <div class="ai-search-container">
-        <div class="column left">
-            <stg-ai-search-chat></stg-ai-search-chat>
+        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
+        <!-- <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant> -->
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+    
+                    <div class="site-ai-search">
+                        <div class="site-ai-search__column site-ai-search__column--left">
+                            <div class="site-ai-search__messages">
+                                <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
+                                <stg-ai-search-messages></stg-ai-search-messages>
+                            </div>
+                        </div>
+                        
+                        <div class="site-ai-search__column">
+                            <stg-ai-search-results></stg-ai-search-results>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
         </div>
-        
-        <div class="column right">
-            <stg-ai-search-results></stg-ai-search-results>
-        </div>
-    </div>
+    </main>
 
     <!-- 
     Most modern browsers support ES modules. 
@@ -102,7 +152,7 @@ Then include the compiled js library in a html page, and use the web components 
 </html>
 ```
 
-> Note: the `stg-ai-search-core` component is reuired: it define common styles, stores, and event bus.
+> Note: the `stg-ai-search-app-shell` component is required: it define common styles, stores, and event bus.
 
 ## Building a svelte library
 
@@ -182,25 +232,25 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 
 /**
  * Repo: symfony-web-app-docker (stg-dockerized)
- * Docker-compose che tira su sito PHP Stagend, Keycloak, AI Search API e LLM...
+ * Docker-compose che tira su sito PHP stg, Keycloak, AI Search API e LLM...
  * branch: main
  *
  * Documentazione:
  * - README.md esaustivo su come mettere in piedi tutto l'ambiente usando Docker
  * - folder DOCUMENTAZIONE: con dettagli sull'implmnetazione di AB Variants, Keycloak e AI Search (mock compresi)
  */
-git clone git@bitbucket.org:exm-stagend/symfony-web-app-docker.git
+git clone git@bitbucket.org:exm-stg/symfony-web-app-docker.git
 
 
 /**
  * Repo: stg-service
- * Sito PHP Stagend
+ * Sito PHP stg
  * Branch: exm-ai-search
  *  
  * Documentazione:
- * - documentazione principalmente gestita da stagend. Si veda invece README.md nel repo symfony-web-app-docker
+ * - documentazione principalmente gestita da stg. Si veda invece README.md nel repo symfony-web-app-docker
  */
-git clone git@bitbucket.org:exm-stagend/stg-service.git
+git clone git@bitbucket.org:exm-stg/stg-service.git
 
 
 /**
@@ -213,7 +263,7 @@ git clone git@bitbucket.org:exm-stagend/stg-service.git
  * - folder DEMO: contiene una semplice demo dell'uso dei web components generati in una pagina HTML
  * - folder MOCKUP_UI: contiene alcune immagini con un'idea di possible UX/UI
  */
-git clone git@bitbucket.org:exm-stagend/ai-search-web-components.git
+git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 
 # TODO
