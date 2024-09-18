@@ -4,75 +4,75 @@
 }} />
 
 <script lang="ts">
-    import type { ArtistSubType } from '$lib/types/Filter.ts';
-    import { type Selection } from '$lib/types/Selection.ts';
-    import Fa from 'svelte-fa';
-    import { faCirclePlay, faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
+import type { ArtistSubType } from '$lib/types/Filter.ts';
+import { type Selection } from '$lib/types/Selection.ts';
+import Fa from 'svelte-fa';
+import { faCirclePlay, faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
 
-    export let result: Selection;
+export let result: Selection;
 
-    const getQuoteAvg = (quote: number): string => {
-        return quote < 500 ? '$' : quote < 1500 ? '$$' : '$$$';
-    };
+const getQuoteAvg = (quote: number): string => {
+    return quote < 500 ? '$' : quote < 1500 ? '$$' : '$$$';
+};
 
-    const getSubtypesString = (subtypes: ArtistSubType[]): string => {
-        return subtypes?.join(', ');
-    };
+const getSubtypesString = (subtypes: ArtistSubType[]): string => {
+    return subtypes?.join(', ');
+};
 
-    function getTitle(result: Selection) {
-        const subtypesString = result.subtypes ? getSubtypesString(result.subtypes) : null;
-        return [result.artistType, subtypesString, result.location]
-            .filter(Boolean)
-            .join(' - ');
+function getTitle(result: Selection) {
+    const subtypesString = result.subtypes ? getSubtypesString(result.subtypes) : null;
+    return [result.artistType, subtypesString, result.location]
+        .filter(Boolean)
+        .join(' - ');
+}
+
+const getRatingStars = (ratingStars: number) => {
+    if (!ratingStars) {
+        return 0;
     }
-
-    const getRatingStars = (ratingStars: number) => {
-        if (!ratingStars) {
-            return 0;
-        }
-        return Math.round((ratingStars / 2) * 100) / 100;
-    };
+    return Math.round((ratingStars / 2) * 100) / 100;
+};
 
 
-    /**
-     * ====>
-     * ====> DEV ONLY!!!
-     * ====>
-     */
-    const isDev = import.meta.env.MODE === 'development';
-    const handleResultChange = () => {
-        if (isDev) {
-            result = {
-                    ...{
-                        displayName: "displayName",
-                        aiQuoteAvg: 1501,
-                        artistType: "Band",
-                        bookings: 1,
-                        offer: "Experienced members from famous acts like Coreleoni, UDO, Jorn, Gotthard playing a repertoire of classic Rock Metal from 70s and 80s (AC/DC, Led Zeppelin, Kiss, ecc...) with skills and passion that scores between rock and metal fans!",
-                        currency: "CHF",
-                        musician: true,
-                        tagline: "Classic Rock Band, covers and original tunes played on they're best",
-                        ratingVotes: 3,
-                        ratingStars: 10,
-                        nickName: "altovoltaggio",
-                        userBookPlace: "zürich",
-                        city: "Mezzovico-Vira",
-                        country: "CH",
-                        location: "Mezzovico-Vira, CH",
-                        subtypes: ["Big Band", "Cover", "Lounge"],
-                        imageUrl: "/thumb.png",
-                        whois: "youtube",
-                        videoYtId: "fj-V7UW6vD4",
-                        itemprop_desc: "Rock, Metal Classic Rock Classic Rock Band, covers and original tunes played on they're best",
-                        cachet_min: 500, 
-                        telephone: "+41791234567",
-                        level_css: "rockstar",
-                    },
-                    ...result
-                } as Selection;
-        }
-    };
-    $: result, handleResultChange();
+/**
+ * ====>
+ * ====> DEV ONLY!!!
+ * ====>
+ */
+const isDev = import.meta.env.MODE === 'development';
+const handleResultChange = () => {
+    if (isDev) {
+        result = {
+                ...{
+                    displayName: "displayName",
+                    aiQuoteAvg: 1501,
+                    artistType: "Band",
+                    bookings: 1,
+                    offer: "Experienced members from famous acts like Coreleoni, UDO, Jorn, Gotthard playing a repertoire of classic Rock Metal from 70s and 80s (AC/DC, Led Zeppelin, Kiss, ecc...) with skills and passion that scores between rock and metal fans!",
+                    currency: "CHF",
+                    musician: true,
+                    tagline: "Classic Rock Band, covers and original tunes played on they're best",
+                    ratingVotes: 3,
+                    ratingStars: 10,
+                    nickName: "altovoltaggio",
+                    userBookPlace: "zürich",
+                    city: "Mezzovico-Vira",
+                    country: "CH",
+                    location: "Mezzovico-Vira, CH",
+                    subtypes: ["Big Band", "Cover", "Lounge"],
+                    imageUrl: "/thumb.png",
+                    whois: "youtube",
+                    videoYtId: "fj-V7UW6vD4",
+                    itemprop_desc: "Rock, Metal Classic Rock Classic Rock Band, covers and original tunes played on they're best",
+                    cachet_min: 500, 
+                    telephone: "+41791234567",
+                    level_css: "rockstar",
+                },
+                ...result
+            } as Selection;
+    }
+};
+$: result, handleResultChange();
 </script>
 
 <div class="col-12 col-md-6 col-xl-4" itemscope itemtype="http://schema.org/LocalBusiness">

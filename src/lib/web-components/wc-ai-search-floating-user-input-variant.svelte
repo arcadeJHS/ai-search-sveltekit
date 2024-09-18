@@ -4,77 +4,49 @@
 }} />
 
 <script lang="ts">
-    import { tick } from 'svelte';
-    import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
-    import { searchStore } from '$lib/stores/SearchStore.ts';
-    import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
-    import type { UserInput } from '$lib/types/UserInput.ts';
-    import { type Message, MessageRole } from '$lib/types/Message.ts';
-    import Fa from 'svelte-fa';
-    import { faComment } from '@fortawesome/free-regular-svg-icons';
-    import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
-    import { Offcanvas } from '@sveltestrap/sveltestrap';
-    import offcanvas from '$lib/styles/offcanvas.module.css';
-    import padding from '$lib/styles/padding.module.css';
+import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
+import { searchStore } from '$lib/stores/SearchStore.ts';
+import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import type { UserInput } from '$lib/types/UserInput.ts';
+import { type Message, MessageRole } from '$lib/types/Message.ts';
+import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
+import AiSearchMessagesOffcanvasShowButton from '$lib/components/AiSearchMessagesOffcanvasShowButton.svelte';
 
-    let inner: HTMLElement;
+const onUserInput = async (event: CustomEvent) => {
+    const content: UserInput = event.detail.content;
 
-    const onUserInput = async (event: CustomEvent) => {
-        const content: UserInput = event.detail.content;
+    if (!content) {
+        return;
+    }
 
-        if (!content) {
-            return;
-        }
-
-        const message: Message = {
-            role: MessageRole.User,
-            content: content
-        };
-
-        searchStore.addMessage(message);
-
-        const response = await searchStore.search(content);
+    const message: Message = {
+        role: MessageRole.User,
+        content: content
     };
 
-    let isOpen = false;
+    searchStore.addMessage(message);
 
-    const toggle = () => {
-        isOpen = !isOpen;
-    };
-
-    const newSearch = async () => {
-        await searchStore.reset();
-        await tick();
-    };
+    return await searchStore.search(content);
+};
 </script>
 
 <div 
     class="wc-ai-search-floating-user-input"
-    class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length > 0}
-    class:wc-ai-search-floating-user-input--static={$userMessagesStore.length <= 0}>
-    <div bind:this={inner}>
+    class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length}
+    class:wc-ai-search-floating-user-input--static={!$userMessagesStore.length}>
+    <div>
         {#if $searchStore.session}
             <div class="wc-ai-search-floating-user-input__actions">
-                <!-- {$userMessagesStore[($userMessagesStore.length-1)].content} -->
-                <button class="wc-ai-search-floating-user-input__actions__new-search" on:click={newSearch}>
-                    NUOVA RICERCA
-                </button>
-
-                <button on:click={toggle} class="wc-ai-search-floating-user-input__actions__open-messages">
-                    <Fa icon={faComment} size="2x" color="#2d9bf0" />
-                </button>
+                <WcAiSearchNewSearchButton />
+                <AiSearchMessagesOffcanvasShowButton class="wc-ai-search-floating-user-input__actions__open-messages" />
             </div>
         {/if}
         <AiSearchUserInputFormVariant
             --textarea-height="6rem"
-            isFollowup={$userMessagesStore.length > 0}
+            isFollowup={!!$userMessagesStore.length}
             on:userInput={onUserInput} />
     </div>
 </div>
-
-<Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
-    <WcAiSearchMessages class={padding.noPadding} />
-</Offcanvas>
 
 <style>
 .wc-ai-search-floating-user-input {
@@ -85,7 +57,7 @@
     }
 }
 .wc-ai-search-floating-user-input > div {
-    background-color: #f8f9fa;
+    background-color: #f2f2f6;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
 }
 .wc-ai-search-floating-user-input--static {
@@ -142,20 +114,7 @@
     align-items: center;
     padding: 0.5rem 0.5rem 1rem;
 }
-.wc-ai-search-floating-user-input__actions__new-search {
-    color: #2d9bf0;
-    text-decoration: underline;
-}
-.wc-ai-search-floating-user-input__actions button {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;    
-    cursor: pointer;
-}
-.wc-ai-search-floating-user-input__actions__open-messages {
-    border-radius: 50%;
-
+:global(.wc-ai-search-floating-user-input__actions__open-messages) {
     @media (min-width: 768px) {
         display: none;
     }

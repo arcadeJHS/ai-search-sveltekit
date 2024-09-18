@@ -25,7 +25,7 @@ const resetTextareaHeight = () => {
 
 const resize = () => {
     if (!textareaEl) { return; }
-    
+
     resetTextareaHeight();
 
     if (!isFollowup && textareaEl.scrollHeight < parseFloat(initialTextareaHeight)) { 
@@ -43,6 +43,7 @@ const dispatchUserInput = (content: UserInput) => {
     dispatch('userInput', { content });
     userInput = undefined;
     resetTextareaHeight();
+    textareaEl.blur();
 };
 
 const handleKeyDown = (event: KeyboardEvent) => {

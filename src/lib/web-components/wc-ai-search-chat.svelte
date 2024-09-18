@@ -4,8 +4,8 @@
 }} />
 
 <script lang="ts">
-    import AiSearchChat from '$lib/components/AiSearchChat.svelte';
-    import { searchStore } from '$lib/stores/SearchStore.ts';
+import AiSearchChat from '$lib/components/AiSearchChat.svelte';
+import { searchStore } from '$lib/stores/SearchStore.ts';
 </script>
 
 {#if $searchStore}

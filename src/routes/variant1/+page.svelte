@@ -5,6 +5,7 @@
   import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
   // import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
   import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input-variant.svelte';
+  import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 </script>
 
 <main>
@@ -29,6 +30,7 @@
         <div class="site-ai-search">
           <div class="site-ai-search__column site-ai-search__column--left">
             <div class="site-ai-search__messages">
+              <WcAiSearchNewSearchButton />
               <WcAiSearchMessages />
             </div>
           </div>

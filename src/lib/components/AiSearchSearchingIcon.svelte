@@ -1,8 +1,8 @@
 <script>
-	import Fa from 'svelte-fa';
-    import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Fa from 'svelte-fa';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-    export let searching = false;
+export let searching = false;
 </script>
 
 <div class:ai-search-searching-icon={!searching}>

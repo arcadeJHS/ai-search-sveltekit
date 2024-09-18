@@ -1,7 +1,7 @@
 <script lang="ts">
-    import font from '$lib/styles/font.module.css';
+import font from '$lib/styles/font.module.css';
 
-    export let message;
+export let message;
 </script>
 
 <div class="ai-search-message">
@@ -24,6 +24,6 @@
     font-weight: bold;
 }
 .ai-search-message > div {
-    color: #14c5cc;
+    color: #2d9bf0;
 }
 </style>
