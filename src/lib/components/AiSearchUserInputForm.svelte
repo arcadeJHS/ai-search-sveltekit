@@ -7,9 +7,10 @@ import textarea from '$lib/styles/textarea.module.css';
 import { observeElementHeight } from '../utils/index.js';
 import Fa from 'svelte-fa';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { t, waitLocale } from 'svelte-i18n';
 
-export let placeholder: string = "How can I help you organizing your event?";
-export let followUpPlaceholder: string = "Do you want to add more details?";
+export let placeholder: string;
+export let followUpPlaceholder: string;
 export let isFollowup: boolean = false;
 
 const dispatch = createEventDispatcher();
@@ -53,7 +54,15 @@ const handleKeyDown = (event: KeyboardEvent) => {
     }
 };
 
+const loadTranslations = async () => {
+    await waitLocale();
+    placeholder = $t('search_input_placeholder');
+    followUpPlaceholder = $t('search_input_placeholder_followup');
+};
+
 onMount(() => {
+    loadTranslations();
+
     // set initial textarea height when the component is mounted
     initialTextareaHeight = textareaEl.clientHeight + 'px';
     textareaEl.style.height = initialTextareaHeight;
@@ -66,9 +75,9 @@ onMount(() => {
         element.style.alignItems = height > threshold ? 'flex-end' : 'center';
         element.style.paddingBottom = height > threshold ? '0.5rem' : '0';
     });
-     
+
     return () => {
-      if (observeSubmitButtonContainer) observeSubmitButtonContainer();
+        if (observeSubmitButtonContainer) observeSubmitButtonContainer();
     };
 });
 

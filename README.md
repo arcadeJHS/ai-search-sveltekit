@@ -270,6 +270,7 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 - i18n
 - implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati
-- implementare error handleing delle chiamate alle API e notifica dell'errore sulla UI
+- implementare error handling delle chiamate alle API e notifica dell'errore sulla UI
 - gestire un "array" di risultati di ricerca, in modo da poter navigare avanti e indietro tra i risultati relativi alle varie query dell'utente
-- implementare un virtual scroll per i risultati di ricerca?
+- implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
+- rifattorizzare le variabili CSS in modo che siano definite "in un unico posto"

@@ -15,4 +15,5 @@
     composes: glyphButton;
     color: #2d9bf0;
     text-decoration: underline;
+    text-underline-offset: .2rem
 }
