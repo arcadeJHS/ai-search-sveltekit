@@ -84,8 +84,6 @@ export const useSearch = () => {
 				return self;
 			});
 
-			console.log(get(_searchStore));
-
 			return response;
 		},
 		reset: async () => {
@@ -148,6 +146,12 @@ export const useSearch = () => {
 			});
 
 			return response;
+		},
+		selectResultsSet: (key: string) => {
+			_searchStore.update((self: SearchThread) => {
+				self.currentResponseKey = key;
+				return self;
+			});
 		}
 	};
 

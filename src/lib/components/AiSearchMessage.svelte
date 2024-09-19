@@ -4,11 +4,14 @@ import { _ } from 'svelte-i18n';
 import Fa from 'svelte-fa';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import type { ExtendedUserMessage } from '$lib/types/Message.ts';
+import { createEventDispatcher } from 'svelte';
 
 export let message: ExtendedUserMessage;
+
+const dispatch = createEventDispatcher();
 </script>
 
-<div class="ai-search-message">
+<div class="ai-search-message" on:click={() => dispatch('click')}>
     <p class={`${font.base}`}>{message.content}</p>
     <div class={`${font.base}`}>
         <span>{$_('results', {values: { count: message.resultsCount }})}</span>
@@ -25,6 +28,7 @@ export let message: ExtendedUserMessage;
     border-top-left-radius: 0;
     font-size: 1em;
     /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
+    cursor: pointer;
 }
 .ai-search-message > p {
     font-weight: bold;

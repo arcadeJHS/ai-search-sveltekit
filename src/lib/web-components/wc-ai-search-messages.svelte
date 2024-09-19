@@ -5,6 +5,7 @@
 
 <script lang="ts">
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import { searchStore } from '$lib/stores/SearchStore.ts';
 import { tick, onMount } from 'svelte';
 import AiSearchMessage from '$lib/components/AiSearchMessage.svelte';
 
@@ -22,6 +23,10 @@ const scrollToLastMessage = async () => {
     });
 };
 
+const selectResultsSet = (key: string) => {
+    searchStore.selectResultsSet(key);
+};
+
 $: {
     $userMessagesStore.length;
     scrollToLastMessage();
@@ -36,7 +41,7 @@ onMount(() => {
     {#if $userMessagesStore}
         <div>    
             {#each $userMessagesStore as message}
-                <AiSearchMessage message={message} />
+                <AiSearchMessage message={message} on:click={() => searchStore.selectResultsSet(message.key)} />
             {/each}
         </div>
     {/if}
