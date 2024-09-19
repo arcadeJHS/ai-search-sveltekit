@@ -9,8 +9,8 @@ import Fa from 'svelte-fa';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { t, waitLocale } from 'svelte-i18n';
 
-export let placeholder: string;
-export let followUpPlaceholder: string;
+export let placeholder: string = '';
+export let followUpPlaceholder: string = '';
 export let isFollowup: boolean = false;
 
 const dispatch = createEventDispatcher();
@@ -56,8 +56,8 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
 const loadTranslations = async () => {
     await waitLocale();
-    placeholder = $t('search_input_placeholder');
-    followUpPlaceholder = $t('search_input_placeholder_followup');
+    placeholder = $t('search_input.placeholder');
+    followUpPlaceholder = $t('search_input.placeholder_followup');
 };
 
 onMount(() => {

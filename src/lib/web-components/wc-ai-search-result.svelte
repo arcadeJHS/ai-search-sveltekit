@@ -8,6 +8,7 @@ import type { ArtistSubType } from '$lib/types/Filter.ts';
 import { type Selection } from '$lib/types/Selection.ts';
 import Fa from 'svelte-fa';
 import { faCirclePlay, faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
+import { t } from 'svelte-i18n';
 
 export let result: Selection;
 
@@ -148,7 +149,7 @@ $: result, handleResultChange();
 
             {#if result.bookings && result.bookings > 0}
                 <div class="wc-ai-search-result__date-area">
-                    <p><span class="wc-ai-search-result__book">{result.bookings}</span> Verified Bookings</p>
+                    <p><span class="wc-ai-search-result__book">{result.bookings}</span> {$t('verified_bookings')}</p>
                 </div>
             {/if}
             
@@ -186,16 +187,16 @@ $: result, handleResultChange();
                             {getRatingStars(result.ratingStars)}
                         {/if}
                     </h2>
-                    <p>{result.ratingVotes} Reviews</p>
+                    <p>{result.ratingVotes} {$t('reviews')}</p>
                 </div>
 
                 <div class="wc-ai-search-result__price">
-                    <p>from</p>
+                    <p>{$t('from')}</p>
                     <h2>
                         {#if result.cachet_min}
                             {result.cachet_min} <span>{result.currency}</span>
                         {:else}
-                            on request
+                            {$t('on_request')}
                         {/if}
                     </h2>
                 </div>
@@ -206,7 +207,7 @@ $: result, handleResultChange();
                 evento:
                 onclick="stopAllVideos()"
             -->
-            <a itemprop="url" class="wc-ai-search-result__show-more" title="{result.itemprop_desc}" href="/{result.nickName}" target="_blank">Show more</a>
+            <a itemprop="url" class="wc-ai-search-result__show-more" title="{result.itemprop_desc}" href="/{result.nickName}" target="_blank">{$t('show_more')}</a>
         </div>
     </div>
 </div>

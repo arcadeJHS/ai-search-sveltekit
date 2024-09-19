@@ -1,6 +1,18 @@
 {
-    "search_input_placeholder": "DE_How can I help you organizing your event?",
-    "search_input_placeholder_followup": "DE_Do you want to add more details?",
+    "search_input": {
+        "placeholder": "DE_How can I help you organizing your event?",
+        "placeholder_followup": "DE_Do you want to add more details?"
+    },
     "new_search": "DE_New search",
-    "start_new_search": "DE_Start a new search"
+    "user_queries": {
+        "show": "DE_Show your queries"
+    },
+    "results": "DE_Results",
+    "result": {
+        "verified_bookings": "DE_Verified bookings",
+        "reviews": "DE_Reviews",
+        "from": "DE_from",
+        "on_request": "DE_on request",
+        "show_more": "DE_Show more"
+    }
 }

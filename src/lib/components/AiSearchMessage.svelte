@@ -1,12 +1,13 @@
 <script lang="ts">
 import font from '$lib/styles/font.module.css';
+import { t } from 'svelte-i18n';
 
 export let message;
 </script>
 
 <div class="ai-search-message">
     <p class={`${font.base}`}>{message.content}</p>
-    <div class={`${font.base}`}>Show results &gt;</div>
+    <div class={`${font.base}`}>{$t('results')} &gt;</div>
 </div>
     
 <style>

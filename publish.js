@@ -13,9 +13,23 @@ const targetDir = path.resolve(__dirname, 'DEMO');
 const stagendWebsiteJsDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
 const stagendWebsiteCssDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/css';
 
+// Remove old files, except "index.html"
+function emptyDirExceptIndex(dir) {
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+        const filePath = path.join(dir, file);
+        if (fs.lstatSync(filePath).isFile() && file !== 'index.html') {
+            fs.unlinkSync(filePath);
+            console.log(`Deleted ${file} from ${dir}`);
+        }
+    }
+}
+
 function copyFiles(srcDir, jsDestDir, cssDestDir) {
     if (!fs.existsSync(jsDestDir)) {
         fs.mkdirSync(jsDestDir, { recursive: true });
+    } else {
+        emptyDirExceptIndex(jsDestDir);
     }
 
     if (cssDestDir && !fs.existsSync(cssDestDir)) {

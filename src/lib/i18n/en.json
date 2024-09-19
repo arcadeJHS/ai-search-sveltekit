@@ -1,6 +1,18 @@
 {
-    "search_input_placeholder": "How can I help you organizing your event?",
-    "search_input_placeholder_followup": "Do you want to add more details?",
+    "search_input": {
+        "placeholder": "How can I help you organizing your event?",
+        "placeholder_followup": "Do you want to add more details?"
+    },
     "new_search": "New search",
-    "start_new_search": "Start a new search"
+    "user_queries": {
+        "show": "Show your queries"
+    },
+    "results": "Results",
+    "result": {
+        "verified_bookings": "Verified bookings",
+        "reviews": "Reviews",
+        "from": "from",
+        "on_request": "on request",
+        "show_more": "Show more"
+    }
 }

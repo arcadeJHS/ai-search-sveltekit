@@ -6,6 +6,6 @@ import button from '$lib/styles/button.module.css';
 const dispatch = createEventDispatcher();
 </script>
 
-<button class={button.linkButton} on:click={() => dispatch('click')} title={$t('start_new_search')}>
+<button class={button.linkButton} on:click={() => dispatch('click')}>
     {$t('new_search')}
 </button>

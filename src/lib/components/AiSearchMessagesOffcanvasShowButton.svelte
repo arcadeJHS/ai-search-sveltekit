@@ -6,6 +6,7 @@ import { Offcanvas } from '@sveltestrap/sveltestrap';
 import offcanvas from '$lib/styles/offcanvas.module.css';
 import padding from '$lib/styles/padding.module.css';
 import button from '$lib/styles/button.module.css';
+import { t } from 'svelte-i18n';
 
 let className: string = '';
 export { className as class };
@@ -17,7 +18,7 @@ const toggle = () => {
 };
 </script>
 
-<button on:click={toggle} class={`${button.iconButton} ${className}`} title="Show your queries">
+<button on:click={toggle} class={`${button.iconButton} ${className}`} title={$t('user_queries.show')}>
     <Fa icon={faComment} size="2x" color="#2d9bf0" />
 </button>
 
