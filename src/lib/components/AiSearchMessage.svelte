@@ -29,6 +29,7 @@ const dispatch = createEventDispatcher();
     font-size: 1em;
     /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
     cursor: pointer;
+    color: black;
 }
 .ai-search-message > p {
     font-weight: bold;
