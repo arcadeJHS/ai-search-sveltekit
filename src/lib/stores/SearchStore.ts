@@ -1,24 +1,25 @@
 import { writable, get } from 'svelte/store';
 import type { SearchStartRequest } from '$lib/types/SearchStartRequest.ts';
-import type { SearchStartResponse } from '$lib/types/SearchStartResponse.ts';
+import type { ApiResponse } from '$lib/types/ApiResponse.ts';
 import type { SearchThread } from '$lib/types/SearchThread.ts';
-import { type Message, MessageRole } from '$lib/types/Message.ts';
+import { type Message, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { SearchMessageRequest } from '$lib/types/SearchMessageRequest.ts';
-import type { SearchMessageResponse } from '$lib/types/SearchMessageResponse.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
+import { UUID } from '$lib/utils/UUID.ts';
 
 const emptyStore = (): SearchThread => {
 	return {
 		session: null,
-		l: null,
 		messages: [],
+		isSearching: false,
+
+		l: null,
 		filters: [],
-		selections: [],
-		isSearching: false
+		selections: []
 	};
 }
 
-const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<SearchStartResponse> => {
+const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<ApiResponse> => {
 	let url = `${apiBaseUrl}/search/start`;
 	
 	const queryParams = new URLSearchParams();
@@ -39,7 +40,7 @@ const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStart
 	return await res.json();
 };
 
-const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMessageRequest): Promise<SearchMessageResponse> => {
+const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMessageRequest): Promise<ApiResponse> => {
 	const url = `${apiBaseUrl}/search/message/${session}`;
 
 	const res = await fetch(url, {
@@ -65,29 +66,24 @@ export const useSearch = () => {
 		subscribe: _searchStore.subscribe,
 		set: _searchStore.set,
 		update: _searchStore.update,
-        start: async (apiBaseUrl: string, { language }: SearchStartRequest): Promise<SearchStartResponse> => {
+        start: async (apiBaseUrl: string, { language }: SearchStartRequest): Promise<ApiResponse> => {
 			if (!apiBaseUrl) {
 				throw new Error('apiBaseUrl is required');
 			}
 
 			BASE_URL = apiBaseUrl;
 
-            const response: SearchStartResponse = await _searchStart(BASE_URL, {
+            const response: ApiResponse = await _searchStart(BASE_URL, {
 				language 
 			});
 			const { session, l, message, filters, selection } = response;
 
 			LANGUAGE = l;
-
-			const chatMessage: Message = {
-				role: MessageRole.Agent,
-				content: message
-			};
 			
 			_searchStore.update((self: SearchThread) => {
 				self.session = session;
 				self.l = l;
-				self.messages = [...self.messages, chatMessage];
+				self.messages = [...self.messages, _methods.setAgentMessage(message)];
 				self.filters = filters;
 				self.selections = selection;
 				return self;
@@ -105,7 +101,22 @@ export const useSearch = () => {
 				return self;
 			});
 		},
-		search: async (userMessage: string): Promise<SearchMessageResponse> => {
+		addUserMessage: (content: string) => {
+			const message: UserMessage = {
+				key: UUID(),
+				role: MessageRole.User,
+				content
+			};
+			_methods.addMessage(message);
+		},
+		setAgentMessage: (content: string) => {
+			const message: Message = {
+				role: MessageRole.Agent,
+				content
+			};
+			return message;
+		},
+		search: async (userMessage: string): Promise<ApiResponse> => {
 			const store = get(_searchStore);
 			const session = store.session;
 
@@ -119,20 +130,16 @@ export const useSearch = () => {
 				return self;
 			});
 			
-			const response: SearchMessageResponse = await _searchMessage(BASE_URL, {
+			const response: ApiResponse = await _searchMessage(BASE_URL, {
 				session: session, 
 				message: userMessage
 			});
 
 			const { l, message, filters, selection } = response;
-			const chatMessage: Message = {
-				role: MessageRole.Agent,
-				content: message
-			};
 
 			_searchStore.update((self: SearchThread) => {
 				self.l = l;
-				self.messages = [...self.messages, chatMessage];
+				self.messages = [...self.messages, _methods.setAgentMessage(message)];
 				self.filters = filters;
 				self.selections = selection;
 				self.isSearching = false;

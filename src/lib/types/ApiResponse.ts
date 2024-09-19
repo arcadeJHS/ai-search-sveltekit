@@ -2,7 +2,8 @@ import type { AllowedLanguages } from './AllowedLanguages.ts';
 import type { Filter } from './Filter.ts';
 import type { Selection } from './Selection.ts';
 
-export interface SearchMessageResponse {
+export interface ApiResponse {
+	session: string;
 	l: AllowedLanguages;
     message: string;
     filters: Filter[];

@@ -3,12 +3,12 @@ export enum MessageRole {
     Agent = 'agent',
 }
 
-export type Message = {
+export interface Message {
+	key?: string;
 	role: MessageRole;
 	content: string;
 };
 
-export type UserMessage = {
+export type UserMessage = Message & {
 	role: MessageRole.User;
-	content: string;
 };

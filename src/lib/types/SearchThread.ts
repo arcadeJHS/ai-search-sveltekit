@@ -11,3 +11,31 @@ export interface SearchThread {
     selections: Selection[];
     isSearching: boolean;
 };
+
+
+
+
+
+/*
+
+{
+	session: string | null;
+    messages: Message[];
+    isSearching: boolean;
+    currentResponse: ApiResponse | null;
+
+    responses: {
+        [key: string]: ApiReponse;
+    }
+}
+
+
+interface ApiResponse {
+	session: string;
+	l: AllowedLanguages;
+    message: string;
+    filters: Filter[];
+    selection: Selection[];
+};
+
+ */

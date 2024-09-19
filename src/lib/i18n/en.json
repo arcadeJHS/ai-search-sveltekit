@@ -7,7 +7,7 @@
     "user_queries": {
         "show": "Show your queries"
     },
-    "results": "Results",
+    "results": "{count, plural, =0 {EN_No reults} =1 {{count} EN_result} other {{count} EN_results}}",
     "result": {
         "verified_bookings": "Verified bookings",
         "reviews": "Reviews",

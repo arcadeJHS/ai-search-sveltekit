@@ -6,6 +6,7 @@
 <script lang="ts">
 import AiSearchmessages from '$lib/components/AiSearchMessages.svelte';
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import { searchStore } from '$lib/stores/SearchStore.ts';
 
 let className: string = '';
 export { className as class };
@@ -13,7 +14,7 @@ export { className as class };
 
 <div class={`wc-ai-search-messages ${className}`}>
     {#if $userMessagesStore}
-        <AiSearchmessages messages={$userMessagesStore} />
+        <AiSearchmessages messages={$userMessagesStore} results={$searchStore.selections} />
     {/if}
 </div>
 

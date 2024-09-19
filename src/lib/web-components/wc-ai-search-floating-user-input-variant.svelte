@@ -21,14 +21,8 @@ const onUserInput = async (event: CustomEvent) => {
         return;
     }
 
-    const message: Message = {
-        role: MessageRole.User,
-        content: content
-    };
-
-    searchStore.addMessage(message);
-
-    const response = await searchStore.search(content);
+    searchStore.addUserMessage(content);
+    return await searchStore.search(content);
 };
 
 onMount(() => {

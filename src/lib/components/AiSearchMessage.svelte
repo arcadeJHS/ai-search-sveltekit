@@ -1,28 +1,42 @@
 <script lang="ts">
 import font from '$lib/styles/font.module.css';
-import { t } from 'svelte-i18n';
+import { _ } from 'svelte-i18n';
+import Fa from 'svelte-fa';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import type { UserMessage } from '$lib/types/Message.ts';
 
-export let message;
+export let message: UserMessage;
+export let resultsCount: number = 0;
 </script>
 
 <div class="ai-search-message">
     <p class={`${font.base}`}>{message.content}</p>
-    <div class={`${font.base}`}>{$t('results')} &gt;</div>
+    <div class={`${font.base}`}>
+        <span>{$_('results', {values: { count: resultsCount }})}</span>
+        <Fa icon={faChevronRight} size="lg" />
+    </div>
 </div>
     
 <style>
 .ai-search-message {
-    padding: 0.5rem 1rem;
+    padding: 0.8rem;
     background-color: #ffffff;
     border: 1px solid #dcdcdd;
     border-radius: 10px;
     border-top-left-radius: 0;
+    font-size: 1em;
     /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
 }
 .ai-search-message > p {
     font-weight: bold;
+    margin-bottom: 0.8em;
+    padding-right: 1rem;
 }
 .ai-search-message > div {
-    color: #2d9bf0;
+    display: flex;
+    justify-content: space-between;
+}
+.ai-search-message > div > span {
+    font-size: 0.9em;
 }
 </style>

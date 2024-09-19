@@ -1,8 +1,11 @@
 <script lang="ts">
 import { tick, onMount } from 'svelte';
 import AiSearchMessage from './AiSearchMessage.svelte';
+import type { UserMessage } from '$lib/types/Message.ts';
+import type { Selection } from '$lib/types/Selection.ts';
 
-export let messages;
+export let messages: UserMessage[];
+export let results: Selection[];
 
 let inner: HTMLDivElement;
 
@@ -33,7 +36,7 @@ https://getbootstrap.com/docs/5.0/utilities/display/
 -->
 <div class="ai-search-messages" bind:this={inner}>    
     {#each messages as message}
-        <AiSearchMessage message={message} />
+        <AiSearchMessage message={message} resultsCount={results.length} />
     {/each}
 </div>
 
