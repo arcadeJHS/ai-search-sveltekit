@@ -16,7 +16,6 @@ const onUserInput = async (event: CustomEvent) => {
         return;
     }
 
-    searchStore.addUserMessage(content);
     return await searchStore.search(content);
 };
 

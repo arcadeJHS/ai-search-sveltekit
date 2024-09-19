@@ -9,7 +9,6 @@ import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormV
 import { searchStore } from '$lib/stores/SearchStore.ts';
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
-import { type Message, MessageRole } from '$lib/types/Message.ts';
 import { observeElementHeight, updateBorderRadius } from '../utils/index.js';
 
 let inner: HTMLElement;
@@ -21,7 +20,6 @@ const onUserInput = async (event: CustomEvent) => {
         return;
     }
 
-    searchStore.addUserMessage(content);
     return await searchStore.search(content);
 };
 

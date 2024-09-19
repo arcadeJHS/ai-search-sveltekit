@@ -1,41 +1,13 @@
-import type { AllowedLanguages } from './AllowedLanguages.ts';
-import type { Filter } from './Filter.ts';
-import type { Selection } from './Selection.ts';
 import type { Message } from './Message.ts';
+import type { ApiResponse } from './ApiResponse.ts';
 
 export interface SearchThread {
 	session: string | null;
-	l: AllowedLanguages | null;
-    messages: Message[];
-    filters: Filter[];
-    selections: Selection[];
-    isSearching: boolean;
-};
-
-
-
-
-
-/*
-
-{
-	session: string | null;
     messages: Message[];
     isSearching: boolean;
-    currentResponse: ApiResponse | null;
+    currentResponseKey: string | null;
 
     responses: {
-        [key: string]: ApiReponse;
+        [key: string]: ApiResponse;
     }
-}
-
-
-interface ApiResponse {
-	session: string;
-	l: AllowedLanguages;
-    message: string;
-    filters: Filter[];
-    selection: Selection[];
 };
-
- */

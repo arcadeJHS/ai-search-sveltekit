@@ -268,6 +268,10 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 # TODO
 
+- ovunque, rinominare "message" o "messages" in "query"
+- rinominare "userMessagesStore" in "userMessages"
+- rinominare "ResultsSetStore" in "resultsSet"
+
 - gestire un "array" di risultati di ricerca, in modo da poter navigare avanti e indietro tra i risultati relativi alle varie query dell'utente
 - implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati
 - implementare error handling delle chiamate alle API e notifica dell'errore sulla UI

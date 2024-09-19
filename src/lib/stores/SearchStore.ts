@@ -7,17 +7,15 @@ import type { SearchMessageRequest } from '$lib/types/SearchMessageRequest.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 import { UUID } from '$lib/utils/UUID.ts';
 
-const emptyStore = (): SearchThread => {
+const emptySearchThread = (): SearchThread => {
 	return {
 		session: null,
 		messages: [],
 		isSearching: false,
-
-		l: null,
-		filters: [],
-		selections: []
+		currentResponseKey: null,
+		responses: {}
 	};
-}
+};
 
 const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<ApiResponse> => {
 	let url = `${apiBaseUrl}/search/start`;
@@ -60,7 +58,7 @@ export const useSearch = () => {
 	let BASE_URL: string;
 	let LANGUAGE: AllowedLanguages;
 
-	const _searchStore = writable<SearchThread>(emptyStore());
+	const _searchStore = writable<SearchThread>(emptySearchThread());
 
 	const _methods = {
 		subscribe: _searchStore.subscribe,
@@ -73,26 +71,25 @@ export const useSearch = () => {
 
 			BASE_URL = apiBaseUrl;
 
-            const response: ApiResponse = await _searchStart(BASE_URL, {
-				language 
-			});
-			const { session, l, message, filters, selection } = response;
+            const response: ApiResponse = await _searchStart(BASE_URL, { language });
+			const { session, l, message } = response;
+			const agentMessage: Message = _methods.setAgentMessage(message);
 
 			LANGUAGE = l;
 			
 			_searchStore.update((self: SearchThread) => {
 				self.session = session;
-				self.l = l;
-				self.messages = [...self.messages, _methods.setAgentMessage(message)];
-				self.filters = filters;
-				self.selections = selection;
+				self.messages = [...self.messages, agentMessage];
+				self.responses[agentMessage.key] = response;
 				return self;
 			});
+
+			console.log(get(_searchStore));
 
 			return response;
 		},
 		reset: async () => {
-			_searchStore.update(emptyStore);
+			_searchStore.update(emptySearchThread);
 			return await _methods.start(BASE_URL, { language: LANGUAGE });
 		},
 		addMessage: (message: Message) => {
@@ -101,22 +98,23 @@ export const useSearch = () => {
 				return self;
 			});
 		},
-		addUserMessage: (content: string) => {
+		setUserMessage: (content: string) => {
 			const message: UserMessage = {
 				key: UUID(),
 				role: MessageRole.User,
 				content
 			};
-			_methods.addMessage(message);
+			return message;
 		},
 		setAgentMessage: (content: string) => {
 			const message: Message = {
+				key: UUID(),
 				role: MessageRole.Agent,
 				content
 			};
 			return message;
 		},
-		search: async (userMessage: string): Promise<ApiResponse> => {
+		search: async (content: string): Promise<ApiResponse> => {
 			const store = get(_searchStore);
 			const session = store.session;
 
@@ -124,24 +122,27 @@ export const useSearch = () => {
 				throw new Error('Session is required');
 			}
 
+			const userMessage = _methods.setUserMessage(content);
+			_methods.addMessage(userMessage);
+
 			_searchStore.update((self: SearchThread) => {
-				self.selections = [];
+				self.currentResponseKey = null;
 				self.isSearching = true;
 				return self;
 			});
 			
 			const response: ApiResponse = await _searchMessage(BASE_URL, {
 				session: session, 
-				message: userMessage
+				message: content
 			});
-
-			const { l, message, filters, selection } = response;
+			const { message } = response;
+			const agentMessage: Message = _methods.setAgentMessage(message);
+			const responseKey = userMessage.key;
 
 			_searchStore.update((self: SearchThread) => {
-				self.l = l;
-				self.messages = [...self.messages, _methods.setAgentMessage(message)];
-				self.filters = filters;
-				self.selections = selection;
+				self.messages = [...self.messages, agentMessage];
+				self.responses[responseKey] = response;
+				self.currentResponseKey = responseKey;
 				self.isSearching = false;
 				return self;
 			});

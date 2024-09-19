@@ -8,7 +8,6 @@ import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte'
 import { searchStore } from '$lib/stores/SearchStore.ts';
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
-import { type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 import AiSearchMessagesOffcanvasShowButton from '$lib/components/AiSearchMessagesOffcanvasShowButton.svelte';
 
@@ -19,7 +18,6 @@ const onUserInput = async (event: CustomEvent) => {
         return;
     }
 
-    searchStore.addUserMessage(content);
     return await searchStore.search(content);
 };
 </script>

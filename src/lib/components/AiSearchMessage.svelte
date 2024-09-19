@@ -3,16 +3,15 @@ import font from '$lib/styles/font.module.css';
 import { _ } from 'svelte-i18n';
 import Fa from 'svelte-fa';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import type { UserMessage } from '$lib/types/Message.ts';
+import type { ExtendedUserMessage } from '$lib/types/Message.ts';
 
-export let message: UserMessage;
-export let resultsCount: number = 0;
+export let message: ExtendedUserMessage;
 </script>
 
 <div class="ai-search-message">
     <p class={`${font.base}`}>{message.content}</p>
     <div class={`${font.base}`}>
-        <span>{$_('results', {values: { count: resultsCount }})}</span>
+        <span>{$_('results', {values: { count: message.resultsCount }})}</span>
         <Fa icon={faChevronRight} size="lg" />
     </div>
 </div>

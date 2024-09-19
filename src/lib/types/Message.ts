@@ -4,11 +4,15 @@ export enum MessageRole {
 }
 
 export interface Message {
-	key?: string;
+	key: string;
 	role: MessageRole;
 	content: string;
 };
 
 export type UserMessage = Message & {
 	role: MessageRole.User;
+};
+
+export type ExtendedUserMessage = UserMessage & {
+	resultsCount: number;
 };

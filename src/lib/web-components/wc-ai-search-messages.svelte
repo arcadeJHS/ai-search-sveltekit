@@ -4,17 +4,41 @@
 }} />
 
 <script lang="ts">
-import AiSearchmessages from '$lib/components/AiSearchMessages.svelte';
 import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { tick, onMount } from 'svelte';
+import AiSearchMessage from '$lib/components/AiSearchMessage.svelte';
 
 let className: string = '';
 export { className as class };
+
+let inner: HTMLDivElement;
+
+const scrollToLastMessage = async () => {
+    await tick();
+    inner?.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+};
+
+$: {
+    $userMessagesStore.length;
+    scrollToLastMessage();
+}
+
+onMount(() => {
+    scrollToLastMessage();
+});
 </script>
 
-<div class={`wc-ai-search-messages ${className}`}>
+<div class={`wc-ai-search-messages ${className}`} bind:this={inner}>
     {#if $userMessagesStore}
-        <AiSearchmessages messages={$userMessagesStore} results={$searchStore.selections} />
+        <div>    
+            {#each $userMessagesStore as message}
+                <AiSearchMessage message={message} />
+            {/each}
+        </div>
     {/if}
 </div>
 
@@ -25,5 +49,10 @@ export { className as class };
 
     /* Gives space to scroll bar */
     /* padding-right: 1rem; */
+}
+.wc-ai-search-messages > div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
 }
 </style>
