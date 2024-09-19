@@ -110,6 +110,7 @@ const onUserInput = async (event: CustomEvent) => {
 
     @media (min-width: 768px) {
         border-radius: 0.5rem;
+        padding-bottom: 0.5rem;
     }
 }
 .wc-ai-search-floating-user-input__actions {
