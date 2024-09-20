@@ -38,8 +38,12 @@ const dispatch = createEventDispatcher();
 .ai-search-message:hover,
 .ai-search-message--active {
     background-color: #FF9128;
-    color: #ffffff;
+    border-color: #FF9128;
+    
 } 
+.ai-search-message--active > * {
+    color: #ffffff;
+}
 .ai-search-message > p {
     font-weight: bold;
     margin-bottom: 0.8em;
