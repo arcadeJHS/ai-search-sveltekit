@@ -6,13 +6,15 @@
 <script lang="ts">
 import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
 import { searchStore } from '$lib/stores/searchStore.ts';
-import { tick, onMount } from 'svelte';
+import { tick, onMount, createEventDispatcher } from 'svelte';
 import AiSearchMessage from '$lib/components/AiSearchMessage.svelte';
 
 let className: string = '';
 export { className as class };
 
 let inner: HTMLDivElement;
+
+const dispatch = createEventDispatcher();
 
 const scrollToLastMessage = async () => {
     await tick();
@@ -25,6 +27,7 @@ const scrollToLastMessage = async () => {
 
 const selectResultsSet = (key: string) => {
     searchStore.selectResultsSet(key);
+    dispatch('querySelected');
 };
 
 $: {

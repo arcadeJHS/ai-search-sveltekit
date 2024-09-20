@@ -23,5 +23,5 @@ const toggle = () => {
 </button>
 
 <Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
-    <WcAiSearchMessages class={padding.noPadding} />
+    <WcAiSearchMessages class={padding.noPadding} on:querySelected={toggle} />
 </Offcanvas>
