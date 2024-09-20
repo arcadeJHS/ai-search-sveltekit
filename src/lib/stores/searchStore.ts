@@ -11,37 +11,50 @@ const emptySearchThread = (): SearchThread => {
 	return {
 		session: null,
 		messages: [],
-		isSearching: false,
 		currentResultsSetKey: null,
-		responses: {}
+		responses: {},
+		status: 'idle',
+		error: null
 	};
 };
 
 const _searchStart = async (apiBaseUrl: string, { language = 'en' }: SearchStartRequest): Promise<ApiResponse> => {
 	let url = `${apiBaseUrl}/search/start`;
-	
 	const queryParams = new URLSearchParams();
-
 	if (language) queryParams.append('l', language);
-
 	if (queryParams.toString()) {
 		url += `?${queryParams.toString()}`;
 	}
 
-	const res = await fetch(url, {
+	const response = await fetch(url, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	});
 
-	return await res.json();
+	// check if response content-type is not application/json (PHP/DB errors)
+	if (response.headers.get('content-type') !== 'application/json') {
+		throw new TypeError(`Server error: Invalid response content-type - expected application/json, got ${response.headers.get('content-type')}`);
+	}
+
+	try {
+		const data = await response.json();
+
+		if (!response.ok) {
+			throw new Error(`Server error: ${data.error}`);
+		}
+
+		return data;	
+	} catch (error: unknown) {
+		throw new Error(`Server error: ${error}`);
+	}
 };
 
 const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMessageRequest): Promise<ApiResponse> => {
 	const url = `${apiBaseUrl}/search/message/${session}`;
 
-	const res = await fetch(url, {
+	const response = await fetch(url, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -51,7 +64,22 @@ const _searchMessage = async (apiBaseUrl: string, { session, message }: SearchMe
 		})
 	});
 
-	return await res.json();
+	// check if response content-type is not application/json (PHP/DB errors)
+	if (response.headers.get('content-type') !== 'application/json') {
+		throw new TypeError(`Server error: Invalid response content-type - expected application/json, got ${response.headers.get('content-type')}`);
+	}
+
+	try {
+		const data = await response.json();
+
+		if (!response.ok) {
+			throw new Error(`Server error: ${data.error}`);
+		}
+
+		return data;	
+	} catch (error: unknown) {
+		throw new Error(`Server error: ${error}`);
+	}
 };
 
 export const useSearch = () => {
@@ -64,37 +92,62 @@ export const useSearch = () => {
 		subscribe: _searchStore.subscribe,
 		set: _searchStore.set,
 		update: _searchStore.update,
-        start: async (apiBaseUrl: string, { language }: SearchStartRequest): Promise<ApiResponse> => {
+		setPending: () => {
+			_searchStore.update((self: SearchThread) => ({
+				...self,
+				status: 'pending',
+				error: null
+			}));
+		},
+		setError: (error: Error) => {
+			_searchStore.update((self: SearchThread) => ({
+				...self,
+				status: 'error',
+				error: error.message
+			}));
+		},
+        start: async (apiBaseUrl: string, { language }: SearchStartRequest): Promise<ApiResponse | undefined> => {
 			if (!apiBaseUrl) {
 				throw new Error('apiBaseUrl is required');
 			}
 
 			BASE_URL = apiBaseUrl;
 
-            const response: ApiResponse = await _searchStart(BASE_URL, { language });
-			const { session, l, message } = response;
-			const agentMessage: AgentMessage = _methods.setAgentMessage(message);
+			_methods.setPending();
 
-			LANGUAGE = l;
-			
-			_searchStore.update((self: SearchThread) => {
-				self.session = session;
-				self.messages = [...self.messages, agentMessage];
-				self.responses[agentMessage.key] = response;
-				return self;
-			});
+			try {
+				const response: ApiResponse = await _searchStart(BASE_URL, { language });
+				const { session, l, message } = response;
+				const agentMessage: AgentMessage = _methods.setAgentMessage(message);
 
-			return response;
+				LANGUAGE = l;
+				
+				_searchStore.update((self: SearchThread) => ({
+					...self,
+					session: session,
+					messages: [...self.messages, agentMessage],
+					responses: {
+						...self.responses,
+						[agentMessage.key]: response
+					},
+					status: 'success',
+					error: null
+				}));
+
+				return response;
+			} catch (error: unknown) {
+				_methods.setError(error as Error);
+			}
 		},
-		reset: async (): Promise<ApiResponse> => {
-			_searchStore.update(emptySearchThread);
+		reset: async (): Promise<ApiResponse | undefined> => {
+			_searchStore.set(emptySearchThread());
 			return await _methods.start(BASE_URL, { language: LANGUAGE });
 		},
 		addMessage: (message: Message) => {
-			_searchStore.update((self: SearchThread) => {
-				self.messages = [...self.messages, message];
-				return self;
-			});
+			_searchStore.update((self: SearchThread) => ({
+				...self, 
+				messages: [...self.messages, message]
+			}));
 		},
 		setUserMessage: (content: string): UserMessage => {
 			const message: UserMessage = {
@@ -112,7 +165,7 @@ export const useSearch = () => {
 			};
 			return message;
 		},
-		search: async (content: string): Promise<ApiResponse> => {
+		search: async (content: string): Promise<ApiResponse | undefined> => {
 			const store = get(_searchStore);
 			const session = store.session;
 
@@ -121,37 +174,47 @@ export const useSearch = () => {
 			}
 
 			const userMessage = _methods.setUserMessage(content);
+			
 			_methods.addMessage(userMessage);
 
-			_searchStore.update((self: SearchThread) => {
-				self.currentResultsSetKey = null;
-				self.isSearching = true;
-				return self;
-			});
+			_searchStore.update((self: SearchThread) => ({
+				...self, 
+				currentResultsSetKey: null
+			}));
+
+			_methods.setPending();
 			
-			const response: ApiResponse = await _searchMessage(BASE_URL, {
-				session: session, 
-				message: content
-			});
-			const { message } = response;
-			const agentMessage: AgentMessage = _methods.setAgentMessage(message);
-			const responseKey = userMessage.key;
+			try {
+				const response: ApiResponse = await _searchMessage(BASE_URL, {
+					session: session, 
+					message: content
+				});
+				const { message } = response;
+				const agentMessage: AgentMessage = _methods.setAgentMessage(message);
+				const responseKey = userMessage.key;
 
-			_searchStore.update((self: SearchThread) => {
-				self.messages = [...self.messages, agentMessage];
-				self.responses[responseKey] = response;
-				self.currentResultsSetKey = responseKey;
-				self.isSearching = false;
-				return self;
-			});
+				_searchStore.update((self: SearchThread) => ({
+					...self,
+					messages: [...self.messages, agentMessage],
+					responses: {
+						...self.responses,
+						[responseKey]: response
+					},
+					currentResultsSetKey: responseKey,
+					status: 'success',
+					error: null
+				}));
 
-			return response;
+				return response;
+			} catch (error: unknown) {
+				_methods.setError(error as Error);
+			}
 		},
 		selectResultsSet: (key: string) => {
-			_searchStore.update((self: SearchThread) => {
-				self.currentResultsSetKey = key;
-				return self;
-			});
+			_searchStore.update((self: SearchThread) => ({
+				...self,
+				currentResultsSetKey: key
+			}));
 		}
 	};
 

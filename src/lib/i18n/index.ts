@@ -1,6 +1,3 @@
-/**
- * https://centus.com/blog/svelte-localization#:~:text=svelte%2Di18n%20will%20automatically%20choose,value%20and%20the%20current%20locale.
- */
 import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 
