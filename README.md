@@ -271,8 +271,6 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 - gestire un "array" di risultati di ricerca, in modo da poter navigare avanti e indietro tra i risultati relativi alle varie query dell'utente
 
 - ovunque, rinominare "message" o "messages" in "query"
-- rinominare "userMessagesStore" in "userMessages"
-- rinominare "ResultsSetStore" in "resultsSet"
 
 - implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
 - implementare error handling delle chiamate alle API e notifica dell'errore sulla UI

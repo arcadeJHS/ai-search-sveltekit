@@ -5,7 +5,7 @@ export interface SearchThread {
 	session: string | null;
     messages: Message[];
     isSearching: boolean;
-    currentResponseKey: string | null;
+    currentResultsSetKey: string | null;
 
     responses: {
         [key: string]: ApiResponse;

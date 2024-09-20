@@ -5,10 +5,10 @@
 
 <script lang="ts">
 import { tick, onMount } from 'svelte';
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
 import AiSearchSearchingIcon from '$lib/components/AiSearchSearchingIcon.svelte';
 import WcAiSearchResult from '$lib/web-components/wc-ai-search-result.svelte'; 
-import { ResultsSetStore } from '$lib/stores/ResultsSetStore.ts';
+import { resultsSetStore } from '$lib/stores/resultsSetStore.ts';
 
 const scrollToTop = async () => {
     await tick();
@@ -22,7 +22,7 @@ const scrollToTop = async () => {
 };
 
 $: {
-    $ResultsSetStore;
+    $resultsSetStore;
     scrollToTop();
 }
 
@@ -38,7 +38,7 @@ onMount(() => {
 
             <AiSearchSearchingIcon searching={$searchStore.isSearching} />
 
-            {#each $ResultsSetStore as result}
+            {#each $resultsSetStore as result}
                 <WcAiSearchResult {result} />
             {/each}
 

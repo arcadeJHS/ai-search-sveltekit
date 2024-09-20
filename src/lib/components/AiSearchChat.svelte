@@ -1,6 +1,6 @@
 <script lang="ts">
 import { tick, onMount } from 'svelte';
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { type Message, MessageRole } from '$lib/types/Message.ts';
 import AiSearchUserInputForm from './AiSearchUserInputFormVariant.svelte';

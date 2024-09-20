@@ -12,7 +12,7 @@ const emptySearchThread = (): SearchThread => {
 		session: null,
 		messages: [],
 		isSearching: false,
-		currentResponseKey: null,
+		currentResultsSetKey: null,
 		responses: {}
 	};
 };
@@ -124,7 +124,7 @@ export const useSearch = () => {
 			_methods.addMessage(userMessage);
 
 			_searchStore.update((self: SearchThread) => {
-				self.currentResponseKey = null;
+				self.currentResultsSetKey = null;
 				self.isSearching = true;
 				return self;
 			});
@@ -140,7 +140,7 @@ export const useSearch = () => {
 			_searchStore.update((self: SearchThread) => {
 				self.messages = [...self.messages, agentMessage];
 				self.responses[responseKey] = response;
-				self.currentResponseKey = responseKey;
+				self.currentResultsSetKey = responseKey;
 				self.isSearching = false;
 				return self;
 			});
@@ -149,7 +149,7 @@ export const useSearch = () => {
 		},
 		selectResultsSet: (key: string) => {
 			_searchStore.update((self: SearchThread) => {
-				self.currentResponseKey = key;
+				self.currentResultsSetKey = key;
 				return self;
 			});
 		}

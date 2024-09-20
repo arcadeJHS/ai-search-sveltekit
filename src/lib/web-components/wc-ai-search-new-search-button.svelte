@@ -4,9 +4,9 @@
 }} />
 
 <script lang="ts">
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
 import AiSearchNewSearchButton from '$lib/components/AiSearchNewSearchButton.svelte';
-import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
 
 const newSearch = async () => {
     return await searchStore.reset();

@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte';
-import { searchStore } from '$lib/stores/SearchStore.ts';
-import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
+import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 import AiSearchMessagesOffcanvasShowButton from '$lib/components/AiSearchMessagesOffcanvasShowButton.svelte';

@@ -4,8 +4,8 @@
 }} />
 
 <script lang="ts">
-import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
 import { tick, onMount } from 'svelte';
 import AiSearchMessage from '$lib/components/AiSearchMessage.svelte';
 
@@ -41,7 +41,11 @@ onMount(() => {
     {#if $userMessagesStore}
         <div>    
             {#each $userMessagesStore as message}
-                <AiSearchMessage message={message} on:click={() => searchStore.selectResultsSet(message.key)} />
+                <AiSearchMessage 
+                    message={message} 
+                    active={message.key === $searchStore.currentResultsSetKey}
+                    on:click={() => selectResultsSet(message.key)} 
+                />
             {/each}
         </div>
     {/if}

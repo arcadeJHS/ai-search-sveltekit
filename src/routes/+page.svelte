@@ -1,6 +1,6 @@
 <script>
   import svelteLogo from '/src/assets/svelte.svg';
-  import { searchStore } from '$lib/stores/SearchStore.ts';
+  import { searchStore } from '$lib/stores/searchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import AiSearchChat from '$lib/components/AiSearchChat.svelte';
   import AiSearchResults from '$lib/components/AiSearchResults.svelte';
@@ -20,7 +20,7 @@
     apiBaseUrl="http://192.168.50.58:9910" 
   -->
   <WcAiSearchAppShell
-    baseUrl="http://192.168.50.58:9910"
+    baseUrl="http://localhost:8099"
     language="it"
   ></WcAiSearchAppShell>
 

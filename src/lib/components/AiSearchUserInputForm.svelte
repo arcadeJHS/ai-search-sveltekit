@@ -2,7 +2,7 @@
 import { createEventDispatcher, onMount } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import input from '$lib/styles/input.module.css';
-import font from '$lib/styles/font.module.css';
+import text from '$lib/styles/text.module.css';
 import textarea from '$lib/styles/textarea.module.css';
 import { observeElementHeight } from '../utils/index.js';
 import Fa from 'svelte-fa';
@@ -90,7 +90,7 @@ $: isFollowup, resize();
 
     <textarea
         name="user-input"
-        class={`${font.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
+        class={`${text.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
         rows="1"
         on:input={resize}
         on:keydown={handleKeyDown}

@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { onMount } from 'svelte';
-import { searchStore } from '$lib/stores/SearchStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
 import { type AllowedLanguages, isAllowedLanguage } from '$lib/types/AllowedLanguages.ts';
 import { Styles } from '@sveltestrap/sveltestrap';
 import { initLocale } from '$lib/i18n/index.ts';

@@ -1,5 +1,5 @@
 @value variables: "./variables.module.css";
-@value fontSansSerif from variables;
+@value fontSansSerif, dark from variables;
 
 .sansSerif {
     font-family: fontSansSerif;
@@ -8,4 +8,5 @@
 .base {
     composes: sansSerif;
     font-size: 1rem;
+    color: dark;
 }

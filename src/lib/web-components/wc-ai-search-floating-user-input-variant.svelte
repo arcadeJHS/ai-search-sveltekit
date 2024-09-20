@@ -6,8 +6,8 @@
 <script lang="ts">
 import { onMount } from 'svelte';
 import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
-import { searchStore } from '$lib/stores/SearchStore.ts';
-import { userMessagesStore } from '$lib/stores/UserMessagesStore.ts';
+import { searchStore } from '$lib/stores/searchStore.ts';
+import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { observeElementHeight, updateBorderRadius } from '../utils/index.js';
 
