@@ -8,6 +8,6 @@ export interface SearchThread {
     responses: {
         [key: string]: ApiResponse;
     },
-    status: 'idle' | 'pending' | 'success' | 'error',
+    status: 'idle' | 'starting' | 'searching' | 'success' | 'error',
     error: string | null;
 };

@@ -68,10 +68,18 @@ export const useSearch = () => {
 
     const _searchStore = writable<SearchThread>(emptySearchThread());
 
-    const setPending = () => {
+    const setStarting = () => {
         _searchStore.update((self: SearchThread) => ({
             ...self,
-            status: 'pending',
+            status: 'starting',
+            error: null
+        }));
+    };
+
+	const setSearching = () => {
+        _searchStore.update((self: SearchThread) => ({
+            ...self,
+            status: 'searching',
             error: null
         }));
     };
@@ -109,7 +117,7 @@ export const useSearch = () => {
         }
 
         BASE_URL = apiBaseUrl;
-        setPending();
+        setStarting();
 
         try {
             const response: ApiResponse = await _searchStart(BASE_URL, { language });
@@ -156,7 +164,7 @@ export const useSearch = () => {
             currentResultsSetKey: null
         }));
 
-        setPending();
+        setSearching();
 
         try {
             const response: ApiResponse = await _searchMessage(BASE_URL, { session, message: content });
@@ -193,7 +201,8 @@ export const useSearch = () => {
         subscribe: _searchStore.subscribe,
         set: _searchStore.set,
         update: _searchStore.update,
-        setPending,
+        setStarting,
+		setSearching,
         setError,
         start,
         reset,

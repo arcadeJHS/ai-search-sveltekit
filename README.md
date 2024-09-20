@@ -271,8 +271,6 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 
 # TODO
-
-- implementare error handling delle chiamate alle API e notifica dell'errore sulla UI
   
 - implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
 - implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati

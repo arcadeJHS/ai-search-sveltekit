@@ -36,7 +36,7 @@ onMount(() => {
     <div class="container wc-ai-search-results">
         <div class="row row-cols-1 row-cols-md-4 g-4">
 
-            <AiSearchSearchingIcon searching={$searchStore.status === 'pending'} />
+            <AiSearchSearchingIcon searching={$searchStore.status === 'searching'} />
 
             {#each $resultsSetStore as result}
                 <WcAiSearchResult {result} />
