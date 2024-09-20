@@ -1,6 +1,5 @@
-// export { default as AiSearchChat } from './AiSearchChat.svelte';
-export { default as AiSearchMessage } from './AiSearchMessage.svelte';
-export { default as AiSearchMessagesOffcanvasShowButton } from './AiSearchMessagesOffcanvasShowButton.svelte';
+export { default as AiSearchQuery } from './AiSearchQuery.svelte';
+export { default as AiSearchQueriesOffcanvasShowButton } from './AiSearchQueriesOffcanvasShowButton.svelte';
 export { default as AiSearchNewSearchButton } from './AiSearchNewSearchButton.svelte';
 export { default as AiSearchResults } from './AiSearchResults.svelte';
 export { default as AiSearchSearchingIcon } from './AiSearchSearchingIcon.svelte';

@@ -1,13 +1,13 @@
 <svelte:options customElement={{
-	tag: 'webcomponent-ai-search-messages',
+	tag: 'webcomponent-ai-search-queries',
 	shadow: 'none'
 }} />
 
 <script lang="ts">
-import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import { searchStore } from '$lib/stores/searchStore.ts';
 import { tick, onMount, createEventDispatcher } from 'svelte';
-import AiSearchMessage from '$lib/components/AiSearchMessage.svelte';
+import AiSearchQuery from '$lib/components/AiSearchQuery.svelte';
 
 let className: string = '';
 export { className as class };
@@ -16,7 +16,7 @@ let inner: HTMLDivElement;
 
 const dispatch = createEventDispatcher();
 
-const scrollToLastMessage = async () => {
+const scrollToLastQuery = async () => {
     await tick();
     inner?.scrollTo({
         top: 0,
@@ -31,23 +31,23 @@ const selectResultsSet = (key: string) => {
 };
 
 $: {
-    $userMessagesStore.length;
-    scrollToLastMessage();
+    $userQueriesStore.length;
+    scrollToLastQuery();
 }
 
 onMount(() => {
-    scrollToLastMessage();
+    scrollToLastQuery();
 });
 </script>
 
-<div class={`wc-ai-search-messages ${className}`} bind:this={inner}>
-    {#if $userMessagesStore}
+<div class={`wc-ai-search-queries ${className}`} bind:this={inner}>
+    {#if $userQueriesStore}
         <div>    
-            {#each $userMessagesStore as message}
-                <AiSearchMessage 
-                    message={message} 
-                    active={message.key === $searchStore.currentResultsSetKey}
-                    on:click={() => selectResultsSet(message.key)} 
+            {#each $userQueriesStore as query}
+                <AiSearchQuery 
+                    query={query} 
+                    active={query.key === $searchStore.currentResultsSetKey}
+                    on:click={() => selectResultsSet(query.key)} 
                 />
             {/each}
         </div>
@@ -55,14 +55,14 @@ onMount(() => {
 </div>
 
 <style>
-.wc-ai-search-messages {    
+.wc-ai-search-queries {    
     height: 100%;
     overflow-y: auto;
 
     /* Gives space to scroll bar */
     /* padding-right: 1rem; */
 }
-.wc-ai-search-messages > div {
+.wc-ai-search-queries > div {
     display: flex;
     flex-direction: column-reverse;
     gap: 0.5rem;

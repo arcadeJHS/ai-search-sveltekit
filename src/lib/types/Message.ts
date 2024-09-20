@@ -9,10 +9,10 @@ export interface Message {
 	content: string;
 };
 
-export type UserMessage = Message & {
-	role: MessageRole.User;
+export type AgentMessage = Message & {
+	role: MessageRole.Agent;
 };
 
-export type ExtendedUserMessage = UserMessage & {
-	resultsCount: number;
+export type UserMessage = Message & {
+	role: MessageRole.User;
 };

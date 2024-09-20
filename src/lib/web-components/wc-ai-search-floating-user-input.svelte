@@ -6,10 +6,10 @@
 <script lang="ts">
 import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte';
 import { searchStore } from '$lib/stores/searchStore.ts';
-import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
-import AiSearchMessagesOffcanvasShowButton from '$lib/components/AiSearchMessagesOffcanvasShowButton.svelte';
+import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -24,18 +24,18 @@ const onUserInput = async (event: CustomEvent) => {
 
 <div 
     class="wc-ai-search-floating-user-input"
-    class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length}
-    class:wc-ai-search-floating-user-input--static={!$userMessagesStore.length}>
+    class:wc-ai-search-floating-user-input--fixed={$userQueriesStore.length}
+    class:wc-ai-search-floating-user-input--static={!$userQueriesStore.length}>
     <div>
         {#if $searchStore.session}
             <div class="wc-ai-search-floating-user-input__actions">
                 <WcAiSearchNewSearchButton />
-                <AiSearchMessagesOffcanvasShowButton class="wc-ai-search-floating-user-input__actions__open-messages" />
+                <AiSearchQueriesOffcanvasShowButton class="wc-ai-search-floating-user-input__actions__show-queries" />
             </div>
         {/if}
         <AiSearchUserInputForm
             --textarea-height="6rem"
-            isFollowup={!!$userMessagesStore.length}
+            isFollowup={!!$userQueriesStore.length}
             on:userInput={onUserInput} />
     </div>
 </div>
@@ -114,7 +114,7 @@ const onUserInput = async (event: CustomEvent) => {
     align-items: center;
     padding: 0.5rem 0.5rem 1rem;
 }
-:global(.wc-ai-search-floating-user-input__actions__open-messages) {
+:global(.wc-ai-search-floating-user-input__actions__show-queries) {
     @media (min-width: 768px) {
         display: none;
     }

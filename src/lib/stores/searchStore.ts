@@ -2,7 +2,7 @@ import { writable, get } from 'svelte/store';
 import type { SearchStartRequest } from '$lib/types/SearchStartRequest.ts';
 import type { ApiResponse } from '$lib/types/ApiResponse.ts';
 import type { SearchThread } from '$lib/types/SearchThread.ts';
-import { type Message, type UserMessage, MessageRole } from '$lib/types/Message.ts';
+import { type Message, type AgentMessage, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { SearchMessageRequest } from '$lib/types/SearchMessageRequest.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 import { UUID } from '$lib/utils/UUID.ts';
@@ -73,7 +73,7 @@ export const useSearch = () => {
 
             const response: ApiResponse = await _searchStart(BASE_URL, { language });
 			const { session, l, message } = response;
-			const agentMessage: Message = _methods.setAgentMessage(message);
+			const agentMessage: AgentMessage = _methods.setAgentMessage(message);
 
 			LANGUAGE = l;
 			
@@ -86,7 +86,7 @@ export const useSearch = () => {
 
 			return response;
 		},
-		reset: async () => {
+		reset: async (): Promise<ApiResponse> => {
 			_searchStore.update(emptySearchThread);
 			return await _methods.start(BASE_URL, { language: LANGUAGE });
 		},
@@ -96,7 +96,7 @@ export const useSearch = () => {
 				return self;
 			});
 		},
-		setUserMessage: (content: string) => {
+		setUserMessage: (content: string): UserMessage => {
 			const message: UserMessage = {
 				key: UUID(),
 				role: MessageRole.User,
@@ -104,8 +104,8 @@ export const useSearch = () => {
 			};
 			return message;
 		},
-		setAgentMessage: (content: string) => {
-			const message: Message = {
+		setAgentMessage: (content: string): AgentMessage => {
+			const message: AgentMessage = {
 				key: UUID(),
 				role: MessageRole.Agent,
 				content
@@ -134,7 +134,7 @@ export const useSearch = () => {
 				message: content
 			});
 			const { message } = response;
-			const agentMessage: Message = _methods.setAgentMessage(message);
+			const agentMessage: AgentMessage = _methods.setAgentMessage(message);
 			const responseKey = userMessage.key;
 
 			_searchStore.update((self: SearchThread) => {

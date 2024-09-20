@@ -28,7 +28,7 @@
             flex-direction: column;
             overflow-y: hidden;
         }
-        .site-ai-search__messages {
+        .site-ai-search__queries {
             max-height: 45vh;
             display: none;
 
@@ -36,7 +36,7 @@
                 display: block; 
             }
         }
-        .site-ai-search__messages__new-search-button {
+        .site-ai-search__queries-search-button {
             margin: 0.8rem 0;
         }
     </style>
@@ -63,11 +63,11 @@
     
                     <div class="site-ai-search">
                         <div class="site-ai-search__column site-ai-search__column--left">
-                            <div class="site-ai-search__messages">
-                                <div class="site-ai-search__messages__new-search-button">
+                            <div class="site-ai-search__queries">
+                                <div class="site-ai-search__queries-search-button">
                                     <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
                                 </div>
-                                <stg-ai-search-messages></stg-ai-search-messages>
+                                <stg-ai-search-queries></stg-ai-search-queries>
                             </div>
                         </div>
                         

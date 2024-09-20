@@ -7,7 +7,7 @@
 import { onMount } from 'svelte';
 import AiSearchUserInputFormVariant from '$lib/components/AiSearchUserInputFormVariant.svelte';
 import { searchStore } from '$lib/stores/searchStore.ts';
-import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import { observeElementHeight, updateBorderRadius } from '../utils/index.js';
 
@@ -34,12 +34,12 @@ onMount(() => {
 
 <div 
     class="wc-ai-search-floating-user-input"
-    class:wc-ai-search-floating-user-input--fixed={$userMessagesStore.length}
-    class:wc-ai-search-floating-user-input--static={!$userMessagesStore.length}>
+    class:wc-ai-search-floating-user-input--fixed={$userQueriesStore.length}
+    class:wc-ai-search-floating-user-input--static={!$userQueriesStore.length}>
     <div bind:this={inner}>
         <AiSearchUserInputFormVariant
             --textarea-height="6rem"
-            isFollowup={!!$userMessagesStore.length}
+            isFollowup={!!$userQueriesStore.length}
             on:userInput={onUserInput} />
     </div>
 </div>

@@ -6,13 +6,13 @@
 <script lang="ts">
 import { searchStore } from '$lib/stores/searchStore.ts';
 import AiSearchNewSearchButton from '$lib/components/AiSearchNewSearchButton.svelte';
-import { userMessagesStore } from '$lib/stores/userMessagesStore.ts';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 
 const newSearch = async () => {
     return await searchStore.reset();
 };
 </script>
 
-{#if $userMessagesStore.length}
+{#if $userQueriesStore.length}
 	<AiSearchNewSearchButton on:click={newSearch} />
 {/if}

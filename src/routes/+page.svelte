@@ -1,18 +1,13 @@
 <script>
-  import svelteLogo from '/src/assets/svelte.svg';
-  import { searchStore } from '$lib/stores/searchStore.ts';
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
-  import AiSearchChat from '$lib/components/AiSearchChat.svelte';
-  import AiSearchResults from '$lib/components/AiSearchResults.svelte';
+  import WcAiSearchQueries from '$lib/web-components/wc-ai-search-queries.svelte';
+  import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
+  import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  // import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 </script>
 
 <main>
-  <div>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-
   <!-- MOCK: 
     apiBaseUrl="http://localhost:8099" 
   -->
@@ -20,58 +15,67 @@
     apiBaseUrl="http://192.168.50.58:9910" 
   -->
   <WcAiSearchAppShell
-    baseUrl="http://localhost:8099"
-    language="it"
-  ></WcAiSearchAppShell>
+    baseUrl="http://192.168.50.58:9910"
+    language="it">
+  </WcAiSearchAppShell>
 
-  <div class="ai-search-container">
-    <div class="column left">
-      <AiSearchChat messages={$searchStore.messages}></AiSearchChat>
+  <WcAiSearchFloatingUserInput />
+  <!-- <WcAiSearchFloatingUserInputVariant /> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <div class="site-ai-search">
+          <div class="site-ai-search__column site-ai-search__column--left">
+            <div class="site-ai-search__queries">
+              <div class="site-ai-search__queries-search-button">
+                <WcAiSearchNewSearchButton />
+              </div>
+              <WcAiSearchQueries />
+            </div>
+          </div>
+          
+          <div class="site-ai-search__column">
+            <WcAiSearchResults />
+          </div>
+        </div>
+
+      </div>
     </div>
-  
-    <div class="column right">
-      <AiSearchResults results={$searchStore.selections}></AiSearchResults>
-    </div>
+
   </div>
 </main>
 
 <style>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.svelte:hover {
-  filter: drop-shadow(0 0 2em #ff3e00aa);
-}
-
-.ai-search-container {
-	--font-body: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
-	--color-text: rgba(18, 18, 18, 0.8);
-
+.site-ai-search {
   display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0.2rem;
-	height: 100%;
-	width: 100%;
-	font-family: var(--font-body);
-	font-size: 1.2em;
-    color: var(--color-text);
+  /* grid-template-columns: fr 5fr; */
+  gap: 0.2rem;
+  height: 100%;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 5fr; 
+  }
 }
-.ai-search-container * {
-    box-sizing: border-box;
+.site-ai-search * {
+  box-sizing: border-box;
 }
-.column {
-	display: flex;
-	flex-direction: column;
-	overflow-y: hidden;
-	padding: 1rem;
+.site-ai-search__column {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
 }
-.left {
-	border-right: 1px solid var(--color-text);
+.site-ai-search__queries {
+  /* max-height: 45vh; */
+  display: none;
+  
+  @media (min-width: 768px) {
+    display: block; 
+  }
+}
+.site-ai-search__queries-search-button {
+  margin: 0.8rem 0;
 }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import Fa from 'svelte-fa';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
-import WcAiSearchMessages from '$lib/web-components/wc-ai-search-messages.svelte';
+import WcAiSearchQueries from '$lib/web-components/wc-ai-search-queries.svelte';
 import { Offcanvas } from '@sveltestrap/sveltestrap';
 import offcanvas from '$lib/styles/offcanvas.module.css';
 import padding from '$lib/styles/padding.module.css';
@@ -23,5 +23,5 @@ const toggle = () => {
 </button>
 
 <Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
-    <WcAiSearchMessages class={padding.noPadding} on:querySelected={toggle} />
+    <WcAiSearchQueries class={padding.noPadding} on:querySelected={toggle} />
 </Offcanvas>
