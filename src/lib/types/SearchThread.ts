@@ -1,6 +1,8 @@
 import type { Message } from './Message.ts';
 import type { ApiResponse } from './ApiResponse.ts';
 
+export type SearchThreadStatus = 'idle' | 'starting' | 'searching' | 'error';
+
 export interface SearchThread {
 	session: string | null;
     messages: Message[];
@@ -8,6 +10,6 @@ export interface SearchThread {
     responses: {
         [key: string]: ApiResponse;
     },
-    status: 'idle' | 'starting' | 'searching' | 'success' | 'error',
+    status: SearchThreadStatus,
     error: string | null;
 };

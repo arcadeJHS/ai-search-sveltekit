@@ -1,5 +1,5 @@
 <script lang="ts">
-import { createEventDispatcher, onMount } from 'svelte';
+import { createEventDispatcher, onMount, tick } from 'svelte';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import input from '$lib/styles/input.module.css';
 import text from '$lib/styles/text.module.css';
@@ -12,6 +12,8 @@ import { t, waitLocale } from 'svelte-i18n';
 export let placeholder: string = '';
 export let followUpPlaceholder: string = '';
 export let isFollowup: boolean = false;
+export let focusTextarea: boolean = true;
+export let disableTextarea: boolean = false;
 
 const dispatch = createEventDispatcher();
 
@@ -60,15 +62,17 @@ const loadTranslations = async () => {
     followUpPlaceholder = $t('search_input.placeholder_followup');
 };
 
+const focusTextArea = async () => {
+    await tick();
+    textareaEl.focus();
+};
+
 onMount(() => {
     loadTranslations();
 
     // set initial textarea height when the component is mounted
     initialTextareaHeight = textareaEl.clientHeight + 'px';
     textareaEl.style.height = initialTextareaHeight;
-
-    // Automatically focus on textarea
-    textareaEl.focus();
 
     const observeSubmitButtonContainer = observeElementHeight(submitButtonContainerEl, (element: HTMLElement, height: number) => {
         const threshold = 42;
@@ -82,6 +86,10 @@ onMount(() => {
 });
 
 $: isFollowup, resize();
+
+$: if (focusTextarea && textareaEl) {
+    focusTextArea();
+}
 </script>
 
 <form 
@@ -96,10 +104,11 @@ $: isFollowup, resize();
         on:keydown={handleKeyDown}
         bind:value={userInput}
         bind:this={textareaEl} 
-        placeholder={isFollowup ? followUpPlaceholder : placeholder} />
+        placeholder={isFollowup ? followUpPlaceholder : placeholder}
+        disabled={disableTextarea} />
 
     <div class="ai-search-user-input-form__submit-container" bind:this={submitButtonContainerEl}>
-        <button type="submit" disabled={!userInput}>
+        <button type="submit" disabled={!userInput || disableTextarea}>
             <Fa icon={faPaperPlane} color="#ffa500" />
         </button>
     </div>

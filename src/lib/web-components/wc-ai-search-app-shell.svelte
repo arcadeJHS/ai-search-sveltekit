@@ -25,7 +25,8 @@ const init = async () => {
 	}
 
 	initLocale(language);
-	await searchStore.start(baseUrl, { language });
+	searchStore.setBaseUrl(baseUrl);
+	await searchStore.start({ language });
 };
 
 onMount(init);
