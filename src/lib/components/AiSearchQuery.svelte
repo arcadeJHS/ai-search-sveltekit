@@ -13,43 +13,45 @@ const dispatch = createEventDispatcher();
 </script>
 
 <button 
+    data-component="button"
     class={`${text.base} ai-search-query`} 
-    class:ai-search-query--active={active} 
+    class:ai-search-query--active={!!active} 
     on:click={() => dispatch('click')} 
     on:keydown={(e) => e.key === 'Enter' && dispatch('click')}
 >
     <p>{query.content}</p>
     <div>
         <span>{$_('results', {values: { count: query.resultsCount }})}</span>
-        <Fa icon={faChevronRight} size="lg" />
+        <Fa icon={faChevronRight} color={active ? '#ffffff' : '#656358'} />
     </div>
 </button>
     
 <style>
 .ai-search-query {
-    padding: 0.8rem;
+    padding: 0.6rem 0.9rem;
     background-color: #ffffff;
     border: 1px solid #dcdcdd;
     border-radius: 10px;
-    border-top-left-radius: 0;
+    /* border-top-left-radius: 0; */
     font-size: 1em;
+    color: #656358;
     /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
 }
-.ai-search-query:hover,
-.ai-search-query--active {
-    background-color: #FF9128;
+.ai-search-query:hover {
+    cursor: pointer;
     border-color: #FF9128;
-    
-} 
-.ai-search-query--active {
-    cursor: default;
 }
-.ai-search-query--active > * {
+.ai-search-query--active {
+    border-color: #FF9128;
+    background-color: #FF9128;
     color: #ffffff;
+}
+.ai-search-query--active:hover {
+    cursor: default;
 }
 .ai-search-query > p {
     font-weight: bold;
-    margin-bottom: 0.8em;
+    margin-bottom: 0;
     padding-right: 1rem;
     text-align: left;
 }
@@ -58,6 +60,11 @@ const dispatch = createEventDispatcher();
     justify-content: space-between;
 }
 .ai-search-query > div > span {
-    font-size: 0.9em;
+    font-size: 0.8em;
+    color: #656358;
+    opacity: 0.8;
+}
+.ai-search-query--active > div > span {
+    color: #ffffff;
 }
 </style>

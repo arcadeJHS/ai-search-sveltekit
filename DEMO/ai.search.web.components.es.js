@@ -30018,7 +30018,7 @@ function zv(t, e, s) {
     await ln(), f.focus();
   };
   je(() => {
-    y(), d = f.clientHeight + "px", s(4, f.style.height = d, f);
+    y(), d = f.clientHeight + "px", s(4, f.style.height = d, f), f.focus();
     const I = Ps(c, (x, Q) => {
       x.style.alignItems = Q > 42 ? "flex-end" : "center", x.style.paddingBottom = Q > 42 ? "0.5rem" : "0";
     });
