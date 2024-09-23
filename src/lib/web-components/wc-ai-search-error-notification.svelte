@@ -22,6 +22,14 @@ $: if ($searchStore.status === 'error' && $searchStore.error) {
 
 {#if showError && errorMessage}
 
-    <Alert color="danger">{errorMessage}</Alert>
+    <div>
+        <Alert color="danger">{errorMessage}</Alert>
+    </div>
     
 {/if}
+
+<style>
+    div {
+        margin: 0.5rem 0;
+    }
+</style>
