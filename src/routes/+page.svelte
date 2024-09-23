@@ -5,6 +5,7 @@
   import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
   // import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
+  import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
 </script>
 
 <main>
@@ -25,6 +26,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
+
+        <WcAiSearchErrorNotification />
 
         <div class="site-ai-search">
           <div class="site-ai-search__column site-ai-search__column--left">
