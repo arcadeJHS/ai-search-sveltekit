@@ -218,7 +218,6 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 - svelte-i18n library for localization:
   - Library: https://github.com/kaisermann/svelte-i18n
   - Tips: https://centus.com/blog/svelte-localization#:~:text=svelte%2Di18n%20will%20automatically%20choose,value%20and%20the%20current%20locale
-- svelte-toast package to handle error notifications: https://github.com/zerodevx/svelte-toast?tab=readme-ov-file
 - Font-awesome icons through the "svelte-fa" package 
   - Library: https://cweili.github.io/svelte-fa/
   - Icons packages: https://www.npmjs.com/search?q=%40fortawesome%20svg%20icons
@@ -272,7 +271,6 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 # TODO
 
-- rivedere (sostituire?) libreria Toast???
 - implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
   
 - rifattorizzare le variabili CSS in modo che siano definite "in un unico posto"
