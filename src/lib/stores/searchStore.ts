@@ -36,7 +36,7 @@ const createMessage = (role: MessageRole, content: string): Message => ({
     content
 });
 
-export const useSearch = () => {
+const useSearch = () => {
     const store = writable<SearchThread & { [BASE_URL_KEY]: string, [LANGUAGE_KEY]: AllowedLanguages }>({
         ...emptySearchThread(),
         [BASE_URL_KEY]: '',

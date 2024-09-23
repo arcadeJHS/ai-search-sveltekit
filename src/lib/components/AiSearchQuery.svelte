@@ -49,6 +49,9 @@ const dispatch = createEventDispatcher();
 .ai-search-query--active:hover {
     cursor: default;
 }
+.ai-search-query--active > p {
+    color: #ffffff;
+}
 .ai-search-query > p {
     font-weight: bold;
     margin-bottom: 0;

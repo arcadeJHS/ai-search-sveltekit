@@ -157,7 +157,7 @@ $: if (focusTextarea && textareaEl) {
     border: 0;
     margin: 0;
     padding: 0;
-    padding-right: 0.3rem;
+    padding-right: 0.2rem;
     padding-bottom: 0.2rem;
     width: auto;
     display: flex;

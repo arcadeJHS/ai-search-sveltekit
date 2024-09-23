@@ -272,8 +272,8 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 # TODO
 
+- implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati
 - rivedere (sostituire?) libreria Toast???
   
 - implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
-- implementare eventi/icone/funzioni per visualizzare video sulle schede dei risultati
 - rifattorizzare le variabili CSS in modo che siano definite "in un unico posto"

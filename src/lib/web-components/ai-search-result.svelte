@@ -1,16 +1,14 @@
-<svelte:options customElement={{
-	tag: 'webcomponent-ai-search-result',
-	shadow: 'none'
-}} />
-
 <script lang="ts">
 import type { ArtistSubType } from '$lib/types/Filter.ts';
 import { type Selection } from '$lib/types/Selection.ts';
 import Fa from 'svelte-fa';
-import { faCirclePlay, faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
 import { t } from 'svelte-i18n';
+import AiSearchResultVideoArea from './ai-search-result-video-area.svelte';
+import { playingVideoStore } from '$lib/stores/playingVideoStore.ts';
 
 export let result: Selection;
+let videoVisible = false;
 
 const getQuoteAvg = (quote: number): string => {
     return quote < 500 ? '$' : quote < 1500 ? '$$' : '$$$';
@@ -20,13 +18,6 @@ const getSubtypesString = (subtypes: ArtistSubType[]): string => {
     return subtypes?.join(', ');
 };
 
-function getTitle(result: Selection) {
-    const subtypesString = result.subtypes ? getSubtypesString(result.subtypes) : null;
-    return [result.artistType, subtypesString, result.location]
-        .filter(Boolean)
-        .join(' - ');
-}
-
 const getRatingStars = (ratingStars: number) => {
     if (!ratingStars) {
         return 0;
@@ -34,6 +25,9 @@ const getRatingStars = (ratingStars: number) => {
     return Math.round((ratingStars / 2) * 100) / 100;
 };
 
+function handleToggleVideo(event: { detail: boolean; }) {
+    videoVisible = event.detail;
+}
 
 /**
  * ====>
@@ -85,70 +79,22 @@ $: result, handleResultChange();
         <div class="card h-100" <?php if($highlight): ?>style="border: 4px solid #ff9128;"<?php endif; ?>>
     -->
     <div class="card h-100 wc-ai-search-result">
-        <!-- 
-            TODO:
-            Qui occorre implementare show/hide play icon.
-
-            Originale:
-            <div class="top-area-images" id="video-container-<?php echo $profile->getId(); ?>" <?php if($video): ?>onmouseover="showPlayIcon(<?php echo $profile->getId(); ?>)" onmouseout="hidePlayIcon(<?php echo $profile->getId(); ?>)"<?php endif; ?>>
-        -->
-        <div class="wc-ai-search-result__top-area-images" id="video-container-{result.id}">
+        <div 
+            class="wc-ai-search-result__top-area-images" 
+            class:wc-ai-search-result__top-area-images--video-bar-top={videoVisible} 
+            id="video-container-{result.id}">
             <meta itemprop="name" content="{result.displayName}">
             <span itemprop="telephone" content="{result.telephone}"></span>
             {#if result.aiQuoteAvg}
                 <span itemprop="priceRange" content="{getQuoteAvg(result.aiQuoteAvg)}"></span> 
             {/if}
-            <!--  
-                Qui ho ignorato/rimosso:
-                <?php echo ($cat)? ' - '.$cat : ''; ?>
 
-                TODO: 
-                Qui occorre implementare l'evento per avviare il video.
-
-                Originale:
-                <?php if($video): ?>onclick="loadVideo(<?php echo $profile->getId(); ?>)"<?php endif; ?>
-            -->
-            <img 
-                class="card-img-top"
-                id="thumbnail-{result.id}"
-                itemprop="image"
-                src="{result.imageUrl}"
-                alt="{result.displayName}"
-                title="{getTitle(result)}">
-
-            {#if result.whois === 'youtube' && result.videoYtId}
-                <!-- 
-                    TODO:
-                    Qui occorre implementare:
-
-                    onclick="loadVideo(<?php echo $profile->getId(); ?>)"
-                -->
-                <span class="wc-ai-search-result__play-icon" id="play-icon-{result.id}">
-                    <Fa icon={faCirclePlay} color="#e66f00" size="3x" />
-                </span>
-                <!-- 
-                    TODO:
-                    Qui occorre implementare:
-
-                    onclick="stopVideo(<?php echo $profile->getId(); ?>)"
-                -->
-                <div id="video-overlay-{result.id}"></div>
-                <iframe class="wc-ai-search-result__video-player-iframe" id="video-player-{result.id}" width="100%" height="315" vid="{result.videoYtId}" src="" frameborder="0" allow="autoplay" title="video player"></iframe>
-                <div id="video-controls-{result.id}" class="wc-ai-search-result__video-controls">
-                    <!-- 
-                        TODO:
-
-                        Occorre implementare i tasti qui sotto (eventi e icone di font-awesome o equivalente):
-                    -->
-                    <!-- <button onclick="playVideo(<?php echo $profile->getId(); ?>)"><i class="fas fa-play"></i></button>
-                    <button onclick="pauseVideo(<?php echo $profile->getId(); ?>)"><i class="fas fa-pause"></i></button>
-                    <button onclick="muteVideo(<?php echo $profile->getId(); ?>)"><i class="fas fa-volume-mute"></i></button>
-                    <button onclick="unmuteVideo(<?php echo $profile->getId(); ?>)"><i class="fas fa-volume-up"></i></button> -->
-                </div>
-            {/if}
+            <AiSearchResultVideoArea {result} on:toggleVideo={handleToggleVideo} />
 
             {#if result.bookings && result.bookings > 0}
-                <div class="wc-ai-search-result__date-area">
+                <div 
+                    class="wc-ai-search-result__date-area"
+                    class:wc-ai-search-result__date-area--video-bar-top={videoVisible}>
                     <p><span class="wc-ai-search-result__book">{result.bookings}</span> {$t('verified_bookings')}</p>
                 </div>
             {/if}
@@ -201,13 +147,14 @@ $: result, handleResultChange();
                     </h2>
                 </div>
             </div>
-            <!-- 
-                TODO:
-                Qui occorre implementare:
-                evento:
-                onclick="stopAllVideos()"
-            -->
-            <a itemprop="url" class="wc-ai-search-result__show-more" title="{result.itemprop_desc}" href="/{result.nickName}" target="_blank">{$t('show_more')}</a>
+            <a 
+                itemprop="url" 
+                class="wc-ai-search-result__show-more" 
+                title="{result.itemprop_desc}" 
+                href="/{result.nickName}" target="_blank"
+                on:click={() => playingVideoStore.stopAllVideos()}>
+                {$t('show_more')}
+            </a>
         </div>
     </div>
 </div>
@@ -223,39 +170,19 @@ $: result, handleResultChange();
 .wc-ai-search-result__top-area-images {
     position: relative;
 }
-.wc-ai-search-result__play-icon {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    opacity: 0.8;
-}
-.wc-ai-search-result__video-player-iframe {
-    display: none;
-    border-radius: 6px;
-}
-.wc-ai-search-result__video-controls {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #000;
-    padding: 6px 0;
-    border-radius: 0 0 6px 6px;
-}
-/* .wc-ai-search-result__video-controls button {
-    margin: 0 6px;
-    min-width: 31px;
-    border-radius: 6px;
-    background-color: #FF9128;
-    border: none;
-} */
 .wc-ai-search-result__date-area {
     position: absolute;
     bottom: 12px;
     left: 12px;
     height: auto;
     top: auto;
+}
+.wc-ai-search-result__date-area--video-bar-top {
+    right: 14px !important;
+    left: auto !important;
+    top: 19px !important;
+    bottom: auto !important;
+    z-index: 2;
 }
 .wc-ai-search-result__date-area p {
     margin: 0;
@@ -300,10 +227,20 @@ $: result, handleResultChange();
 .wc-ai-search-result__membership-area span.trial { 
   background-image: url("/mem-trial.png");
 }
+.wc-ai-search-result__top-area-images--video-bar-top .wc-ai-search-result__membership-area {
+    width: 100%;
+    top: 0 !important;
+    left: 0 !important;
+    min-height: 65px !important;
+    border-radius: 6px 6px 0 0;
+    background-color: black;
+}
 .wc-ai-search-result__card-body {
     background-color: transparent !important;
-    padding-bottom: 0;
+    /* padding-bottom: 0; */
     border: none !important;
+    display: flex;
+    flex-direction: column;
 }
 .wc-ai-search-result__card-title {
     position: relative;
@@ -346,6 +283,7 @@ p.wc-ai-search-result__card-text--shorted {
     display: flex;
     justify-content: space-between;
     min-height: 45px;
+    flex-grow: 1;
 }
 .wc-ai-search-result__ratting h2 {
     font-size: 16px;
