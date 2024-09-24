@@ -29,7 +29,7 @@ const dispatch = createEventDispatcher();
 <style>
 .ai-search-query {
     padding: 0.6rem 0.9rem;
-    background-color: #ffffff;
+    background-color: var(--ai-search-query-background, #ffffff);
     border: 1px solid #dcdcdd;
     border-radius: 10px;
     /* border-top-left-radius: 0; */

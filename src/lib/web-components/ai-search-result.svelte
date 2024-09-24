@@ -70,7 +70,7 @@ const handleResultChange = () => {
 $: result, handleResultChange();
 </script>
 
-<div class="col-12 col-md-6 col-xl-4" itemscope itemtype="http://schema.org/LocalBusiness">
+<div class="col-12 col-sm-6 col-md-6 col-xl-4" itemscope itemtype="http://schema.org/LocalBusiness">
     <!--
         Qui ho ignorato/rimosso: 
         <?php if($highlight): ?>style="border: 4px solid #ff9128;"<?php endif; ?> 

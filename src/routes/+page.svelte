@@ -39,7 +39,7 @@
             </div>
           </div>
           
-          <div class="site-ai-search__column">
+          <div class="site-ai-search__column site-ai-search__results">
             <WcAiSearchResults />
           </div>
         </div>
@@ -69,6 +69,9 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+}
+.site-ai-search__results {
+  padding-bottom: 10rem;
 }
 .site-ai-search__queries {
   /* max-height: 45vh; */

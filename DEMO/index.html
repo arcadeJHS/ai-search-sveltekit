@@ -28,6 +28,9 @@
             flex-direction: column;
             overflow-y: hidden;
         }
+        .site-ai-search__results {
+            padding-bottom: 10rem;
+        }
         .site-ai-search__queries {
             max-height: 45vh;
             display: none;
@@ -38,6 +41,11 @@
         }
         .site-ai-search__queries-search-button {
             margin: 0.8rem 0;
+        }
+        
+        stg-ai-search-queries {
+            /* Remeber: custom properties (aka css variables) can cross custom elements shadow dom boundaries */
+            --ai-search-query-background: #fc0;
         }
     </style>
 </head>
@@ -73,7 +81,7 @@
                             </div>
                         </div>
                         
-                        <div class="site-ai-search__column">
+                        <div class="site-ai-search__column site-ai-search__results">
                             <stg-ai-search-results></stg-ai-search-results>
                         </div>
                     </div>

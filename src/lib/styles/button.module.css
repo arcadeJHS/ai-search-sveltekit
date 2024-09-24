@@ -17,3 +17,14 @@
     text-decoration: underline;
     text-underline-offset: .2rem
 }
+
+.outlined {
+    composes: glyphButton;
+    border: 1px solid var(--ai-search-button-outlined-color, #2d9bf0);
+    border-radius: .25rem;
+    padding: .5rem 1rem;
+    color: #2d9bf0;
+}
+.outlined:hover {
+    opacity: .8;
+}
