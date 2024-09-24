@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import type { SearchStartRequest } from '$lib/types/SearchStartRequest.ts';
-import type { ApiResponse } from '$lib/types/ApiResponse.ts';
+import type { ApiResponse, ApiDeleteResponse } from '$lib/types/ApiResponse.ts';
 import type { SearchThread, SearchThreadStatus } from '$lib/types/SearchThread.ts';
 import { type Message, type AgentMessage, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
@@ -55,7 +55,7 @@ const useSearch = () => {
         updateStore(state => ({ messages: [...state.messages, message] }));
     };
 
-    const apiCall = async (endpoint: string, method: 'GET' | 'POST', body?: object) => {
+    const apiCall = async (endpoint: string, method: 'GET' | 'POST' | 'DELETE', body?: object) => {
         const { [BASE_URL_KEY]: baseUrl } = get(store);
         const url = `${baseUrl}${endpoint}`;
         return await fetchJson(url, {
@@ -81,6 +81,25 @@ const useSearch = () => {
                 responses: { ...state.responses, [agentMessage.key]: response },
                 status: 'idle',
                 [LANGUAGE_KEY]: l
+            }));
+
+            return response;
+        } catch (error) {
+            setStatus('error', (error as Error).message);
+        }
+    };
+
+    const end = async (): Promise<ApiDeleteResponse | undefined> => {
+        const { session } = get(store);
+        if (!session) throw new Error('Ending session error: session is required');
+
+        setStatus('ending');
+
+        try {
+            const response: ApiDeleteResponse = await apiCall(`/search/end/${session}`, 'DELETE');
+
+            updateStore(() => ({
+                status: 'idle'
             }));
 
             return response;
@@ -122,6 +141,7 @@ const useSearch = () => {
         setBaseUrl: (url: string) => updateStore(() => ({ [BASE_URL_KEY]: url })),
         start,
         reset: async () => {
+            await end();
             const { [BASE_URL_KEY]: baseUrl, [LANGUAGE_KEY]: language } = get(store);
             store.set({ ...emptySearchThread(), [BASE_URL_KEY]: baseUrl, [LANGUAGE_KEY]: language });
             return await start({ language });

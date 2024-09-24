@@ -37,7 +37,7 @@ const onUserInput = async (event: CustomEvent) => {
             --textarea-height="6rem"
             isFollowup={!!$userQueriesStore.length}
             focusTextarea={$searchStore.status === 'idle'}
-            disableTextarea={!!~['starting', 'searching'].indexOf($searchStore.status)}
+            disableTextarea={!!~['starting', 'ending', 'searching'].indexOf($searchStore.status)}
             on:userInput={onUserInput} />
     </div>
 </div>

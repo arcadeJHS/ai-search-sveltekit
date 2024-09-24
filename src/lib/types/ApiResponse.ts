@@ -9,3 +9,8 @@ export interface ApiResponse {
     filters: Filter[];
     selection: Selection[];
 };
+
+export interface ApiDeleteResponse {
+    code?: number | string;
+    message: string;
+};
