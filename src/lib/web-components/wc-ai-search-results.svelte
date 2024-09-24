@@ -24,9 +24,11 @@ const scrollToTop = async () => {
     }
 };
 
+$: $resultsSetStore, scrollToTop();
+
 $: paginatedResults = $resultsSetStore.slice(0, itemsToShow);
 
-function showMore() {
+const showMore = () => {
     itemsToShow += 9;
 }
 

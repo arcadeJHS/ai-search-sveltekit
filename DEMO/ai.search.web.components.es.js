@@ -31144,14 +31144,14 @@ function v3(t, e, l) {
   let r = 9;
   const n = async () => {
     await Js(), typeof window < "u" && window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-  function o() {
+  }, o = () => {
     l(0, r += 9);
-  }
+  };
   return Ve(() => {
     n();
   }), t.$$.update = () => {
-    t.$$.dirty & /*$resultsSetStore, itemsToShow*/
+    t.$$.dirty & /*$resultsSetStore*/
+    2 && n(), t.$$.dirty & /*$resultsSetStore, itemsToShow*/
     3 && l(2, s = i.slice(0, r));
   }, [r, i, s, a, o];
 }

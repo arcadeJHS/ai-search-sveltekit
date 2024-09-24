@@ -211,7 +211,7 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 
 ## Technologies
 
-- Svelte/Vite to develop and build web components
+- Svelte/Vite to develop and build/deploy web components
 - Sveltestrap as components library (only if and when required)
 - Bootstrap 5 for styles (only if and when required)
 - CSS modules (https://github.com/css-modules/css-modules/tree/master) for defininig scoped and reusable css rules
@@ -270,7 +270,5 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 
 # TODO
-
-- implementare un virtual scroll per i risultati di ricerca (per ottimizzare memoria e velocità caricamento pagina)?
   
 - rifattorizzare le variabili CSS in modo che siano definite "in un unico posto"
