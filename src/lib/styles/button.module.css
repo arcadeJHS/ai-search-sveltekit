@@ -1,3 +1,6 @@
+@value variables: "./variables.module.css";
+@value fontBase, primary, white from variables;
+
 .glyphButton {
     border: 0;
     margin: 0;
@@ -9,22 +12,31 @@
 .iconButton {
     composes: glyphButton;
     border-radius: 50%;
+    color: primary;
 }
 
 .linkButton {
     composes: glyphButton;
-    color: #2d9bf0;
+    color: primary;
     text-decoration: underline;
-    text-underline-offset: .2rem
+    text-underline-offset: .2rem;
+    font-family: fontBase;
 }
 
 .outlined {
     composes: glyphButton;
-    border: 1px solid var(--ai-search-button-outlined-color, #2d9bf0);
+    border: 1px solid primary;
     border-radius: .25rem;
     padding: .5rem 1rem;
-    color: #2d9bf0;
+    color: primary!important;
+    font-family: fontBase;
 }
 .outlined:hover {
     opacity: .8;
+}
+
+.primaryButton {
+    border: 1px solid primary!important;
+    background-color: primary!important;
+    color: white!important;
 }

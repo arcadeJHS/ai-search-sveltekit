@@ -8,6 +8,7 @@
         "show": "Show your queries"
     },
     "results": "{count, plural, =0 {EN_No reults} =1 {{count} EN_result} other {{count} EN_results}}",
+    "show_more": "Show more",
     "result": {
         "verified_bookings": "Verified bookings",
         "reviews": "Reviews",

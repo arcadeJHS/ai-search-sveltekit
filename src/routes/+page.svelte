@@ -51,6 +51,12 @@
 </main>
 
 <style>
+/*
+ * You can override css variables also using the :root selector 
+ */
+/* :root {
+  --ai-search-font-base: Montserrat, sans-serif;
+} */
 .site-ai-search {
   display: grid;
   /* grid-template-columns: fr 5fr; */

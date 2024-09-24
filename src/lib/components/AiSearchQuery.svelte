@@ -5,6 +5,7 @@ import Fa from 'svelte-fa';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import type { UserQuery } from '$lib/types/UserQuery.ts';
 import { createEventDispatcher } from 'svelte';
+import button from '$lib/styles/button.module.css';
 
 export let query: UserQuery;
 export let active: boolean;
@@ -14,7 +15,7 @@ const dispatch = createEventDispatcher();
 
 <button 
     data-component="button"
-    class={`${text.base} ai-search-query`} 
+    class={`${text.base} ai-search-query ${!!active ? button.primaryButton : ''}`} 
     class:ai-search-query--active={!!active} 
     on:click={() => dispatch('click')} 
     on:keydown={(e) => e.key === 'Enter' && dispatch('click')}
@@ -22,7 +23,7 @@ const dispatch = createEventDispatcher();
     <p>{query.content}</p>
     <div>
         <span>{$_('results', {values: { count: query.resultsCount }})}</span>
-        <Fa icon={faChevronRight} color={active ? '#ffffff' : '#656358'} />
+        <Fa icon={faChevronRight} color={active ? '#ffffff' : 'inherit'} />
     </div>
 </button>
     
@@ -33,18 +34,11 @@ const dispatch = createEventDispatcher();
     border: 1px solid #dcdcdd;
     border-radius: 10px;
     /* border-top-left-radius: 0; */
-    font-size: 1em;
-    color: #656358;
     /* box-shadow: 2px 3px 0.4rem rgba(0, 0, 0, .15); */
 }
 .ai-search-query:hover {
     cursor: pointer;
-    border-color: #FF9128;
-}
-.ai-search-query--active {
-    border-color: #FF9128;
-    background-color: #FF9128;
-    color: #ffffff;
+    border-color: #ff6600;
 }
 .ai-search-query--active:hover {
     cursor: default;
@@ -64,8 +58,7 @@ const dispatch = createEventDispatcher();
 }
 .ai-search-query > div > span {
     font-size: 0.8em;
-    color: #656358;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 .ai-search-query--active > div > span {
     color: #ffffff;

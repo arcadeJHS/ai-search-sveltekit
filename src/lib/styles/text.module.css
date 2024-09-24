@@ -1,12 +1,22 @@
 @value variables: "./variables.module.css";
-@value fontSansSerif, dark from variables;
-
-.sansSerif {
-    font-family: fontSansSerif;
-}
+@value fontBase, fontHeadings, dark from variables;
 
 .base {
-    composes: sansSerif;
-    font-size: 1rem;
+    font-size: 1em;
+    color: dark;
+}
+.base p,
+.base span,
+.base a {
+    font-family: fontBase;
+    color: dark;
+}
+.base h1,
+.base h2,
+.base h3,
+.base h4,
+.base h5,
+.base h6 {
+    font-family: fontHeadings;
     color: dark;
 }

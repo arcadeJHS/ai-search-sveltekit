@@ -4,7 +4,8 @@ import type { UserInput } from '$lib/types/UserInput.ts';
 import input from '$lib/styles/input.module.css';
 import text from '$lib/styles/text.module.css';
 import textarea from '$lib/styles/textarea.module.css';
-import { observeElementHeight } from '../utils/index.js';
+import button from '$lib/styles/button.module.css';
+// import { observeElementHeight } from '../utils/index.js';
 import Fa from 'svelte-fa';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { t, waitLocale } from 'svelte-i18n';
@@ -74,15 +75,15 @@ onMount(() => {
     initialTextareaHeight = textareaEl.clientHeight + 'px';
     textareaEl.style.height = initialTextareaHeight;
 
-    const observeSubmitButtonContainer = observeElementHeight(submitButtonContainerEl, (element: HTMLElement, height: number) => {
-        const threshold = 42;
-        element.style.alignItems = height > threshold ? 'flex-end' : 'center';
-        element.style.paddingBottom = height > threshold ? '0.5rem' : '0';
-    });
+    // const observeSubmitButtonContainer = observeElementHeight(submitButtonContainerEl, (element: HTMLElement, height: number) => {
+    //     const threshold = 43;
+    //     element.style.alignItems = height > threshold ? 'flex-end' : 'center';
+    //     element.style.paddingBottom = height > threshold ? '0.4rem' : '0';
+    // });
 
-    return () => {
-        if (observeSubmitButtonContainer) observeSubmitButtonContainer();
-    };
+    // return () => {
+    //     if (observeSubmitButtonContainer) observeSubmitButtonContainer();
+    // };
 });
 
 $: isFollowup, resize();
@@ -98,7 +99,7 @@ $: if (focusTextarea && textareaEl) {
 
     <textarea
         name="user-input"
-        class={`${text.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
+        class={`${text.base} ${input.noBorder} ${textarea.limitMaxHeight}`}  
         rows="1"
         on:input={resize}
         on:keydown={handleKeyDown}
@@ -108,8 +109,8 @@ $: if (focusTextarea && textareaEl) {
         disabled={disableTextarea} />
 
     <div class="ai-search-user-input-form__submit-container" bind:this={submitButtonContainerEl}>
-        <button type="submit" disabled={!userInput || disableTextarea}>
-            <Fa icon={faPaperPlane} color="#ffa500" />
+        <button type="submit" disabled={!userInput || disableTextarea} class={button.iconButton}>
+            <Fa icon={faPaperPlane} />
         </button>
     </div>
 </form>
@@ -125,7 +126,7 @@ $: if (focusTextarea && textareaEl) {
     justify-content: space-between;
     gap: 1rem;
     background-color: #ffffff;
-    padding: 0.5rem;
+    padding: 0.8rem 1rem;
     border-radius: 0.5rem;
     flex-grow: 1;
     margin-right: 0.5rem;

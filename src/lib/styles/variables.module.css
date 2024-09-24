@@ -1,15 +1,18 @@
 /* 
     Using CSS modules @value:
     https://www.barbarianmeetscoding.com/notes/css-modules/#values
-
-    Variables names inspired by Bootstrap 5
-    https://getbootstrap.com/docs/5.0/customize/css-variables/
 */
-@value fontSansSerif: "Montserrat", sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+@value fontBase: var(--ai-search-font-base, 'Bricolage Grotesque', sans-serif);
+@value fontHeadings: var(--ai-search-font-headings, "Lato", sans-serif);
+@value dark: var(--ai-search-color-dark, #212121);
 @value light: #f2f2f6;
-@value dark: #222921;
-@value red: #ff0000;
+@value red: #dd2c00;
 @value white: #ffffff;
+@value primary: var(--ai-search-color-primary, #ff6600);
 
 /* https://getbootstrap.com/docs/5.0/layout/breakpoints/ */
 @value small: (min-width: 576px);

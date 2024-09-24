@@ -52,18 +52,19 @@ const onUserInput = async (event: CustomEvent) => {
 }
 .wc-ai-search-floating-user-input > div {
     background-color: #f2f2f6;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3); */
 }
 .wc-ai-search-floating-user-input--static {
     display: flex;
     justify-content: center;
-    padding: 0.5rem;
     border-radius: 0.5rem;
+    padding: 0.5rem;
 }
 .wc-ai-search-floating-user-input--static > div {
     flex-grow: 1;
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
+    padding: 0.1rem;
 
     @media (min-width: 768px) {
         max-width: 50vw;

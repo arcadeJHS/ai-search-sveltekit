@@ -6,5 +6,5 @@ export let searching = false;
 </script>
 
 {#if searching}
-	<Fa icon={faSpinner} size="3x" pulse color="rgba(230, 111, 0, 0.6)" />
+	<Fa icon={faSpinner} size="3x" pulse color="#ff6600" />
 {/if}

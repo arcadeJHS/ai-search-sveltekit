@@ -6,6 +6,8 @@ import { faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
 import { t } from 'svelte-i18n';
 import AiSearchResultVideoArea from './ai-search-result-video-area.svelte';
 import { playingVideoStore } from '$lib/stores/playingVideoStore.ts';
+import text from '$lib/styles/text.module.css';
+import button from '$lib/styles/button.module.css';
 
 export let result: Selection;
 let videoVisible = false;
@@ -78,7 +80,7 @@ $: result, handleResultChange();
         Originale:
         <div class="card h-100" <?php if($highlight): ?>style="border: 4px solid #ff9128;"<?php endif; ?>>
     -->
-    <div class="card h-100 wc-ai-search-result">
+    <div class={`card h-100 ${text.base} wc-ai-search-result`}>
         <div 
             class="wc-ai-search-result__top-area-images" 
             class:wc-ai-search-result__top-area-images--video-bar-top={videoVisible} 
@@ -95,7 +97,7 @@ $: result, handleResultChange();
                 <div 
                     class="wc-ai-search-result__date-area"
                     class:wc-ai-search-result__date-area--video-bar-top={videoVisible}>
-                    <p><span class="wc-ai-search-result__book">{result.bookings}</span> {$t('verified_bookings')}</p>
+                    <p><span class="wc-ai-search-result__book">{result.bookings}</span> {$t('result.verified_bookings')}</p>
                 </div>
             {/if}
             
@@ -133,27 +135,27 @@ $: result, handleResultChange();
                             {getRatingStars(result.ratingStars)}
                         {/if}
                     </h2>
-                    <p>{result.ratingVotes} {$t('reviews')}</p>
+                    <p>{result.ratingVotes} {$t('result.reviews')}</p>
                 </div>
 
                 <div class="wc-ai-search-result__price">
-                    <p>{$t('from')}</p>
+                    <p>{$t('result.from')}</p>
                     <h2>
                         {#if result.cachet_min}
                             {result.cachet_min} <span>{result.currency}</span>
                         {:else}
-                            {$t('on_request')}
+                            {$t('result.on_request')}
                         {/if}
                     </h2>
                 </div>
             </div>
             <a 
                 itemprop="url" 
-                class="wc-ai-search-result__show-more" 
+                class={`${button.outlined} wc-ai-search-result__show-more`} 
                 title="{result.itemprop_desc}" 
                 href="/{result.nickName}" target="_blank"
                 on:click={() => playingVideoStore.stopAllVideos()}>
-                {$t('show_more')}
+                {$t('result.show_more')}
             </a>
         </div>
     </div>
@@ -188,13 +190,12 @@ $: result, handleResultChange();
     margin: 0;
     width: auto;
     display: inline-block;
-    font-family: Montserrat;
     font-size: 14px;
     font-weight: 400;
     background: #353F47;
     padding: 5px 16px;
     border-radius: 4px;
-    color: #fff;
+    color: #ffffff;
     letter-spacing: 1px;
     font-stretch: normal;
     font-style: normal;
@@ -237,7 +238,6 @@ $: result, handleResultChange();
 }
 .wc-ai-search-result__card-body {
     background-color: transparent !important;
-    /* padding-bottom: 0; */
     border: none !important;
     display: flex;
     flex-direction: column;
@@ -245,7 +245,6 @@ $: result, handleResultChange();
 .wc-ai-search-result__card-title {
     position: relative;
     margin-bottom: 10px;
-    color: #3B3923;
     font-weight: bold;
     font-size: 15px;
 }
@@ -258,14 +257,12 @@ $: result, handleResultChange();
     min-height: 54px;
 }
 p.wc-ai-search-result__card-text {
-    font-family: Montserrat;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.5;
     letter-spacing: normal;
-    color: #3b3923;
 }
 p.wc-ai-search-result__card-text--shorted {
     display: -webkit-box;
@@ -276,7 +273,6 @@ p.wc-ai-search-result__card-text--shorted {
     min-height: 36px;
 }
 .wc-ai-search-result__city span {
-    font-family: Montserrat;
     font-size: 14px;
 }
 .wc-ai-search-result__ratting-area {
@@ -287,20 +283,17 @@ p.wc-ai-search-result__card-text--shorted {
 }
 .wc-ai-search-result__ratting h2 {
     font-size: 16px;
-    color: #7E7D7E;
     font-weight: bold;
     padding: 0px;
     margin: 0px 0px;
 }
 .wc-ai-search-result__ratting p {
-    font-family: Montserrat;
     font-size: 12px;
     font-weight: 500;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    color: #7e7d7e;
     padding: 5px 0px;
 }
 .wc-ai-search-result__price {
@@ -308,7 +301,6 @@ p.wc-ai-search-result__card-text--shorted {
     min-height: 37px;
 }
 .wc-ai-search-result__price p {
-    font-family: Montserrat;
     font-size: 12px;
     font-weight: normal;
     font-stretch: normal;
@@ -316,7 +308,6 @@ p.wc-ai-search-result__card-text--shorted {
     line-height: normal;
     letter-spacing: normal;
     text-align: right;
-    color: #4e4e4e;
     margin: 0px 0px;
 }
 .wc-ai-search-result__price h2 {
@@ -328,7 +319,6 @@ p.wc-ai-search-result__card-text--shorted {
     line-height: normal;
     letter-spacing: normal;
     text-align: right;
-    color: #4e4e4e;
     padding: 0px;
     margin: 0px 0px;
 }
@@ -341,14 +331,11 @@ p.wc-ai-search-result__card-text--shorted {
     line-height: normal;
     letter-spacing: normal;
     text-align: right;
-    color: #4e4e4e;
 }
 .wc-ai-search-result__show-more {
     text-align: center;
     display: block;
     text-decoration: none;
-    color: #FF9128;
-    border: 1px solid #FF9128;
     padding: 13px 20px;
     font-size: 14px;
     line-height: 17px;

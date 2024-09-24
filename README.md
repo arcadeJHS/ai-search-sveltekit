@@ -270,5 +270,5 @@ git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
 
 
 # TODO
-  
-- rifattorizzare le variabili CSS in modo che siano definite "in un unico posto"
+
+- suggestion di ricerca dopo primo prompt

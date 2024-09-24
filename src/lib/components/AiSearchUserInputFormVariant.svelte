@@ -86,7 +86,7 @@ $: isFollowup, resize();
 
     <textarea
         name="user-input"
-        class={`${text.sansSerif} ${input.noBorder} ${textarea.limitMaxHeight}`}  
+        class={`${text.base} ${input.noBorder} ${textarea.limitMaxHeight}`}  
         rows="1"
         on:input={resize}
         on:keydown={handleKeyDown}

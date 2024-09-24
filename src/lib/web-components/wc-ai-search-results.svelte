@@ -10,6 +10,7 @@ import AiSearchSearchingIcon from '$lib/components/AiSearchSearchingIcon.svelte'
 import AiSearchResult from '$lib/web-components/ai-search-result.svelte'; 
 import { resultsSetStore } from '$lib/stores/resultsSetStore.ts';
 import button from '$lib/styles/button.module.css';
+import { t } from 'svelte-i18n';
 
 let itemsToShow = 9;
 
@@ -47,7 +48,7 @@ onMount(() => {
         </div>
         {#if itemsToShow < $resultsSetStore.length}
             <div class="show-more">
-                <button class={button.outlined} on:click={showMore}>Show More</button>
+                <button class={button.outlined} on:click={showMore}>{$t('show_more')}</button>
             </div>
         {/if}
     </div>

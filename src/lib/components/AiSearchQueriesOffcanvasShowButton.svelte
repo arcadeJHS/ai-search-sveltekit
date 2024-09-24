@@ -19,7 +19,7 @@ const toggle = () => {
 </script>
 
 <button on:click={toggle} class={`${button.iconButton} ${className}`} title={$t('user_queries.show')}>
-    <Fa icon={faComment} size="2x" color="#2d9bf0" />
+    <Fa icon={faComment} size="2x" />
 </button>
 
 <Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>

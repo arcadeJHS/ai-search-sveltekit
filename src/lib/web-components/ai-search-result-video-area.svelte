@@ -72,10 +72,8 @@ $: if (videoIframe?.contentWindow && $playingVideoStore !== result.id) {
 
     {#if result.whois === 'youtube' && result.videoYtId}
         {#if !videoVisible}
-            <button on:click={() => loadVideo(result)} class={`${button.glyphButton} wc-ai-search-result__play-icon`}>
-                <span  id="play-icon-{result.id}">
-                    <Fa icon={faCirclePlay} color="#e66f00" size="3x" />
-                </span>
+            <button on:click={() => loadVideo(result)} class={`${button.iconButton} wc-ai-search-result__play-icon`}>
+                <Fa icon={faCirclePlay} size="3x" />
             </button>
         {/if}
         
