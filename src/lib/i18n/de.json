@@ -1,19 +1,19 @@
 {
     "search_input": {
-        "placeholder": "DE_How can I help you organizing your event?",
-        "placeholder_followup": "DE_Do you want to add more details?"
+        "placeholder": "Wie kann ich Ihnen bei der Organisation Ihrer Veranstaltung helfen?",
+        "placeholder_followup": "Möchten Sie weitere Details hinzufügen?"
     },
-    "new_search": "DE_New search",
+    "new_search": "eue Suche",
     "user_queries": {
-        "show": "DE_Show your queries"
+        "show": "Zeige deine Anfragen"
     },
-    "results": "{count, plural, =0 {DE_No reults} =1 {{count} DE_result} other {{count} DE_results}}",
-    "show_more": "DE_Show more",
+    "results": "{count, plural, =0 {keine Ergebnisse} =1 {{count} Ergebnis} other {{count} Ergebnis}}",
+    "show_more": "Mehr anzeigen",
     "result": {
-        "verified_bookings": "DE_Verified bookings",
-        "reviews": "DE_Reviews",
-        "from": "DE_from",
-        "on_request": "DE_on request",
-        "show_more": "DE_Show more"
+        "verified_bookings": "geprüfte Buchungen",
+        "reviews": "Bewertungen",
+        "from": "ab",
+        "on_request": "auf Anfrage",
+        "show_more": "Mehr anzeigen"
     }
 }
