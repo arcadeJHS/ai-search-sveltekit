@@ -134,7 +134,7 @@ $: if (videoIframe?.contentWindow && $playingVideoStore !== result.id) {
     margin: 0 0.2rem;
     min-width: 31px;
     border-radius: 6px;
-    background-color: #FF9128;
+    background-color: #ff6600;
     border: none;
 }
 </style>
