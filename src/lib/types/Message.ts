@@ -3,16 +3,17 @@ export enum MessageRole {
     Agent = 'agent',
 }
 
-export interface Message {
-	key: string;
-	role: MessageRole;
-	content: string;
-};
+export interface BaseMessage {
+    key: string;
+    content: string;
+}
 
-export type AgentMessage = Message & {
-	role: MessageRole.Agent;
-};
+export interface AgentMessage extends BaseMessage {
+    role: MessageRole.Agent;
+}
 
-export type UserMessage = Message & {
-	role: MessageRole.User;
-};
+export interface UserMessage extends BaseMessage {
+    role: MessageRole.User;
+}
+
+export type Message = AgentMessage | UserMessage;

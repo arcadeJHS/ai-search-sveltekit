@@ -10,6 +10,8 @@ import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import type { UserInput } from '$lib/types/UserInput.ts';
 import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
 import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
+import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
+import { filtersStore } from '$lib/stores/filtersStore.ts';
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -39,6 +41,12 @@ const onUserInput = async (event: CustomEvent) => {
             focusTextarea={$searchStore.status === 'idle'}
             disableTextarea={!!~['starting', 'ending', 'searching'].indexOf($searchStore.status)}
             on:userInput={onUserInput} />
+    
+        {#if $filtersStore?.notApplied?.length}
+            <div class="wc-ai-search-floating-user-input__suggestions">
+                <AiSearchSuggestions filters={$filtersStore} />
+            </div>
+        {/if}
     </div>
 </div>
 
@@ -80,7 +88,6 @@ const onUserInput = async (event: CustomEvent) => {
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
     
     border-radius: 0.5rem;
     border-bottom-left-radius: 0;
@@ -102,6 +109,7 @@ const onUserInput = async (event: CustomEvent) => {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 0.5rem 0.5rem 1.5rem;
+    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.5);
 
     @media (min-width: 768px) {
         border-radius: 0.5rem;
@@ -121,5 +129,8 @@ const onUserInput = async (event: CustomEvent) => {
     @media (min-width: 768px) {
         display: none;
     }
+}
+.wc-ai-search-floating-user-input__suggestions {
+    margin-top: 0.5rem;
 }
 </style>

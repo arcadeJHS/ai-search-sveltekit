@@ -17,10 +17,10 @@
   -->
   <WcAiSearchAppShell
     baseUrl="http://192.168.50.58:9910"
-    language="it">
+    language="en">
   </WcAiSearchAppShell>
 
-  <WcAiSearchFloatingUserInput />
+  <WcAiSearchFloatingUserInput></WcAiSearchFloatingUserInput>
   <!-- <WcAiSearchFloatingUserInputVariant /> -->
 
   <div class="container">
@@ -77,7 +77,7 @@
   overflow-y: hidden;
 }
 .site-ai-search__results {
-  padding-bottom: 10rem;
+  padding-bottom: 16rem;
 }
 .site-ai-search__queries {
   /* max-height: 45vh; */

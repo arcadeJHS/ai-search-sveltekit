@@ -5,5 +5,4 @@ export { default as AiSearchResults } from './AiSearchResults.svelte';
 export { default as AiSearchSearchingIcon } from './AiSearchSearchingIcon.svelte';
 export { default as AiSearchUserInputForm } from './AiSearchUserInputFormVariant.svelte';
 export { default as AiSearchUserInputFormVariant } from './AiSearchUserInputForm.svelte';
-
-
+export { default as AiSearchSuggestions } from './AiSearchSuggestions.svelte';

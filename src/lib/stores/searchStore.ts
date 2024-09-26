@@ -123,7 +123,7 @@ const useSearch = () => {
 
             updateStore(state => ({
                 messages: [...state.messages, agentMessage],
-                responses: { ...state.responses, [userMessage.key]: response },
+                responses: { ...state.responses, [userMessage.key]: { ...response, query: content } },
                 currentResultsSetKey: userMessage.key,
                 status: 'idle'
             }));

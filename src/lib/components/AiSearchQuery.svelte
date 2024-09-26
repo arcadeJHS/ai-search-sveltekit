@@ -13,8 +13,7 @@ export let active: boolean;
 const dispatch = createEventDispatcher();
 </script>
 
-<button 
-    data-component="button"
+<button
     class={`${text.base} ai-search-query ${!!active ? button.primaryButton : ''}`} 
     class:ai-search-query--active={!!active} 
     on:click={() => dispatch('click')} 
@@ -58,9 +57,10 @@ const dispatch = createEventDispatcher();
 }
 .ai-search-query > div > span {
     font-size: 0.8em;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 .ai-search-query--active > div > span {
     color: #ffffff;
+    opacity: 0.9;
 }
 </style>

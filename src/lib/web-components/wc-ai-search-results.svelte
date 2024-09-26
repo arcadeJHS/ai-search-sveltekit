@@ -11,6 +11,7 @@ import AiSearchResult from '$lib/web-components/ai-search-result.svelte';
 import { resultsSetStore } from '$lib/stores/resultsSetStore.ts';
 import button from '$lib/styles/button.module.css';
 import { t } from 'svelte-i18n';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 
 let itemsToShow = 9;
 
@@ -38,14 +39,22 @@ onMount(() => {
 });
 </script>
 
-{#if $searchStore}
+{#if $searchStore && $userQueriesStore.length}
     <div class="container wc-ai-search-results">
         <AiSearchSearchingIcon searching={$searchStore.status === 'searching'} />
+
         <div class="row g-4">
-            {#each paginatedResults as result}
-                <AiSearchResult {result} />
-            {/each}
+            {#if !paginatedResults.length}
+                <div class="col">
+                    <p style="margin: 0.8rem;">{$t('no_results')}</p>
+                </div>
+            {:else}
+                {#each paginatedResults as result}
+                    <AiSearchResult {result} />
+                {/each}
+            {/if}
         </div>
+        
         {#if itemsToShow < $resultsSetStore.length}
             <div class="show-more">
                 <button class={button.outlined} on:click={showMore}>{$t('show_more')}</button>

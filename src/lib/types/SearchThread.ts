@@ -8,7 +8,7 @@ export interface SearchThread {
     messages: Message[];
     currentResultsSetKey: string | null;
     responses: {
-        [key: string]: ApiResponse;
+        [key: string]: ApiResponse & { query?: string };
     },
     status: SearchThreadStatus,
     error: string | null;

@@ -126,7 +126,7 @@ $: if (focusTextarea && textareaEl) {
     justify-content: space-between;
     gap: 1rem;
     background-color: #ffffff;
-    padding: 0.8rem 1rem;
+    padding: 0.9rem 1rem;
     border-radius: 0.5rem;
     flex-grow: 1;
     margin-right: 0.5rem;
