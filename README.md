@@ -267,8 +267,3 @@ git clone git@bitbucket.org:exm-stg/stg-service.git
  * - folder MOCKUP_UI: contiene alcune immagini con un'idea di possible UX/UI
  */
 git clone git@bitbucket.org:exm-stg/ai-search-web-components.git
-
-
-# TODO
-
-- suggestion di ricerca dopo primo prompt
