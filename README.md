@@ -230,6 +230,17 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
     <Fa icon={faUser} />
     ```
 
+## Storybook
+
+Launch storybook with:
+
+```bash
+npm run storybook
+```
+
+### References
+
+https://github.com/LWC-Essentials/storybook/blob/master/packages/lwc-library/stories/hello-time.stories.js
 
 # Riepilogo su come usare i vari repo per lo sviluppo
 
