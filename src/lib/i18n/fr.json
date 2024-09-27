@@ -278,7 +278,7 @@
         "WHEN": {
             "label": "Quand",
             "values": {
-                "suggestion": "Essayez d'insérer une date spécifique"
+                "suggestion": "Essayez d'insérer une \"suggestion\" temporelle : une date, une plage de dates, ou \"fin août\""
             }
         },
         "LOCATION": {

@@ -1,7 +1,7 @@
 import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 
-// Using this strategy embed locales in th efinal bundle
+// Using this strategy embed locales in the final bundle
 import en from './en.json';
 import de from './de.json';
 import fr from './fr.json';

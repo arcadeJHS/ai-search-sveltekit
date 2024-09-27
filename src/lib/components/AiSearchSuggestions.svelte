@@ -34,7 +34,8 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
                     </span>
                     <span class="ai-search-suggestions__tip__text">
                         <strong>{$t(`filters.${notApplied}.label`)}</strong> 
-                        =&gt; {getCommaSeparatedString(notApplied)}
+                        - 
+                        <span>{getCommaSeparatedString(notApplied)}</span>
                     </span>
                 </span>
             {/each}
@@ -83,5 +84,8 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
     -webkit-line-clamp: 2;
     line-clamp: 2;
     overflow: hidden;
+}
+.ai-search-suggestions__tip__text > span {
+    font-style: italic;
 }
 </style>

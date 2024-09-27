@@ -27,6 +27,12 @@ export default defineConfig({
                     }
                     return assetInfo.name;
                 }
+            },
+			// Ensure tree shaking is enabled
+            treeshake: {
+                moduleSideEffects: false, // Assume no side effects in modules
+                propertyReadSideEffects: false, // Assume no side effects when reading properties
+                tryCatchDeoptimization: false // Do not deoptimize try-catch blocks
             }
         },
 		outDir: 'dist-web-components'
@@ -38,7 +44,8 @@ export default defineConfig({
 		}),
 		svelte({
 			compilerOptions: { 
-				customElement: true 
+				customElement: true,
+				dev: false
 			} 
 		})
 	],
