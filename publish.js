@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 // Get the current file path and directory name
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +26,15 @@ function emptyDirExceptIndex(dir) {
     }
 }
 
+// Executes, on each .js file, terser minification and mangleification
+// npx terser ai.search.web.components.es.js -o ai.search.web.components.es.min.js --compress --mangle
+function minifyJsFile(filePath) {
+    const minifiedFilePath = filePath.replace('.js', '.min.js');
+    execSync(`npx terser ${filePath} -o ${minifiedFilePath} --compress --mangle`);
+    console.log(`Minified ${filePath} to ${minifiedFilePath}`);
+    return minifiedFilePath;
+}
+
 function copyFiles(srcDir, jsDestDir, cssDestDir) {
     if (!fs.existsSync(jsDestDir)) {
         fs.mkdirSync(jsDestDir, { recursive: true });
@@ -47,12 +57,13 @@ function copyFiles(srcDir, jsDestDir, cssDestDir) {
             copyFiles(srcPath, jsDestDir, cssDestDir);
         } else {
             const ext = path.extname(entry.name);
-            if (ext === '.js') {
-                fs.copyFileSync(srcPath, jsDestPath);
-                console.log(`Copied ${entry.name} from ${srcDir} to ${jsDestDir}`);
-            } else if (ext === '.css' && cssDestDir && cssDestPath) {
+            if (ext === '.js' && !entry.name.endsWith('.min.js')) {
+                const minifiedSrcPath = minifyJsFile(srcPath);
+                fs.copyFileSync(minifiedSrcPath, jsDestPath.replace('.js', '.min.js'));
+                console.log(`Copied ${minifiedSrcPath} to ${jsDestPath.replace('.js', '.min.js')}`);
+            } else if (ext === '.css' && cssDestPath) {
                 fs.copyFileSync(srcPath, cssDestPath);
-                console.log(`Copied ${entry.name} from ${srcDir} to ${cssDestDir}`);
+                console.log(`Copied ${srcPath} to ${cssDestPath}`);
             }
         }
     }
