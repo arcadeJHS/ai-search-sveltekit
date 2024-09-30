@@ -288,10 +288,12 @@ export type Filter = LanguageFilter | ShowTypeFilter | ArtistTypeFilter | Artist
 
 export type SuggestionPool = Omit<Record<FilterType, (number | string)[]>, FilterType.LANGUAGE>;
 
+export type Suggestions = Partial<Record<keyof SuggestionPool, (number | string)[]>>;
+
 export interface FilterSuggestion {
     query: string;
     applied: Filter[];
     notApplied: (keyof SuggestionPool)[];
-    suggestions: Partial<Record<keyof SuggestionPool, (number | string)[]>>;
+    suggestions: Suggestions;
 };
 

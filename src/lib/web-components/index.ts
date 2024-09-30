@@ -8,3 +8,4 @@ export { default as WcAiSearchQueries } from './wc-ai-search-queries.svelte';
 export { default as WcAiSearchResults } from './wc-ai-search-results.svelte';
 export { default as WcAiSearchNewSearchButton } from './wc-ai-search-new-search-button.svelte';
 export { default as WcAiSearchErrorNotification } from './wc-ai-search-error-notification.svelte';
+export { default as WcAiSearchHints } from './wc-ai-search-hints.svelte';

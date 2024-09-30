@@ -25,7 +25,7 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
 
 {#if visibleNotApplied?.length}
     <section class={`${text.base} ai-search-suggestions`}>
-        <header><p>{$t('suggestions_tip')}</p></header>
+        <header><p>{$t('search_suggestion.tip_header')}:</p></header>
         <main class="ai-search-suggestions__tips">
             {#each visibleNotApplied as notApplied}
                 <span class="ai-search-suggestions__tip">
@@ -78,8 +78,8 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
     padding-left: 0.2rem;
     opacity: 0.8;
 
-        /* cut text to 2 lines only */
-        display: -webkit-box;
+    /* cut text to 2 lines only */
+    display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;

@@ -17,7 +17,11 @@
         "on_request": "su richiesta",
         "show_more": "Mostra di più"
     },
-    "suggestions_tip": "Per ottenere risultati più pertinenti potresti provare ad aggiungere",
+    "search_suggestion": {
+        "tip_header": "Per ottenere risultati più pertinenti potresti provare ad aggiungere",
+        "hint": "Un {artistGenre} {type} per un {showType} in {location}",
+        "hint_header": "Per una ricerca più efficace prova a inserire più dettagli possibili. Ad esempio:"
+    },
     "filters": {
         "SHOW_TYPE": {
             "label": "Categoria di evento",

@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ArtistSubType } from '$lib/types/Filter.ts';
+import type { ArtistSubTypeEnum } from '$lib/types/Filter.ts';
 import { type Selection } from '$lib/types/Selection.ts';
 import Fa from 'svelte-fa';
 import { faLocationDot, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ const getQuoteAvg = (quote: number): string => {
     return quote < 500 ? '$' : quote < 1500 ? '$$' : '$$$';
 };
 
-const getSubtypesString = (subtypes: ArtistSubType[]): string => {
+const getSubtypesString = (subtypes: ArtistSubTypeEnum[]): string => {
     return subtypes?.join(', ');
 };
 

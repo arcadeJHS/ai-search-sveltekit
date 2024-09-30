@@ -17,7 +17,11 @@
         "on_request": "on request",
         "show_more": "Show more"
     },
-    "suggestions_tip": "To obtain more relevant results, you could try adding",
+    "search_suggestion": {
+        "tip_header": "To obtain more relevant results, you could try adding",
+        "hint": "A {artistGenre} {type} for a {showType} in {location}",
+        "hint_header": "For a more effective search, try to enter as many details as possible. For example:"
+    },
     "filters": {
         "SHOW_TYPE": {
             "label": "Event category",
