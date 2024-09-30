@@ -36,7 +36,6 @@ export const getRandomIds = (filterType: keyof SuggestionPool, maxNumberOfSugges
         const randomValue = array[randomIndex];
 
         if (excludedNumbers.includes(randomValue as number)) {
-            maxNumberOfSuggestions++;
             continue;
         }
 

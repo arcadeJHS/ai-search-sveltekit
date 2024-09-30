@@ -12,25 +12,6 @@ import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-sear
 import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
 import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
 import { filtersStore } from '$lib/stores/filtersStore.ts';
-import { type FilterSuggestion } from '$lib/types/Filter.ts';
-
-let searchStatus:string;
-let notAppliedLength = 0;
-let filters: FilterSuggestion;
-let userQueriesStarted: boolean;
-
-$: if (searchStore) {
-    searchStatus = $searchStore?.status;
-}
-
-$: if (filtersStore) {
-    notAppliedLength = $filtersStore?.notApplied?.length || 0;
-    filters = $filtersStore || {};
-}
-
-$: if (userQueriesStore) {
-    userQueriesStarted = !!$userQueriesStore.length || false;
-}
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -45,8 +26,8 @@ const onUserInput = async (event: CustomEvent) => {
 
 <div 
     class="wc-ai-search-floating-user-input"
-    class:wc-ai-search-floating-user-input--fixed={userQueriesStarted}
-    class:wc-ai-search-floating-user-input--static={!userQueriesStarted}>
+    class:wc-ai-search-floating-user-input--fixed={$userQueriesStore.length}
+    class:wc-ai-search-floating-user-input--static={!$userQueriesStore.length}>
     <div>
         {#if $searchStore.session}
             <div class="wc-ai-search-floating-user-input__actions">
@@ -56,14 +37,14 @@ const onUserInput = async (event: CustomEvent) => {
         {/if}
         <AiSearchUserInputForm
             --textarea-height="6rem"
-            isFollowup={!!userQueriesStarted}
-            focusTextarea={searchStatus === 'idle'}
-            disableTextarea={!!~['starting', 'ending', 'searching'].indexOf(searchStatus)}
+            isFollowup={!!$userQueriesStore.length}
+            focusTextarea={$searchStore.status === 'idle'}
+            disableTextarea={!!~['starting', 'ending', 'searching'].indexOf($searchStore.status)}
             on:userInput={onUserInput} />
     
-        {#if searchStatus === 'idle' && notAppliedLength}
+        {#if $filtersStore?.notApplied?.length}
             <div class="wc-ai-search-floating-user-input__suggestions">
-                <AiSearchSuggestions filters={filters} />
+                <AiSearchSuggestions filters={$filtersStore} />
             </div>
         {/if}
     </div>
