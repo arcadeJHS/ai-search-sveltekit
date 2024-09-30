@@ -13,12 +13,6 @@ export const Default = {
             <title>Web Components DEMO - mjs</title>
 
             <style>
-                /*
-                * You can override css variables also using the :root selector 
-                */
-                /* :root {
-                    --ai-search-font-base: Montserrat, sans-serif;
-                } */
                 .site-ai-search {
                     display: grid;
                     /* grid-template-columns: 2fr 5fr; */
@@ -52,12 +46,6 @@ export const Default = {
                 .site-ai-search__queries-search-button {
                     margin: 0.8rem 0;
                 }
-                /* 
-                * Remeber: custom properties (aka css variables) can cross custom elements shadow dom boundaries 
-                */
-                /* stg-ai-search-queries {
-                    --ai-search-query-background: #fc0;
-                } */
             </style>
         </head>
         <body>
@@ -98,5 +86,3 @@ export const Default = {
         </body>
     `
 };
-
-

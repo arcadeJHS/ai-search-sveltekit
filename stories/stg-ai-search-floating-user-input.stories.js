@@ -8,10 +8,10 @@ export default {
 
 const AppShellRender = AppShell.render;
 
-export const Default = {
+export const AppShellControls = {
     args: {
         baseUrl: "http://localhost:8099",
-        language: "fr"
+        language: "de"
     },
     render: (args) => html`
         ${AppShellRender({ ...AppShell.args, ...args })}
@@ -19,5 +19,3 @@ export const Default = {
         <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
     `
 };
-
-

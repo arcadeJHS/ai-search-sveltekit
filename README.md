@@ -238,6 +238,11 @@ Launch storybook with:
 npm run storybook
 ```
 
+### TODO Storybook
+
+- Mock stores/providers
+- Stories for source Svelte components?
+
 ### References
 
 https://github.com/LWC-Essentials/storybook/blob/master/packages/lwc-library/stories/hello-time.stories.js
