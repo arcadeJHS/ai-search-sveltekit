@@ -4,6 +4,7 @@
         "placeholder_followup": "Voulez-vous ajouter plus de détails?"
     },
     "new_search": "Nouvelle recherche",
+    "searching": "Recherche en cours...",
     "user_queries": {
         "show": "Affiche tes recherches"
     },

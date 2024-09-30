@@ -6,5 +6,6 @@ export const resultsSetStore: Readable<Selection[]> = derived(searchStore, ($sea
     if (!$searchStore.currentResultsSetKey || !$searchStore.responses[$searchStore.currentResultsSetKey]) {
         return [];
     }
+    
     return <Selection[]>$searchStore.responses[$searchStore.currentResultsSetKey].selection;
 });

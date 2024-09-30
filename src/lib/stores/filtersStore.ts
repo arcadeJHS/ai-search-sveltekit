@@ -4,19 +4,23 @@ import { type Filter, type FilterSuggestion, FilterType } from '$lib/types/Filte
 import { type SuggestionPool } from '$lib/types/Filter.ts';
 import { suggestionUsefulFilters, getRandomIds } from '$lib/utils/searchSuggestions.ts';
 
+const emptyFilterStore: FilterSuggestion = {
+    query: '',
+    applied: [],
+    notApplied: [],
+    suggestions: {}
+};
+
 export const filtersStore: Readable<FilterSuggestion> = derived(searchStore, ($searchStore) => {
-    const response: FilterSuggestion = {
-        query: '',
-        applied: [],
-        notApplied: [],
-        suggestions: {}
-    };
+    if ($searchStore.status !== 'idle') {
+        return emptyFilterStore;
+    }
 
     const currentResultsSetKey = $searchStore.currentResultsSetKey;
     const currentResultsSet = currentResultsSetKey ? $searchStore.responses[currentResultsSetKey] : undefined;
 
     if (!currentResultsSetKey || !currentResultsSet) {
-        return response;
+        return emptyFilterStore;
     }
 
     const query = currentResultsSet.query || '';

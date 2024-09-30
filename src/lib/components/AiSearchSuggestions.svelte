@@ -13,7 +13,6 @@ const getCommaSeparatedString = (notApplied: keyof SuggestionPool) => {
     return (filters.suggestions[notApplied] ?? [])
         .map(tip => {
             const translation = $t(`filters.${notApplied}.values.${tip}`);
-            console.log('trans:', translation);
             return translation || tip;
         })
         .join(', ');
@@ -41,12 +40,6 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
             {/each}
         </main>
     </section>
-
-    <!-- <code>
-        <pre>
-            {JSON.stringify(filters, null, 2)}
-        </pre>
-    </code> -->
 {/if}
 
 <style>

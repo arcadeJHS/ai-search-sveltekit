@@ -44,7 +44,7 @@ onMount(() => {
         <AiSearchSearchingIcon searching={$searchStore.status === 'searching'} />
 
         <div class="row g-4">
-            {#if !paginatedResults.length}
+            {#if $searchStore.status !== 'searching' && !paginatedResults.length}
                 <div class="col">
                     <p style="margin: 0.8rem;">{$t('no_results')}</p>
                 </div>

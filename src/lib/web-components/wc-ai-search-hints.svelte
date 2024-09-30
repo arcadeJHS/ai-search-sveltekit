@@ -10,6 +10,7 @@ import { generateRandomSentence } from '$lib/utils/searchSuggestions.ts';
 import { t, waitLocale } from 'svelte-i18n';
 import { FilterType } from '$lib/types/Filter.ts';
 import { type Suggestions } from '$lib/types/Filter.ts';
+import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 
 const hintsToShow = 4;
 let hintHeader = '';
@@ -42,16 +43,18 @@ const setHints = async () => {
 onMount(setHints);
 </script>
 
-<section class="wc-ai-search-hints">
-    <header>
-        <p>{hintHeader}</p>
-    </header>
-    <main class="wc-ai-search-hints">
-        {#each hints as hint}
-            <AiSearchHint {hint} />
-        {/each}
-    </main>
-</section>
+{#if !$userQueriesStore.length}
+    <section class="wc-ai-search-hints">
+        <header>
+            <p>{hintHeader}</p>
+        </header>
+        <main class="wc-ai-search-hints">
+            {#each hints as hint}
+                <AiSearchHint {hint} />
+            {/each}
+        </main>
+    </section>
+{/if}
 
 <style>
 .wc-ai-search-hints {
