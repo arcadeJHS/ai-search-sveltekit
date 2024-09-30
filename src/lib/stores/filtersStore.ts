@@ -11,6 +11,17 @@ const emptyFilterStore: FilterSuggestion = {
     suggestions: {}
 };
 
+// Memoize getRandomIds results
+const memoizedGetRandomIds = (() => {
+    const cache: Partial<Record<FilterType, (number | string)[]>> = {};
+    return (filterType: FilterType) => {
+        if (!cache[filterType]) {
+            cache[filterType] = getRandomIds(filterType as Exclude<FilterType, FilterType.LANGUAGE>);
+        }
+        return cache[filterType];
+    };
+})();
+
 export const filtersStore: Readable<FilterSuggestion> = derived(searchStore, ($searchStore) => {
     if ($searchStore.status !== 'idle') {
         return emptyFilterStore;
@@ -31,11 +42,12 @@ export const filtersStore: Readable<FilterSuggestion> = derived(searchStore, ($s
             .map((filter: Filter) => filter.f as FilterType)
     );
 
-    const notAppliedFilters = Array.from(suggestionUsefulFilters).filter((filter: keyof SuggestionPool) => !appliedFilters.has(filter));
+    const notAppliedFilters = Array.from(suggestionUsefulFilters)
+        .filter((filter: keyof SuggestionPool) => !appliedFilters.has(filter as FilterType));
 
     const suggestions = notAppliedFilters.reduce((acc, key) => {
-        const filterType = key as keyof SuggestionPool;
-        acc[filterType] = getRandomIds(filterType);
+        const filterType = key as FilterType;
+        acc[filterType] = memoizedGetRandomIds(filterType);
         return acc;
     }, {} as Record<FilterType, (number | string)[]>);
 
