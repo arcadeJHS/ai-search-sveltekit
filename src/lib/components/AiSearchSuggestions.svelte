@@ -13,7 +13,6 @@ const getCommaSeparatedString = (notApplied: keyof SuggestionPool) => {
     return (filters.suggestions[notApplied] ?? [])
         .map(tip => {
             const translation = $t(`filters.${notApplied}.values.${tip}`);
-            console.log('trans:', translation);
             return translation || tip;
         })
         .join(', ');
@@ -25,7 +24,7 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
 
 {#if visibleNotApplied?.length}
     <section class={`${text.base} ai-search-suggestions`}>
-        <header><p>{$t('suggestions_tip')}</p></header>
+        <header><p>{$t('search_suggestion.tip_header')}:</p></header>
         <main class="ai-search-suggestions__tips">
             {#each visibleNotApplied as notApplied}
                 <span class="ai-search-suggestions__tip">
@@ -41,12 +40,6 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
             {/each}
         </main>
     </section>
-
-    <!-- <code>
-        <pre>
-            {JSON.stringify(filters, null, 2)}
-        </pre>
-    </code> -->
 {/if}
 
 <style>
@@ -59,8 +52,12 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
 }
 .ai-search-suggestions__tips {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 0.3rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 .ai-search-suggestions__tip {
     background-color: var(--ai-search-suggestion-background, #ffffff);
@@ -78,8 +75,8 @@ $: visibleNotApplied = filters?.notApplied?.slice(0, 4) || [];
     padding-left: 0.2rem;
     opacity: 0.8;
 
-        /* cut text to 2 lines only */
-        display: -webkit-box;
+    /* cut text to 2 lines only */
+    display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;

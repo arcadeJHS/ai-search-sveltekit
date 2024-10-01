@@ -4,6 +4,7 @@
         "placeholder_followup": "Möchten Sie weitere Details hinzufügen?"
     },
     "new_search": "eue Suche",
+    "searching": "Suche läuft...",
     "user_queries": {
         "show": "Zeige deine Anfragen"
     },
@@ -17,7 +18,11 @@
         "on_request": "auf Anfrage",
         "show_more": "Mehr anzeigen"
     },
-    "suggestions_tip": "Um relevantere Ergebnisse zu erhalten, könnten Sie versuchen, hinzuzufügen",
+    "search_suggestion": {
+        "tip_header": "Um relevantere Ergebnisse zu erhalten, könnten Sie versuchen, hinzuzufügen",
+        "hint": "Ein {artistGenre} {type} für ein {showType} in {location}",
+        "hint_header": "Für eine effektivere Suche versuchen Sie, so viele Details wie möglich einzugeben. Zum Beispiel:"
+    },
     "filters": {
         "SHOW_TYPE": {
             "label": "Veranstaltungs-kategorie",

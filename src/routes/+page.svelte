@@ -6,6 +6,7 @@
   // import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
   import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
+  import WcAiSearchHints from '$lib/web-components/wc-ai-search-hints.svelte';
 </script>
 
 <main>
@@ -22,6 +23,10 @@
 
   <WcAiSearchFloatingUserInput></WcAiSearchFloatingUserInput>
   <!-- <WcAiSearchFloatingUserInputVariant /> -->
+
+  <div class="site-ai-search__hints">
+    <WcAiSearchHints></WcAiSearchHints>
+  </div>
 
   <div class="container">
     <div class="row">
@@ -70,6 +75,20 @@
 }
 .site-ai-search * {
   box-sizing: border-box;
+}
+.site-ai-search__hints {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+:global(.site-ai-search__hints > section) {
+  @media (min-width: 768px) {
+    max-width: 50vw;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 30vw;
+  }
 }
 .site-ai-search__column {
   display: flex;

@@ -4,6 +4,7 @@
         "placeholder_followup": "Voulez-vous ajouter plus de détails?"
     },
     "new_search": "Nouvelle recherche",
+    "searching": "Recherche en cours...",
     "user_queries": {
         "show": "Affiche tes recherches"
     },
@@ -17,7 +18,11 @@
         "on_request": "sur demande",
         "show_more": "Voir plus"
     },
-    "suggestions_tip": "Pour obtenir des résultats plus pertinents, vous pourriez essayer d'ajouter",
+    "search_suggestion": {
+        "tip_header": "Pour obtenir des résultats plus pertinents, vous pourriez essayer d'ajouter",
+        "hint": "Un {artistGenre} {type} pour un {showType} à {location}",
+        "hint_header": "Pour une recherche plus efficace, essayez d'entrer autant de détails que possible. Par exemple:"
+    },
     "filters": {
         "SHOW_TYPE": {
             "label": "Catégorie d'événement",

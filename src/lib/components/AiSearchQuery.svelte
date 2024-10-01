@@ -1,6 +1,6 @@
 <script lang="ts">
 import text from '$lib/styles/text.module.css';
-import { _ } from 'svelte-i18n';
+import { t } from 'svelte-i18n';
 import Fa from 'svelte-fa';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import type { UserQuery } from '$lib/types/UserQuery.ts';
@@ -21,7 +21,7 @@ const dispatch = createEventDispatcher();
 >
     <p>{query.content}</p>
     <div>
-        <span>{$_('results', {values: { count: query.resultsCount }})}</span>
+        <span>{$t('results', {values: { count: query.resultsCount }})}</span>
         <Fa icon={faChevronRight} color={active ? '#ffffff' : 'inherit'} />
     </div>
 </button>
