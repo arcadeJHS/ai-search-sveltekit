@@ -17,7 +17,8 @@ const config = {
 	},
 
 	compilerOptions: {
-		customElement: !isDev
+		customElement: !isDev,
+		immutable: true
 	}
 };
 

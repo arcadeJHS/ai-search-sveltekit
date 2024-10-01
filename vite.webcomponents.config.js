@@ -45,7 +45,9 @@ export default defineConfig({
 		svelte({
 			compilerOptions: { 
 				customElement: true,
-				dev: false
+				dev: false,
+				immutable: true,
+				enableSourcemap: false
 			} 
 		})
 	],

@@ -68,7 +68,11 @@ onMount(setHints);
 }
 .wc-ai-search-hints > main {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 0.3rem;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 </style>
