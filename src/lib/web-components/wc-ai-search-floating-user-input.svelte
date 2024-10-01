@@ -108,7 +108,7 @@ const onUserInput = async (event: CustomEvent) => {
     border-radius: 0;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    padding: 0.5rem 0.5rem 1.5rem;
+    padding: 0.5rem 0.5rem 0.5rem;
     box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.5);
 
     @media (min-width: 768px) {
