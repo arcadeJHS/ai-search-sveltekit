@@ -40,7 +40,7 @@ onMount(() => {
 </script>
 
 {#if $searchStore && $userQueriesStore.length}
-    <div class="container wc-ai-search-results">
+    <div class="container">
         <AiSearchSearchingIcon searching={$searchStore.status === 'searching'} />
 
         <div class="row g-4">
@@ -64,10 +64,6 @@ onMount(() => {
 {/if}
 
 <style>
-.wc-ai-search-results {
-    padding: 0.5rem;
-}
-
 .show-more {
     display: flex;
     justify-content: center;
