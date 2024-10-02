@@ -4,9 +4,6 @@ import path from 'path';
 
 const config: StorybookConfig = {
 	stories: ['./stories/**/*.mdx', './stories/**/*.stories.@(js|ts|svelte)'],
-	features: {
-		viewportStoryGlobals: true,
-	},
 	addons: [
 		'@storybook/addon-svelte-csf',
 		'@storybook/addon-links',
@@ -19,6 +16,18 @@ const config: StorybookConfig = {
 		name: '@storybook/sveltekit',
 		options: {}
 	},
+	refs: {
+        'svelte-components': {
+          title: 'Svelte Components',
+          url: 'http://localhost:6006',
+          expanded: true
+        },
+		'web-components': {
+          title: 'Web Components',
+          url: 'http://localhost:6007',
+          expanded: true
+        },
+    },
 	viteFinal: async (config) => {
         return mergeConfig(config, {
             server: {

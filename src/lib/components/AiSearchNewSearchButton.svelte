@@ -7,6 +7,6 @@ import text from '$lib/styles/text.module.css';
 const dispatch = createEventDispatcher();
 </script>
 
-<button class={`${button.linkButton} ${text.base}`} on:click={() => dispatch('click')}>
+<button class={`${text.base} ${button.linkButton}`} on:click={() => dispatch('click')}>
     {$t('new_search')}
 </button>

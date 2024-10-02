@@ -2,7 +2,7 @@
 import { html } from 'lit-html';
 
 export default {
-    title: 'Web Components/stg-ai-search-app-shell',
+    title: 'Components/stg-ai-search-app-shell',
     component: 'stg-ai-search-app-shell',
 };
 

@@ -1,0 +1,25 @@
+import { Canvas, Meta, Story, DocsPage } from '@storybook/blocks';
+import meta from './AiSearchQueriesOffcanvasShowButton.stories.ts';
+
+<Meta of={meta} />
+
+The visibility of the button can be controlled by passing to the component a class which defines a responsive rule.  
+You can do that by passing the class as a prop to the component.  
+For instance, you can pass the class \`desktop-hidden\`, defined in the \`global.css\` file, to hide the button on desktop:
+
+```css
+.desktop-hidden {
+    @media (min-width: 768px) {
+    display: none;
+    }
+}
+```
+
+```html
+<AiSearchQueriesOffcanvasShowButton class="desktop-hidden"/>
+```
+
+<Canvas> 
+    <Story id="svelte-components-ai-search-queries-offcanvas-show-button--hidden-on-desktop" /> 
+</Canvas> 
+<DocsPage /> 

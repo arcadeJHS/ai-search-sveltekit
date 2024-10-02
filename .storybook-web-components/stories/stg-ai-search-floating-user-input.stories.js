@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import { AppShell } from './stg-ai-search-app-shell.stories';
 
 export default {
-    title: 'Web Components/stg-ai-search-floating-user-input',
+    title: 'Components/stg-ai-search-floating-user-input',
     component: 'stg-ai-search-floating-user-input',
 };
 

@@ -17,7 +17,7 @@
 
 .linkButton {
     composes: glyphButton;
-    color: primary;
+    color: primary!important;
     text-decoration: underline;
     text-underline-offset: .2rem;
     font-family: fontBase;
@@ -28,7 +28,7 @@
     border: 1px solid primary;
     border-radius: .25rem;
     padding: .5rem 1rem;
-    color: primary!important;
+    color: primary;
     font-family: fontBase;
 }
 .outlined:hover {
