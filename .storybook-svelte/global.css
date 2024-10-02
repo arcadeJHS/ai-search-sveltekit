@@ -1,5 +1,7 @@
-.desktop-hidden {
+:root {
+    --ai-search-show-query-offcanvas-button-display: block;
+
     @media (min-width: 768px) {
-        display: none;
+        --ai-search-show-query-offcanvas-button-display: none;
     }
 }

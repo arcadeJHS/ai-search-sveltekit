@@ -12,6 +12,16 @@ import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-sear
 import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
 import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
 import { filtersStore } from '$lib/stores/filtersStore.ts';
+import WcAiSearchQueries from '$lib/web-components/wc-ai-search-queries.svelte';
+import { Offcanvas } from '@sveltestrap/sveltestrap';
+import padding from '$lib/styles/padding.module.css';
+import offcanvas from '$lib/styles/offcanvas.module.css';
+
+let isOpen = false;
+
+const toggle = () => {
+    isOpen = !isOpen;
+};
 
 const onUserInput = async (event: CustomEvent) => {
     const content: UserInput = event.detail.content;
@@ -32,7 +42,7 @@ const onUserInput = async (event: CustomEvent) => {
         {#if $searchStore.session}
             <div class="wc-ai-search-floating-user-input__actions">
                 <WcAiSearchNewSearchButton />
-                <AiSearchQueriesOffcanvasShowButton class="wc-ai-search-floating-user-input__actions__show-queries" />
+                <AiSearchQueriesOffcanvasShowButton on:click={toggle} />
             </div>
         {/if}
         <AiSearchUserInputForm
@@ -49,6 +59,10 @@ const onUserInput = async (event: CustomEvent) => {
         {/if}
     </div>
 </div>
+
+<Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
+    <WcAiSearchQueries class={padding.noPadding} on:querySelected={toggle} />
+</Offcanvas>
 
 <style>
 .wc-ai-search-floating-user-input {
@@ -125,12 +139,15 @@ const onUserInput = async (event: CustomEvent) => {
     align-items: center;
     padding: 0.5rem 0.5rem 1rem;
 }
-:global(.wc-ai-search-floating-user-input__actions__show-queries) {
-    @media (min-width: 768px) {
-        display: none;
-    }
-}
 .wc-ai-search-floating-user-input__suggestions {
     margin-top: 0.5rem;
+}
+/* Set visibility of the <AiSearchQueriesOffcanvasShowButton /> component via the custom property --ai-search-show-query-offcanvas-button-display */
+:global(:root) {
+    --ai-search-show-query-offcanvas-button-display: block;
+
+    @media (min-width: 768px) {
+        --ai-search-show-query-offcanvas-button-display: none;
+    }
 }
 </style>

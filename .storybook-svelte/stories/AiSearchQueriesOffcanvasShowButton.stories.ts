@@ -4,9 +4,6 @@ import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesO
 const meta = {
     title: 'Components/AiSearchQueriesOffcanvasShowButton',
     component: AiSearchQueriesOffcanvasShowButton,
-    argTypes: {
-        class: { control: 'text' },
-    },
     globals: {
         viewport: { value: 'desktop' },
     }
@@ -16,21 +13,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
 export const VisibleOnMobile: Story = {
-    args: {
-        class: 'desktop-hidden',
-    },
     globals: {
         viewport: { value: 'mobile1', isRotated: false },
     }
 };
 
 export const HiddenOnDesktop: Story = {
-    args: {
-        class: 'desktop-hidden',
-    },
     globals: {
         viewport: { value: 'desktop' },
     }
