@@ -1,0 +1,48 @@
+import { Meta } from "@storybook/blocks";
+import Schema from "./assets/schema.png";
+
+<Meta title="Web Components" />
+
+# Web Components
+
+Svelte components which aggregate dumb Svelte components, access data from stores.
+
+They are built as web components using ```svelte:options``` tag, for instance:
+
+```html
+<svelte:options customElement={{
+	tag: 'webcomponent-ai-search-app-shell',
+	shadow: 'none',
+	props: {
+		baseUrl: { reflect: true, type: 'String', attribute: 'base-url' },
+		language: { reflect: true, type: 'String', attribute: 'language' }
+	},
+}} />
+```
+
+and the ```customElement: true``` compiler option in vite/svelte config:
+
+```js
+compilerOptions: { 
+  customElement: true
+} 
+```
+
+Then you can include the generated web component as a HTML tag in your PHP/HTML page:
+
+```html
+<stg-ai-search-app-shell
+    base-url="http://192.168.50.58:9910"
+    language="en">
+</stg-ai-search-app-shell>
+```
+
+Contrary to the dumb Svelte components, they:
+
+- have access to stores
+- can use Bootstrap styles
+
+The tags relative to those web components are "composed" and included in the HTML/PHP page.  
+They "aggregates" and function as a web application by means of the Svelte stores.
+
+<img src={Schema} alt="Svelte to web components schema" />
