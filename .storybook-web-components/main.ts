@@ -16,6 +16,13 @@ const config: StorybookConfig = {
         name: '@storybook/web-components-vite',
         options: {}
     },
+    refs: {
+		'svelte-components': {
+          title: 'SVELTE COMPONENTS',
+          url: 'http://localhost:6006',
+          expanded: true
+        },
+    },
 	viteFinal: async (config) => {
         return mergeConfig(config, {
             server: {

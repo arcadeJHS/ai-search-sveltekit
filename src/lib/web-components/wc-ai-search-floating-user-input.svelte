@@ -48,7 +48,7 @@ const onUserInput = async (event: CustomEvent) => {
         <AiSearchUserInputForm
             --textarea-height="6rem"
             isFollowup={!!$userQueriesStore.length}
-            focusTextarea={$searchStore.status === 'idle'}
+            textareaShouldBeFocused={$searchStore.status === 'idle'}
             disableTextarea={!!~['starting', 'ending', 'searching'].indexOf($searchStore.status)}
             on:userInput={onUserInput} />
     

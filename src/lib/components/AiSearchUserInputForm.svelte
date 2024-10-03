@@ -13,7 +13,7 @@ import { t, waitLocale } from 'svelte-i18n';
 export let placeholder: string = '';
 export let followUpPlaceholder: string = '';
 export let isFollowup: boolean = false;
-export let focusTextarea: boolean = true;
+export let textareaShouldBeFocused: boolean = true;
 export let disableTextarea: boolean = false;
 
 const dispatch = createEventDispatcher();
@@ -88,7 +88,7 @@ onMount(() => {
 
 $: isFollowup, resize();
 
-$: if (focusTextarea && textareaEl) {
+$: if (textareaShouldBeFocused && textareaEl) {
     focusTextArea();
 }
 </script>

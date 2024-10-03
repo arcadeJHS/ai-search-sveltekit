@@ -18,8 +18,7 @@
     "test:unit": "vitest",
     "storybook:svelte": "storybook dev --config-dir .storybook-svelte -p 6006",
     "storybook:webcomponents": "storybook dev --config-dir .storybook-web-components -p 6007",
-    "storybook:composition": "storybook dev --config-dir .storybook -p 6008",
-    "storybook": "bash ./storybook.sh"
+    "storybook": "npm run storybook:svelte & wait-on http://localhost:6006 && npm run storybook:webcomponents"
   },
   "exports": {
     ".": {
@@ -54,13 +53,11 @@
     "@sveltejs/package": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@types/eslint": "^9.6.0",
-    "concurrently": "^9.0.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-storybook": "^0.9.0",
     "eslint-plugin-svelte": "^2.36.0",
     "globals": "^15.0.0",
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "publint": "^0.1.9",

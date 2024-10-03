@@ -7,8 +7,8 @@ import type { UserQuery } from '$lib/types/UserQuery.ts';
 import { createEventDispatcher } from 'svelte';
 import button from '$lib/styles/button.module.css';
 
-export let query: UserQuery;
-export let active: boolean;
+export let query: UserQuery = {} as UserQuery;
+export let active: boolean = false;
 
 const dispatch = createEventDispatcher();
 </script>
@@ -16,8 +16,7 @@ const dispatch = createEventDispatcher();
 <button
     class={`${text.base} ai-search-query ${!!active ? button.primaryButton : ''}`} 
     class:ai-search-query--active={!!active} 
-    on:click={() => dispatch('click')} 
-    on:keydown={(e) => e.key === 'Enter' && dispatch('click')}
+    on:click={() => dispatch('click')}
 >
     <p>{query.content}</p>
     <div>
@@ -48,6 +47,7 @@ const dispatch = createEventDispatcher();
 .ai-search-query > p {
     font-weight: bold;
     margin-bottom: 0;
+    margin-top: 0;
     padding-right: 1rem;
     text-align: left;
 }

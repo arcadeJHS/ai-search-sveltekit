@@ -16,11 +16,17 @@ type Story = StoryObj<typeof meta>;
 export const VisibleOnMobile: Story = {
     globals: {
         viewport: { value: 'mobile1', isRotated: false },
-    }
+    },
+    parameters: {
+        viewport: { defaultViewport: 'mobile1', isRotated: false },
+    },
 };
 
 export const HiddenOnDesktop: Story = {
     globals: {
+        viewport: { value: 'desktop' },
+    },
+    parameters: {
         viewport: { value: 'desktop' },
     }
 };

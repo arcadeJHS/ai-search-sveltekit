@@ -7,10 +7,9 @@ import { t } from 'svelte-i18n';
 import button from '$lib/styles/button.module.css';
 
 export let filters: FilterSuggestion;
+export let suggestionsVisible: boolean = true;
 
 let visibleNotApplied: (keyof SuggestionPool)[] = [];
-
-let suggestionsVisible = true;
 
 const toggleSuggestions = () => {
     suggestionsVisible= !suggestionsVisible;
