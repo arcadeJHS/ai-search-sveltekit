@@ -2,8 +2,7 @@
   import WcAiSearchAppShell from '$lib/web-components/wc-ai-search-app-shell.svelte';
   import WcAiSearchQueries from '$lib/web-components/wc-ai-search-queries.svelte';
   import WcAiSearchResults from '$lib/web-components/wc-ai-search-results.svelte';
-  import WcAiSearchFloatingUserInput from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
-  // import WcAiSearchFloatingUserInputVariant from '$lib/web-components/wc-ai-search-floating-user-input.svelte';
+  import WcAiSearchPromptArea from '$lib/web-components/wc-ai-search-prompt-area.svelte';
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
   import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
   import WcAiSearchHints from '$lib/web-components/wc-ai-search-hints.svelte';
@@ -17,15 +16,14 @@
     apiBaseUrl="http://192.168.50.58:9910" 
   -->
   <WcAiSearchAppShell
-    baseUrl="http://localhost:8099"
+    baseUrl="http://192.168.50.58:9910"
     language="en">
   </WcAiSearchAppShell>
 
-  <WcAiSearchFloatingUserInput></WcAiSearchFloatingUserInput>
-  <!-- <WcAiSearchFloatingUserInputVariant /> -->
+  <WcAiSearchPromptArea />
 
   <div class="site-ai-search__hints">
-    <WcAiSearchHints></WcAiSearchHints>
+    <WcAiSearchHints />
   </div>
 
   <div class="container">

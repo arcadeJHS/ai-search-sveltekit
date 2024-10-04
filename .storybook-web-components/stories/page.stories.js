@@ -53,8 +53,7 @@ const pageHtml = html`
             language="it">
         </stg-ai-search-app-shell>
 
-        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
-        <!-- <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant> -->
+        <stg-ai-search-prompt-area></stg-ai-search-prompt-area>
     
         <div class="container">
             <div class="row">

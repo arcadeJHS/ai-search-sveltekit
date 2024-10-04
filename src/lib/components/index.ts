@@ -3,6 +3,5 @@ export { default as AiSearchQueriesOffcanvasShowButton } from './AiSearchQueries
 export { default as AiSearchNewSearchButton } from './AiSearchNewSearchButton.svelte';
 export { default as AiSearchResults } from './AiSearchResults.svelte';
 export { default as AiSearchSearchingIcon } from './AiSearchSearchingIcon.svelte';
-export { default as AiSearchUserInputForm } from './AiSearchUserInputFormVariant.svelte';
-export { default as AiSearchUserInputFormVariant } from './AiSearchUserInputForm.svelte';
+export { default as AiSearchUserInputForm } from './AiSearchUserInputForm.svelte';
 export { default as AiSearchSuggestions } from './AiSearchSuggestions.svelte';
