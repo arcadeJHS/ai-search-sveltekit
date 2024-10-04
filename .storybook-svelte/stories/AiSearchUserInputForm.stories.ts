@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte';
 
 const meta = {
-    title: 'Components/AiSearchUserInputForm',
+    title: 'Svelte Components/AiSearchUserInputForm',
     component: AiSearchUserInputForm,
     tags: ['autodocs'],
     argTypes: {

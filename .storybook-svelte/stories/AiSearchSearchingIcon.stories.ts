@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import AiSearchSearchingIcon from '$lib/components/AiSearchSearchingIcon.svelte';
 
 const meta = {
-    title: 'Components/AiSearchSearchingIcon',
+    title: 'Svelte Components/AiSearchSearchingIcon',
     component: AiSearchSearchingIcon,
     tags: ['autodocs'],
     argTypes: {

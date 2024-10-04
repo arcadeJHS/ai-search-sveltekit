@@ -21,6 +21,21 @@ const preview: Preview = {
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
 		},
+		options: {
+			// Sort stories in the sidebar
+			storySort: (a, b) => {
+				// 'Docs' before
+				if (a.type === 'docs' && b.type !== 'docs') {
+					return -1;
+				}
+				if (a.type !== 'docs' && b.type === 'docs') {
+					return 1;
+				}
+
+				// If both are 'docs' or neither are 'docs', sort alphabetically
+				return a.id === b.id ? 0 : a.id.localeCompare(b.id, { numeric: true });
+			}
+		}
 	},
 	decorators: [
 		withI18n

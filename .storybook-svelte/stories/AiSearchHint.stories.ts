@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import AiSearchHint from '$lib/components/AiSearchHint.svelte';
 
 const meta = {
-    title: 'Components/AiSearchHint',
+    title: 'Svelte Components/AiSearchHint',
     component: AiSearchHint,
     tags: ['autodocs'],
     argTypes: {

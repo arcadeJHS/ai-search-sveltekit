@@ -3,7 +3,7 @@ import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
 import { type FilterSuggestion, FilterType } from '../../src/lib/types/Filter.ts';
 
 const meta = {
-    title: 'Components/AiSearchSuggestions',
+    title: 'Svelte Components/AiSearchSuggestions',
     component: AiSearchSuggestions,
     tags: ['autodocs'],
     argTypes: {

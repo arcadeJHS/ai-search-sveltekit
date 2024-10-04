@@ -1,7 +1,4 @@
-import { Meta } from "@storybook/blocks";
 import Schema from "./assets/schema.png";
-
-<Meta title="Web Components" />
 
 # Web Components
 
@@ -44,5 +41,8 @@ Contrary to the dumb Svelte components, they:
 
 The tags relative to those web components are "composed" and included in the HTML/PHP page.  
 They "aggregates" and function as a web application by means of the Svelte stores.
+
+They access Svelte stores in order to communicate each other, and with the underlying LLM API.  
+This choice it's implementation specific, to simplify the orchestration of components in the final page, and avoid writing custom js code to hanlde events and attributes values.
 
 <img src={Schema} alt="Svelte to web components schema" />

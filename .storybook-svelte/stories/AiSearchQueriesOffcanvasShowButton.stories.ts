@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/svelte';
 import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
 
 const meta = {
-    title: 'Components/AiSearchQueriesOffcanvasShowButton',
+    title: 'Svelte Components/AiSearchQueriesOffcanvasShowButton',
     component: AiSearchQueriesOffcanvasShowButton,
     globals: {
         viewport: { value: 'desktop' },

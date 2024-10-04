@@ -1,0 +1,25 @@
+import { Canvas, Meta, Story, DocsPage } from '@storybook/blocks';
+import meta from './stg-ai-search-app-shell.stories.js';
+
+<Meta of={meta} />
+
+The "app shell" is the core of the "application".  
+This component is hence REQUIRED for the application to work.
+
+Mainly, it takes care of the following:
+
+- init the search store, by setting the API's ```baseUrl```
+- init i18n, by loading thr dictionaries, and setting the locale language
+- create the ```session``` of the underlying LLM API (calling the ```start``` method)
+- setup Boostrap and Sveltestrap styles
+
+On page, you simply use it like this:
+
+```html
+<stg-ai-search-app-shell
+    base-url="http://localhost:8099"
+    language="en">
+</stg-ai-search-app-shell>
+```
+
+<DocsPage /> 

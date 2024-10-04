@@ -4,7 +4,7 @@ import type { UserQuery } from '../../src/lib/types/UserQuery.ts';
 import { MessageRole } from '../../src/lib/types/Message.ts';
 
 const meta = {
-    title: 'Components/AiSearchQuery',
+    title: 'Svelte Components/AiSearchQuery',
     component: AiSearchQuery,
     tags: ['autodocs'],
     argTypes: {
