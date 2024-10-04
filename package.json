@@ -58,6 +58,8 @@
     "eslint-plugin-storybook": "^0.9.0",
     "eslint-plugin-svelte": "^2.36.0",
     "globals": "^15.0.0",
+    "msw": "^2.4.9",
+    "msw-storybook-addon": "^2.0.3",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "publint": "^0.1.9",
@@ -85,6 +87,11 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
+    ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
     ]
   }
 }

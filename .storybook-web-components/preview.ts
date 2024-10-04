@@ -1,4 +1,11 @@
 import type { Preview } from '@storybook/svelte';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+
+/*
+ * Initializes MSW
+ * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
+ */
+initialize();
 
 const preview: Preview = {
 	parameters: {
@@ -22,7 +29,8 @@ const preview: Preview = {
 				return a.id === b.id ? 0 : a.id.localeCompare(b.id, { numeric: true });
 			}
 		}
-	}
+	},
+	loaders: [mswLoader]
 };
 
 export default preview;
