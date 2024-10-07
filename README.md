@@ -3,13 +3,17 @@
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
+# Install dependencies
+npm install
+
+# Develop
 npm run dev
 
-# or start the server and open the app in a new browser tab
+# or 
 npm run dev -- --open
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase, demo or preview app.
+Everything inside `src/lib` is part of the library; everything inside `src/routes` can be used as a showcase, demo or preview app (as well as the folder `DEMO`, which showcase a complete use of web components).
 
 ## Building a library of custom elements (web components)
 
@@ -18,25 +22,27 @@ Here we are using the Svelte's Custom Elements API: `https://svelte.dev/docs/cus
 Build Svelte components defined in `src/lib/web-components` into framework-agnostic custom elements.
 
 ### How To
-Create Svelte components in `src/lib/components`, then wrap them as web components in the folder `src/lib/web-components`, adding the Svelte `svelte:options customElement` on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
+Create Svelte components in `src/lib/components`, then "wrap" them as web components in the folder `src/lib/web-components`, adding the Svelte `svelte:options customElement` on top of the component source code (see https://svelte.dev/docs/custom-elements-api): 
 
 ```html
 <svelte:options customElement="webcomponent-counter" />
 ```
 
+The main idea is depicted in the following schema:
+
+![web components implementatio](MOCKUP_UI/schema.png)
+
 The logic is simple:
 
-as a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`:
+as a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`: they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
 
-they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
-
-Then wrap the component into an "web component" in `src/lib/web-components`. Here you can link its props and events to the store.
+Then wrap the component into a "web component" in `src/lib/web-components`. Here you can link its props and events to the store.
 
 Usually, components defined in `src/lib/web-components` are *IMPLEMENTATION SPECIFIC* (for instance, you can also use Boostrap classes or components directly).
 
-Also, define implementation specific css styles on the wrapped component in `src/lib/web-components`. The original component should be as generic an reusable as possible.
+Also, define implementation specific css styles on the wrapped component in `src/lib/web-components`. The original component should be as generic an reusable as possible (exceptions being `AiSearchResult` and `AiSearchResultVideoArea`, almost ported 1:1 from the original templates).
 
-For a simple example see `/Users/jhs/EXMACHINA/ai-search-sveltekit/src/lib/components/AiSearchUserInputForm.svelte` and `src/lib/web-components/wc-ai-search-user-input-form.svelte`.
+For a complete use case, see `src/lib/components/AiSearchPromptArea.svelte` and `src/lib/web-components/wc-ai-search-prompt-area.svelte`.
 
 > **Note:** The "webcomponent-" prefix allows you to define prefixed custom elements. 
 > Define it in `vite.webcomponents.config`, setting a value for the variable `LIBRARY_PREFIX`.
@@ -51,7 +57,7 @@ npm run build:webcomponents
 
 This command builds the components in `dist-web-components` folder, in `es` e `umd` formats.
 
-Then include the compiled js library in a html page, and use the web components (see `/DEMO/index.html`):
+Then include the compiled js library in a html page, and use the web components as you wish (see `DEMO/index.html`, or the complete story in `.storybook-web-components/stories/page.stories.js` for a complete example):
 
 ```html
 <!DOCTYPE html>
@@ -59,19 +65,15 @@ Then include the compiled js library in a html page, and use the web components 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Components DEMO - mjs</title>
-
-    <!-- Sample page style -->
+    <title>Web Components DEMO</title>
     <link rel="stylesheet" href="ai.search.web.components.css">
 
     <style>
         .site-ai-search {
             display: grid;
-            /* grid-template-columns: 2fr 5fr; */
             gap: 0.2rem;
             height: 100%;
             width: 100%;
-
             @media (min-width: 768px) {
                 grid-template-columns: 2fr 5fr; 
             }
@@ -79,50 +81,70 @@ Then include the compiled js library in a html page, and use the web components 
         .site-ai-search * {
             box-sizing: border-box;
         }
+        .site-ai-search__hints {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .site-ai-search__hints > stg-ai-search-hints {
+            @media (min-width: 768px) {
+                max-width: 50vw;
+            }
+            @media (min-width: 992px) {
+                max-width: 30vw;
+            }
+        }
         .site-ai-search__column {
             display: flex;
             flex-direction: column;
             overflow-y: hidden;
         }
-        .site-ai-search__messages {
+        .site-ai-search__results {
+            padding-bottom: 14rem;
+        }
+        .site-ai-search__queries {
             max-height: 45vh;
             display: none;
-
             @media (min-width: 768px) {
                 display: block; 
             }
+        }
+        .site-ai-search__queries__new-search-button {
+            padding-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
     <main>
-        <!-- MOCK: 
-            apiBaseUrl="http://localhost:8099" 
-        -->
-        <!-- ONLINE API: 
-            apiBaseUrl="http://192.168.50.58:9910" 
-        -->
+
         <stg-ai-search-app-shell
-            base-url="http://192.168.50.58:9910"
-            language="it">
+            base-url="http://ai.search.api.url"
+            language="en">
         </stg-ai-search-app-shell>
 
-        <stg-ai-search-floating-user-input></stg-ai-search-floating-user-input>
-        <!-- <stg-ai-search-floating-user-input-variant></stg-ai-search-floating-user-input-variant> -->
+        <stg-ai-search-prompt-area></stg-ai-search-prompt-area>
+
+        <div class="site-ai-search__hints">
+            <stg-ai-search-hints></stg-ai-search-hints>
+        </div>
     
         <div class="container">
             <div class="row">
                 <div class="col-12">
+
+                    <stg-ai-search-error-notification></stg-ai-search-error-notification>
     
                     <div class="site-ai-search">
                         <div class="site-ai-search__column site-ai-search__column--left">
-                            <div class="site-ai-search__messages">
-                                <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
-                                <stg-ai-search-messages></stg-ai-search-messages>
+                            <div class="site-ai-search__queries">
+                                <div class="site-ai-search__queries__new-search-button">
+                                    <stg-ai-search-new-search-button></stg-ai-search-new-search-button>
+                                </div>
+                                <stg-ai-search-queries></stg-ai-search-queries>
                             </div>
                         </div>
                         
-                        <div class="site-ai-search__column">
+                        <div class="site-ai-search__column site-ai-search__results">
                             <stg-ai-search-results></stg-ai-search-results>
                         </div>
                     </div>
@@ -132,53 +154,22 @@ Then include the compiled js library in a html page, and use the web components 
         </div>
     </main>
 
-    <!-- 
-    Most modern browsers support ES modules. 
-    However, there are still some relatively recent browsers that do not support <script type="module">. 
-    Here are a few:
-        - Internet Explorer 11 and earlier: Internet Explorer does not support ES modules at all.
-        - Microsoft Edge (Legacy): The legacy version of Microsoft Edge (before the switch to Chromium) does not support ES modules.
-        - Safari 10.1 and earlier: Safari added support for ES modules in version 11.
-        - Firefox 59 and earlier: Firefox added support for ES modules in version 60.
-        - Chrome 60 and earlier: Chrome added support for ES modules in version 61.
-    -->
-    
-    <!-- Load ES module scripts - if supported by the web browser -->
-    <script type="module" src="ai.search.web.components.es.js"></script>
-    
-    <!-- Fallback for older browsers - if the browser does not support script type="module" and es files -->
-    <script nomodule src="ai.search.web.components.umd.js"></script>
+    <script type="module" src="ai.search.web.components.es.min.js"></script>
+    <script nomodule src="ai.search.web.components.umd.min.js"></script>
 </body>
 </html>
 ```
 
-> Note: the `stg-ai-search-app-shell` component is required: it define common styles, stores, and event bus.
-
-## Building a svelte library
-
-To build your library:
-
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+> Note: the `stg-ai-search-app-shell` component is required: it works as a trait d'union between web components, defining common styles, and the stores/event bus.
 
 ## Web components showcase
 
-The `DEMO` folder is just a showcase of the final product/use (open ìndex.html` file with a web server - for instance `http-server` with Nodejs - to see it).
+The `DEMO` folder is just a showcase of the final product/use (run the `index.html` file on a web server - for instance `http-server` - to see it).
 
-Run:
+To build and "publish" web components in the demo folder (but also to copy them in the final product), run:
 
 ```bash
+# You can configure this script in order to copy files where you prefer
 node publish.js
 ```
 
@@ -188,7 +179,7 @@ after:
 npm run build:webcomponents
 ```
 
-Or simply run:
+Or simply run the following command to build and copy your files:
 
 ```bash
 npm run build:webcomponents:publish
@@ -196,17 +187,23 @@ npm run build:webcomponents:publish
 
 ## Mockup UI
 
-Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la UX/UI:
+The `MOCKUP_UI` folder contains a few UX/UI screenshots (desktop and responsive):
 
-![Mockup UI 1](MOCKUP_UI/01.png)
+![home](MOCKUP_UI/01.png)
 
-![Mockup UI 2](MOCKUP_UI/02.png)
+![search results](MOCKUP_UI/02.png)
 
-![Mockup UI 3](MOCKUP_UI/03.png)
+![user queries](MOCKUP_UI/03.png)
 
-![Mockup UI 4](MOCKUP_UI/04.png)
+![hide search suggestions](MOCKUP_UI/04.png)
 
-![Mockup UI 5](MOCKUP_UI/05.png)
+![search on mobile](MOCKUP_UI/05.png)
+
+![results on mobile](MOCKUP_UI/06.png)
+
+![hide search suggestions on mobile](MOCKUP_UI/07.png)
+
+![list user queries on mobile](MOCKUP_UI/08.png)
 
 
 ## Technologies
@@ -218,6 +215,7 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 - svelte-i18n library for localization:
   - Library: https://github.com/kaisermann/svelte-i18n
   - Tips: https://centus.com/blog/svelte-localization#:~:text=svelte%2Di18n%20will%20automatically%20choose,value%20and%20the%20current%20locale
+- Storybook to showcase components
 - Font-awesome icons through the "svelte-fa" package 
   - Library: https://cweili.github.io/svelte-fa/
   - Icons packages: https://www.npmjs.com/search?q=%40fortawesome%20svg%20icons
@@ -235,46 +233,16 @@ Il folder `MOCKUP_UI` contiene alcune idee su come potrebbe essere sviluppata la
 Launch storybook with:
 
 ```bash
+# Launch storybook for svelte components on port 6006
+npm run storybook:svelte
+
+# Launch storybook for web components on port 6007
+npm run storybook:webcomponents
+
+# Launch a storybook composition of storybook:svelte and storybook:webcomponents on port 6007
 npm run storybook
 ```
 
-### References
+### References for storybook/web components
 
 https://github.com/LWC-Essentials/storybook/blob/master/packages/lwc-library/stories/hello-time.stories.js
-
-# Riepilogo su come usare i vari repo per lo sviluppo
-
-/**
- * Repo: symfony-web-app-docker (stg-dockerized)
- * Docker-compose che tira su sito PHP stg, Keycloak, AI Search API e LLM...
- * branch: main
- *
- * Documentazione:
- * - README.md esaustivo su come mettere in piedi tutto l'ambiente usando Docker
- * - folder DOCUMENTAZIONE: con dettagli sull'implmnetazione di AB Variants, Keycloak e AI Search (mock compresi)
- */
-git clone git@bitbucket.org:exm-stg/symfony-web-app-docker.git
-
-
-/**
- * Repo: stg-service
- * Sito PHP stg
- * Branch: exm-ai-search
- *  
- * Documentazione:
- * - documentazione principalmente gestita da stg. Si veda invece README.md nel repo symfony-web-app-docker
- */
-git clone git@bitbucket.org:exm-stg/stg-service.git
-
-
-/**
- * Repo: ai-search-web-components
- * Sveltekit project e web components per implementazione ricerca AI
- * branch: sveltestrap
- *
- * Documentazione:
- * - README.md: spiega a linee generali il progetto, come sviluppare e come compilare i web components da usare nel sito Stagend
- * - folder DEMO: contiene una semplice demo dell'uso dei web components generati in una pagina HTML
- * - folder MOCKUP_UI: contiene alcune immagini con un'idea di possible UX/UI
- */
-git clone git@bitbucket.org:exm-stg/ai-search-web-components.git

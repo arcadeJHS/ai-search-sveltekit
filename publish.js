@@ -10,9 +10,9 @@ const __dirname = path.dirname(__filename);
 const sourceDir = path.resolve(__dirname, 'dist-web-components');
 const targetDir = path.resolve(__dirname, 'DEMO');
 
-// Autopublish to local stagend website. Customize your folder path
-const stagendWebsiteJsDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
-const stagendWebsiteCssDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/css';
+// Autopublish to local website. Customize your folder path
+const stgWebsiteJsDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
+const stgWebsiteCssDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/css';
 
 // Do not copy these files
 const filesToSkipCopy = ['mockServiceWorker.js'];
@@ -85,7 +85,7 @@ console.log(`
 `);
 
 copyFiles(sourceDir, targetDir, targetDir);
-copyFiles(sourceDir, stagendWebsiteJsDir, stagendWebsiteCssDir);
+copyFiles(sourceDir, stgWebsiteJsDir, stgWebsiteCssDir);
 
 console.log(`
 #############################

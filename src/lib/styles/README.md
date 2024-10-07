@@ -13,4 +13,4 @@ For an illuminating introduction read:
 > Note:
 > CSS modules are CSS-in-JS. Please use with moderation, only if necessary.
 > Primarily use Svelte's scoped styles (or Bootstrap 5 classes).
-> Sometimes, they must be used, in order to reset/remove "wrong and wild" custom bootstrap override on stagend.com website side.
+> Sometimes, they must be used, in order to reset/remove "wrong and wild" custom bootstrap override on stg website side.

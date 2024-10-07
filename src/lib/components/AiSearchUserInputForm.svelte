@@ -75,6 +75,8 @@ onMount(() => {
     initialTextareaHeight = textareaEl.clientHeight + 'px';
     textareaEl.style.height = initialTextareaHeight;
 
+    resize();
+
     // const observeSubmitButtonContainer = observeElementHeight(submitButtonContainerEl, (element: HTMLElement, height: number) => {
     //     const threshold = 43;
     //     element.style.alignItems = height > threshold ? 'flex-end' : 'center';

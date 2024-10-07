@@ -8,7 +8,7 @@ export type Selection = {
     description: string;
     distance: number;
 
-    // Stagend specific fields
+    // stg specific fields
     displayName?: string;
     aiQuoteAvg?: number;
     artistType?: string;
