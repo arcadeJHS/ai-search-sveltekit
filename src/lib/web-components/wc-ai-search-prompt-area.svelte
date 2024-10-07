@@ -13,6 +13,7 @@ import WcAiSearchQueries from '$lib/web-components/wc-ai-search-queries.svelte';
 import { Offcanvas } from '@sveltestrap/sveltestrap';
 import padding from '$lib/styles/padding.module.css';
 import offcanvas from '$lib/styles/offcanvas.module.css';
+	import { includes } from 'lodash';
 
 $: isFollowup = !!$userQueriesStore.length;
 $: searchStatus = $searchStore.status;
@@ -38,16 +39,18 @@ const onUserInput = async (event: CustomEvent) => {
 const resetSearch = async () => await searchStore.reset();
 </script>
 
-<AiSearchPromptArea 
-    {isFollowup} 
-    {searchStatus} 
-    {searchSession} 
-    {filters}
-    on:userInput={onUserInput}
-    on:toggleQueriesOffcanvas={toggle} 
-    on:resetSearch={resetSearch}
-/>
+{#if ['idle', 'error'].includes(searchStatus) }
+    <AiSearchPromptArea 
+        {isFollowup} 
+        {searchStatus} 
+        {searchSession} 
+        {filters}
+        on:userInput={onUserInput}
+        on:toggleQueriesOffcanvas={toggle} 
+        on:resetSearch={resetSearch}
+    />
 
-<Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
-    <WcAiSearchQueries class={padding.noPadding} on:querySelected={toggle} />
-</Offcanvas>
+    <Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
+        <WcAiSearchQueries class={padding.noPadding} on:querySelected={toggle} />
+    </Offcanvas>
+{/if}
