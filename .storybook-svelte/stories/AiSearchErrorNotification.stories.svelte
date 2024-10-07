@@ -22,4 +22,5 @@ export const meta = {
 </Template>
 
 <Story name="Default" />
+
 <Story name="Error" args={{ status: 'error', error: 'An error occurred' }} />

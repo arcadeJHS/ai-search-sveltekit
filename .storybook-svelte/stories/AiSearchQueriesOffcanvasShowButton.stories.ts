@@ -5,7 +5,7 @@ const meta = {
     title: 'Svelte Components/AiSearchQueriesOffcanvasShowButton',
     component: AiSearchQueriesOffcanvasShowButton,
     globals: {
-        viewport: { value: 'desktop' },
+        viewport: { value: 'responsive' },
     }
 } satisfies Meta<AiSearchQueriesOffcanvasShowButton>;
 
@@ -24,9 +24,9 @@ export const VisibleOnMobile: Story = {
 
 export const HiddenOnDesktop: Story = {
     globals: {
-        viewport: { value: 'desktop' },
+        viewport: { value: 'responsive' },
     },
     parameters: {
-        viewport: { value: 'desktop' },
+        viewport: { value: 'responsive' },
     }
 };

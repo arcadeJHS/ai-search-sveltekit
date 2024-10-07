@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
 import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
-import { type FilterSuggestion, FilterType } from '../../src/lib/types/Filter.ts';
+import { filtersSuggestionsMock } from '../mocks';
 
 const meta = {
     title: 'Svelte Components/AiSearchSuggestions',
@@ -16,37 +16,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const filters: FilterSuggestion = {
-    query: 'A rock band for a party in Lugano',
-    applied: [{
-        f: FilterType.ARTIST_GENRE,
-        k: 2,
-        v: 'Rock',
-        i: false
-    }],
-    notApplied: [
-        FilterType.ARTIST_TYPE,
-        FilterType.WHEN,
-        FilterType.ARTIST_SUB_TYPE,
-        FilterType.LOCATION
-    ],
-    suggestions: {
-        [FilterType.ARTIST_TYPE]: [1, 2, 3],
-        [FilterType.WHEN]: ['suggestion'],
-        [FilterType.ARTIST_SUB_TYPE]: [1,2,3],
-        [FilterType.LOCATION]: ['zurich', 'lugano', 'geneva']
-    }
-};
-
 export const Default: Story = {
     args: {
-        filters
+        filters: filtersSuggestionsMock
     }
 };
 
 export const OnMobile: Story = {
     args: {
-        filters
+        filters: filtersSuggestionsMock
     },
     globals: {
         viewport: { value: 'mobile1', isRotated: false },
@@ -58,7 +36,7 @@ export const OnMobile: Story = {
 
 export const SuggestionsHidden: Story = {
     args: {
-        filters,
+        filters: filtersSuggestionsMock,
         suggestionsVisible: false
     }
 };

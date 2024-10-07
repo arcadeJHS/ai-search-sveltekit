@@ -14,6 +14,7 @@ const config: StorybookConfig = {
 		'@chromatic-com/storybook',
 		'@storybook/addon-interactions',
 		'@storybook/addon-viewport',
+		'@storybook/addon-actions'
 	],
 	framework: {
 		name: '@storybook/sveltekit',

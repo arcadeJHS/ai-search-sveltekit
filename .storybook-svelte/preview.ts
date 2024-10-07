@@ -20,6 +20,7 @@ const preview: Preview = {
 		},
 		viewport: {
 			viewports: INITIAL_VIEWPORTS,
+			defaultViewport: 'responsive'
 		},
 		options: {
 			// Sort stories in the sidebar

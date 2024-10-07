@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import AiSearchNewSearchButton from '$lib/components/AiSearchNewSearchButton.svelte';
+import AiSearchNewSearchButton from '../../src/lib/components/AiSearchNewSearchButton.svelte';
 
 const meta = {
     title: 'Svelte Components/AiSearchNewSearchButton',

@@ -38,6 +38,7 @@
     "@chromatic-com/storybook": "^1.9.0",
     "@playwright/test": "^1.28.1",
     "@rollup/plugin-replace": "^5.0.7",
+    "@storybook/addon-actions": "^8.3.5",
     "@storybook/addon-essentials": "^8.3.3",
     "@storybook/addon-interactions": "^8.3.3",
     "@storybook/addon-links": "^8.3.3",
