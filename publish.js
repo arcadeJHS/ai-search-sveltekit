@@ -14,6 +14,9 @@ const targetDir = path.resolve(__dirname, 'DEMO');
 const stagendWebsiteJsDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/js/lib/ai-search';
 const stagendWebsiteCssDir = '/Users/jhs/EXMACHINA/stg-dockerized/stg-service/web/css';
 
+// Do not copy these files
+const filesToSkipCopy = ['mockServiceWorker.js'];
+
 // Remove old files, except "index.html"
 function emptyDirExceptIndex(dir) {
     const files = fs.readdirSync(dir);
@@ -53,10 +56,16 @@ function copyFiles(srcDir, jsDestDir, cssDestDir) {
         const jsDestPath = path.join(jsDestDir, entry.name);
         const cssDestPath = cssDestDir ? path.join(cssDestDir, entry.name) : null;
 
+        if (!entry.isDirectory() && filesToSkipCopy.includes(entry.name)) {
+            console.log(`Skipping ${entry.name}`);
+            continue;
+        }
+
         if (entry.isDirectory()) {
             copyFiles(srcPath, jsDestDir, cssDestDir);
         } else {
             const ext = path.extname(entry.name);
+
             if (ext === '.js' && !entry.name.endsWith('.min.js')) {
                 const minifiedSrcPath = minifyJsFile(srcPath);
                 fs.copyFileSync(minifiedSrcPath, jsDestPath.replace('.js', '.min.js'));
