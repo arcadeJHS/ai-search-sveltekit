@@ -5,3 +5,7 @@
         --ai-search-show-query-offcanvas-button-display: none;
     }
 }
+
+.background-orange {
+    background-color: #fc0;
+}

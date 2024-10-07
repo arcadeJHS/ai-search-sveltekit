@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
 import type { Meta } from '@storybook/svelte';
 import AiSearchPromptArea from '../../src/lib/components/AiSearchPromptArea.svelte';
-import { filtersSuggestionsMock } from '../mocks';
 
 export const meta = {
     title: 'Svelte Components/AiSearchPromptArea',
@@ -14,12 +13,11 @@ export const meta = {
         filters: { control: 'object' }
     }
 } satisfies Meta<AiSearchPromptArea>;
-
-
 </script>
 
 <script lang="ts">
 import { Story, Template } from '@storybook/addon-svelte-csf';
+import { filtersSuggestionsMock } from '../mocks';
 
 const defaultArgs = {
     isFollowup: false,

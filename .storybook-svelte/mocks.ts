@@ -1,6 +1,8 @@
 import { register, init, t } from 'svelte-i18n';
 import en from '../src/lib/i18n/en.json';
 import { type FilterSuggestion, FilterType } from '../src/lib/types/Filter';
+import type { UserQuery } from '../src/lib/types/UserQuery.ts';
+import { MessageRole } from '../src/lib/types/Message.ts';
 
 export const filtersSuggestionsMock: FilterSuggestion = {
     query: 'A rock band for a party in Lugano',
@@ -23,6 +25,27 @@ export const filtersSuggestionsMock: FilterSuggestion = {
         [FilterType.LOCATION]: ['zurich', 'lugano', 'geneva']
     }
 };
+
+export const userQueriesMock: UserQuery[] = [
+    {
+        key: '111',
+        role: MessageRole.User,
+        content: 'A rock band for a party in Lugano',
+        resultsCount: 0
+    },
+    {
+        key: '222',
+        role: MessageRole.User,
+        content: 'A jazz band for a party in Zurich',
+        resultsCount: 1
+    },
+    {
+        key: '333',
+        role: MessageRole.User,
+        content: 'A rock band for a party in Geneva',
+        resultsCount: 10
+    }
+];
 
 register('en', () => Promise.resolve(en));
 
