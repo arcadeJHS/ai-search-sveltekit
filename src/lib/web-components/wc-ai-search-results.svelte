@@ -4,69 +4,31 @@
 }} />
 
 <script lang="ts">
-import { tick, onMount } from 'svelte';
+import AiSearchResults from '$lib/components/AiSearchResults.svelte';
+
 import { searchStore } from '$lib/stores/searchStore.ts';
-import AiSearchSearchingIcon from '$lib/components/AiSearchSearchingIcon.svelte';
-import AiSearchResult from '$lib/web-components/ai-search-result.svelte'; 
-import { resultsSetStore } from '$lib/stores/resultsSetStore.ts';
-import button from '$lib/styles/button.module.css';
-import { t } from 'svelte-i18n';
 import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
+import { resultsSetStore } from '$lib/stores/resultsSetStore.ts';
+import { playingVideoStore } from '$lib/stores/playingVideoStore.ts';
 
 let itemsToShow = 9;
 
-const scrollToTop = async () => {
-    await tick();
-    if (typeof window !== 'undefined') {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
-};
+$: searchStatus = $searchStore.status;
+$: resultsSet = $resultsSetStore;
+$: currentPlayingVideoId = $playingVideoStore ?? undefined;
 
-$: $resultsSetStore, scrollToTop();
-
-$: paginatedResults = $resultsSetStore.slice(0, itemsToShow);
-
-const showMore = () => {
-    itemsToShow += 9;
+const handleLoadVideo = (event: { detail: { videoId: number; } }) => {
+    playingVideoStore.set(event.detail.videoId);
 }
-
-onMount(() => {
-    scrollToTop();
-});
 </script>
 
 {#if $searchStore && $userQueriesStore.length}
-    <div class="container">
-        <AiSearchSearchingIcon searching={$searchStore.status === 'searching'} />
-
-        <div class="row g-4">
-            {#if $searchStore.status !== 'searching' && !paginatedResults.length}
-                <div class="col">
-                    <p style="margin: 0.8rem;">{$t('no_results')}</p>
-                </div>
-            {:else}
-                {#each paginatedResults as result}
-                    <AiSearchResult {result} />
-                {/each}
-            {/if}
-        </div>
-        
-        {#if itemsToShow < $resultsSetStore.length}
-            <div class="show-more">
-                <button class={button.outlined} on:click={showMore}>{$t('show_more')}</button>
-            </div>
-        {/if}
-    </div>
+    <AiSearchResults
+        {searchStatus} 
+        {resultsSet}
+        {currentPlayingVideoId}
+        {itemsToShow}
+        on:loadVideo={handleLoadVideo}
+        on:resultSelected={() => playingVideoStore.stopAllVideos()}
+    />
 {/if}
-
-<style>
-.show-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-}
-</style>

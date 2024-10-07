@@ -8,12 +8,12 @@ import { t } from 'svelte-i18n';
 const dispatch = createEventDispatcher();
 </script>
 
-<button on:click={() => dispatch('click')} class={`${button.iconButton} wc-ai-search-floating-user-input`} title={$t('user_queries.show')}>
+<button on:click={() => dispatch('click')} class={`${button.iconButton} ai-search-queries-offcanvasshow-button`} title={$t('user_queries.show')}>
     <Fa icon={faComment} size="2x" />
 </button>
 
 <style>
-.wc-ai-search-floating-user-input {
+.ai-search-queries-offcanvasshow-button {
     display: var(--ai-search-show-query-offcanvas-button-display, block);
 }
 </style>

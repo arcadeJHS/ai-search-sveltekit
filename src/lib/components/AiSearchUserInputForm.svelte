@@ -65,7 +65,7 @@ const loadTranslations = async () => {
 
 const focusTextArea = async () => {
     await tick();
-    textareaEl.focus();
+    textareaEl?.focus();
 };
 
 onMount(() => {

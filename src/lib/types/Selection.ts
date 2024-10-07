@@ -1,4 +1,3 @@
-import { type ArtistType, type ArtistSubType } from './Filter.ts';
 import { type ArtistLevel } from './ArtistLevel.ts';
 
 export type Selection = {
@@ -12,7 +11,7 @@ export type Selection = {
     // Stagend specific fields
     displayName?: string;
     aiQuoteAvg?: number;
-    artistType?: ArtistType;
+    artistType?: string;
     bookings?: number;
     offer?: string;
     currency?: string;
@@ -25,7 +24,7 @@ export type Selection = {
     city?: string;
     country?: string;
     location?: string;
-    subtypes?: ArtistSubType[];
+    subtypes?: string[];
     imageUrl?: string;
     whois?: string;
     videoYtId?: string;

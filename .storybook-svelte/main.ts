@@ -4,6 +4,7 @@ import path from 'path';
 
 const config: StorybookConfig = {
 	stories: ['./stories/**/*.mdx', './stories/**/*.stories.@(js|ts|svelte)'],
+	staticDirs: ['../public', '../static'],
 	features: {
 		viewportStoryGlobals: true,
 	},

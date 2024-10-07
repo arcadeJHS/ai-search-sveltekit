@@ -3,6 +3,7 @@ import en from '../src/lib/i18n/en.json';
 import { type FilterSuggestion, FilterType } from '../src/lib/types/Filter';
 import type { UserQuery } from '../src/lib/types/UserQuery.ts';
 import { MessageRole } from '../src/lib/types/Message.ts';
+import { type Selection } from '../src/lib/types/Selection';
 
 export const filtersSuggestionsMock: FilterSuggestion = {
     query: 'A rock band for a party in Lugano',
@@ -46,6 +47,101 @@ export const userQueriesMock: UserQuery[] = [
         resultsCount: 10
     }
 ];
+
+export const resultsMock: Selection[] = [
+    {
+        id: 1,
+        name: "displayName 1",
+        type: "type",
+        description: "description",
+        distance: 0.5000,
+        displayName: "displayName",
+        aiQuoteAvg: 1501,
+        artistType: "Band",
+        bookings: 1,
+        offer: "Experienced members from famous acts like Coreleoni, UDO, Jorn, Gotthard playing a repertoire of classic Rock Metal from 70s and 80s (AC/DC, Led Zeppelin, Kiss, ecc...) with skills and passion that scores between rock and metal fans!",
+        currency: "CHF",
+        musician: true,
+        tagline: "Classic Rock Band, covers and original tunes played on they're best",
+        ratingVotes: 3,
+        ratingStars: 10,
+        nickName: "altovoltaggio",
+        userBookPlace: "zürich",
+        city: "Mezzovico-Vira",
+        country: "CH",
+        location: "Mezzovico-Vira, CH",
+        subtypes: ["Big Band", "Cover", "Lounge"],
+        imageUrl: "/thumb.png",
+        whois: "youtube",
+        videoYtId: "fj-V7UW6vD4",
+        itemprop_desc: "Rock, Metal Classic Rock Classic Rock Band, covers and original tunes played on they're best",
+        cachet_min: "500", 
+        telephone: "+41791234567",
+        level_css: "rockstar",
+    },
+    {
+        id: 2,
+        name: "displayName 2",
+        type: "type",
+        description: "description",
+        distance: 0.5000,
+        displayName: "displayName",
+        aiQuoteAvg: 1501,
+        artistType: "Band",
+        bookings: 1,
+        offer: "Experienced members from famous acts like Coreleoni, UDO, Jorn, Gotthard playing a repertoire of classic Rock Metal from 70s and 80s (AC/DC, Led Zeppelin, Kiss, ecc...) with skills and passion that scores between rock and metal fans!",
+        currency: "CHF",
+        musician: true,
+        tagline: "Classic Rock Band, covers and original tunes played on they're best",
+        ratingVotes: 3,
+        ratingStars: 10,
+        nickName: "altovoltaggio",
+        userBookPlace: "zürich",
+        city: "Mezzovico-Vira",
+        country: "CH",
+        location: "Mezzovico-Vira, CH",
+        subtypes: ["Big Band", "Cover", "Lounge"],
+        imageUrl: "/thumb.png",
+        whois: "youtube",
+        videoYtId: "fj-V7UW6vD4",
+        itemprop_desc: "Rock, Metal Classic Rock Classic Rock Band, covers and original tunes played on they're best",
+        cachet_min: "500", 
+        telephone: "+41791234567",
+        level_css: "rockstar",
+    },
+    {
+        id: 3,
+        name: "displayName 3",
+        type: "type",
+        description: "description",
+        distance: 0.5000,
+        displayName: "displayName",
+        aiQuoteAvg: 1501,
+        artistType: "Band",
+        bookings: 1,
+        offer: "Experienced members from famous acts like Coreleoni, UDO, Jorn, Gotthard playing a repertoire of classic Rock Metal from 70s and 80s (AC/DC, Led Zeppelin, Kiss, ecc...) with skills and passion that scores between rock and metal fans!",
+        currency: "CHF",
+        musician: true,
+        tagline: "Classic Rock Band, covers and original tunes played on they're best",
+        ratingVotes: 3,
+        ratingStars: 10,
+        nickName: "altovoltaggio",
+        userBookPlace: "zürich",
+        city: "Mezzovico-Vira",
+        country: "CH",
+        location: "Mezzovico-Vira, CH",
+        subtypes: ["Big Band", "Cover", "Lounge"],
+        imageUrl: "/thumb.png",
+        whois: "youtube",
+        videoYtId: "fj-V7UW6vD4",
+        itemprop_desc: "Rock, Metal Classic Rock Classic Rock Band, covers and original tunes played on they're best",
+        cachet_min: "500", 
+        telephone: "+41791234567",
+        level_css: "rockstar",
+    }
+];
+
+export const resultMock: Selection = resultsMock[0];
 
 register('en', () => Promise.resolve(en));
 
