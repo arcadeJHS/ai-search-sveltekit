@@ -25,6 +25,20 @@ const pageHtml = html`
         .site-ai-search * {
             box-sizing: border-box;
         }
+        .site-ai-search__hints {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .site-ai-search__hints > stg-ai-search-hints {
+            @media (min-width: 768px) {
+                max-width: 50vw;
+            }
+
+            @media (min-width: 992px) {
+                max-width: 30vw;
+            }
+        }
         .site-ai-search__column {
             display: flex;
             flex-direction: column;
@@ -54,6 +68,10 @@ const pageHtml = html`
         </stg-ai-search-app-shell>
 
         <stg-ai-search-prompt-area></stg-ai-search-prompt-area>
+
+        <div class="site-ai-search__hints">
+            <stg-ai-search-hints></stg-ai-search-hints>
+        </div>
     
         <div class="container">
             <div class="row">
