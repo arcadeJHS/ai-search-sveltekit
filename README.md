@@ -34,7 +34,9 @@ The main idea is depicted in the following schema:
 
 The logic is simple:
 
-as a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`: they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
+Svelte stores act as a sort of bridge between components. When you build the Svelte components as web components, you can use the single components independently, as, and where, you prefer; nonetheless, the act as a cohesive application, keeping, thanks to store, the ability to talk each other, sharing a global state.
+
+As a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`: they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
 
 Then wrap the component into a "web component" in `src/lib/web-components`. Here you can link its props and events to the store.
 
@@ -162,7 +164,7 @@ Then include the compiled js library in a html page, and use the web components 
 
 > Note: the `stg-ai-search-app-shell` component is required: it works as a trait d'union between web components, defining common styles, and the stores/event bus.
 
-## Web components showcase
+## Web components showcase
 
 The `DEMO` folder is just a showcase of the final product/use (run the `index.html` file on a web server - for instance `http-server` - to see it).
 
@@ -189,24 +191,24 @@ npm run build:webcomponents:publish
 
 The `MOCKUP_UI` folder contains a few UX/UI screenshots (desktop and responsive):
 
-![home](MOCKUP_UI/01.png)
+<img src="MOCKUP_UI/01.png" alt="home" style="width: auto; border: 1px solid #ddd;" />
 
-![search results](MOCKUP_UI/02.png)
+<img src="MOCKUP_UI/02.png" alt="search results" style="width: auto; border: 1px solid #ddd;" />
 
-![user queries](MOCKUP_UI/03.png)
+<img src="MOCKUP_UI/03.png" alt="user queries" style="width: auto; border: 1px solid #ddd;" />
 
-![hide search suggestions](MOCKUP_UI/04.png)
+<img src="MOCKUP_UI/04.png" alt="hide search suggestions" style="width: auto; border: 1px solid #ddd;" />
 
-![search on mobile](MOCKUP_UI/05.png)
+<img src="MOCKUP_UI/05.png" alt="search on mobile" style="width: auto; border: 1px solid #ddd;" />
 
-![results on mobile](MOCKUP_UI/06.png)
+<img src="MOCKUP_UI/06.png" alt="results on mobile" style="width: auto; border: 1px solid #ddd;" />
 
-![hide search suggestions on mobile](MOCKUP_UI/07.png)
+<img src="MOCKUP_UI/07.png" alt="hide search suggestions on mobile" style="width: auto; border: 1px solid #ddd;" />
 
-![list user queries on mobile](MOCKUP_UI/08.png)
+<img src="MOCKUP_UI/08.png" alt="list user queries on mobile" style="width: auto; border: 1px solid #ddd;" />
 
 
-## Technologies
+## Technologies
 
 - Svelte/Vite to develop and build/deploy web components
 - Sveltestrap as components library (only if and when required)
