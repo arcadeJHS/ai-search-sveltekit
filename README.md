@@ -193,38 +193,16 @@ npm run build:webcomponents:publish
 
 The `MOCKUP_UI` folder contains a few UX/UI screenshots (desktop and responsive):
 
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
-    <img src="MOCKUP_UI/01.png" alt="home" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
-    <img src="MOCKUP_UI/02.png" alt="search results" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
-    <img src="MOCKUP_UI/03.png" alt="user queries" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
-    <img src="MOCKUP_UI/04.png" alt="hide search suggestions" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
-    <img src="MOCKUP_UI/05.png" alt="search on mobile" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
-    <img src="MOCKUP_UI/06.png" alt="results on mobile" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
-    <img src="MOCKUP_UI/07.png" alt="hide search suggestions on mobile" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
-<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
-    <img src="MOCKUP_UI/08.png" alt="list user queries on mobile" style="display: block; max-width: 100%; height: auto;" />
-</div>
-
+<table>
+    <tr><td><img src="MOCKUP_UI/01.png" alt="home" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/02.png" alt="search results" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/03.png" alt="user queries" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/04.png" alt="hide search suggestions" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/05.png" alt="search on mobile" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/06.png" alt="results on mobile" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/07.png" alt="hide search suggestions on mobile" /></td></tr>
+    <tr><td><img src="MOCKUP_UI/08.png" alt="list user queries on mobile" />/td></tr>
+</table>
 
 ## Technologies
 
