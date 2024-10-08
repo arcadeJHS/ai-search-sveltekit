@@ -241,6 +241,10 @@ npm run storybook:webcomponents
 npm run storybook
 ```
 
-### References for storybook/web components
+### References for storybook/svelte/web components
 
 https://github.com/LWC-Essentials/storybook/blob/master/packages/lwc-library/stories/hello-time.stories.js
+
+https://github.com/storybookjs/addon-svelte-csf/tree/main
+
+https://github.com/21RISK/svelte-storybook-events
