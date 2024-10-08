@@ -34,7 +34,7 @@ The main idea is depicted in the following schema:
 
 The logic is simple:
 
-Svelte stores act as a sort of bridge between components. When you build the Svelte components as web components, you can use the single components independently, as, and where, you prefer; nonetheless, the act as a cohesive application, keeping, thanks to store, the ability to talk each other, sharing a global state.
+Svelte stores act as a sort of bridge between components. When you build the Svelte components as web components, you can use the single components independently, as, and where, you prefer; nonetheless, they act as a cohesive application, keeping, thanks to the stores, the ability to talk each other, sharing a global state.
 
 As a default rule (for more complex components could be maybe possible to break the rule), keep "store agnostic" the svelte components inside `src/lib/components`: they can onyl receive `props` from parent, and emit events with svelte's `createEventDispatcher`.
 
@@ -46,8 +46,10 @@ Also, define implementation specific css styles on the wrapped component in `src
 
 For a complete use case, see `src/lib/components/AiSearchPromptArea.svelte` and `src/lib/web-components/wc-ai-search-prompt-area.svelte`.
 
+Configure Vite to build web components in `vite.webcomponents.config`.
+
 > **Note:** The "webcomponent-" prefix allows you to define prefixed custom elements. 
-> Define it in `vite.webcomponents.config`, setting a value for the variable `LIBRARY_PREFIX`.
+> Configure it in `vite.webcomponents.config`: set a value for `LIBRARY_PREFIX`.
 
 Define which components you want to expose, exporting them in the `src/lib/web-components/index.ts` file.
 
@@ -191,21 +193,37 @@ npm run build:webcomponents:publish
 
 The `MOCKUP_UI` folder contains a few UX/UI screenshots (desktop and responsive):
 
-<img src="MOCKUP_UI/01.png" alt="home" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
+    <img src="MOCKUP_UI/01.png" alt="home" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/02.png" alt="search results" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
+    <img src="MOCKUP_UI/02.png" alt="search results" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/03.png" alt="user queries" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
+    <img src="MOCKUP_UI/03.png" alt="user queries" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/04.png" alt="hide search suggestions" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 100%;">
+    <img src="MOCKUP_UI/04.png" alt="hide search suggestions" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/05.png" alt="search on mobile" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
+    <img src="MOCKUP_UI/05.png" alt="search on mobile" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/06.png" alt="results on mobile" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
+    <img src="MOCKUP_UI/06.png" alt="results on mobile" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/07.png" alt="hide search suggestions on mobile" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
+    <img src="MOCKUP_UI/07.png" alt="hide search suggestions on mobile" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
-<img src="MOCKUP_UI/08.png" alt="list user queries on mobile" style="width: auto; border: 1px solid #ddd;" />
+<div style="border: 1px solid #ddd; display: inline-block; max-width: 50%;">
+    <img src="MOCKUP_UI/08.png" alt="list user queries on mobile" style="display: block; max-width: 100%; height: auto;" />
+</div>
 
 
 ## Technologies
