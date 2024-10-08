@@ -6,6 +6,7 @@
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
   import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
   import WcAiSearchHints from '$lib/web-components/wc-ai-search-hints.svelte';
+  import WcAiSearchFilters from '$lib/web-components/wc-ai-search-filters.svelte';
 </script>
 
 <main>
@@ -43,6 +44,7 @@
           </div>
           
           <div class="site-ai-search__column site-ai-search__results">
+            <WcAiSearchFilters visible />
             <WcAiSearchResults />
           </div>
         </div>

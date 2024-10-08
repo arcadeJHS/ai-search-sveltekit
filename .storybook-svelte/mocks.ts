@@ -1,18 +1,42 @@
 import { register, init, t } from 'svelte-i18n';
 import en from '../src/lib/i18n/en.json';
-import { type FilterSuggestion, FilterType } from '../src/lib/types/Filter';
+import { type FilterSuggestion, FilterType, type Filter } from '../src/lib/types/Filter';
 import type { UserQuery } from '../src/lib/types/UserQuery.ts';
 import { MessageRole } from '../src/lib/types/Message.ts';
 import { type Selection } from '../src/lib/types/Selection';
 
-export const filtersSuggestionsMock: FilterSuggestion = {
-    query: 'A rock band for a party in Lugano',
-    applied: [{
+export const appliedFiltersMock:Filter[] = [
+    {
         f: FilterType.ARTIST_GENRE,
         k: 2,
         v: 'Rock',
         i: false
-    }],
+    },
+    {
+        f: FilterType.WHEN,
+        k: '123',
+        v: 'Today',
+        i: false,
+        p: ['2025-06-01', '2025-06-15']
+    },
+    {
+        f: FilterType.ARTIST_SUB_TYPE,
+        k: 1,
+        v: 'Cover',
+        i: false
+    },
+    {
+        f: FilterType.LOCATION,
+        k: '222',
+        v: 'Lugano',
+        i: false,
+        p: ['46.0057', '8.9482']
+    }
+];
+
+export const filtersSuggestionsMock: FilterSuggestion = {
+    query: 'A rock band for a party in Lugano',
+    applied: appliedFiltersMock,
     notApplied: [
         FilterType.ARTIST_TYPE,
         FilterType.WHEN,

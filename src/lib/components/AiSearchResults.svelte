@@ -35,10 +35,10 @@ onMount(() => {
 });
 </script>
 
-<div class="container">
+<div class="container g-4">
     <AiSearchSearchingIcon searching={searchStatus === 'searching'} />
 
-    <div class="row g-4">
+    <div class="row">
         {#if searchStatus !== 'searching' && !paginatedResults.length}
             <div class="col">
                 <p style="margin: 0.8rem;">{$t('no_results')}</p>

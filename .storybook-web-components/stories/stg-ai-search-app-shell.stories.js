@@ -18,6 +18,6 @@ export const AppShell = {
         language: 'en'
     },
     render: (args) => html`
-        <stg-ai-search-app-shell base-url=${args.baseUrl} language=${args.language}></stg-ai-search-app-shel>
+        <stg-ai-search-app-shell base-url=${args.baseUrl} language=${args.language}></stg-ai-search-app-shell>
     `
 };
