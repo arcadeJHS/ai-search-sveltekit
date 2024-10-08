@@ -90,6 +90,7 @@ const pageHtml = html`
                         </div>
                         
                         <div class="site-ai-search__column site-ai-search__results">
+                            <stg-ai-search-filters visible></stg-ai-search-filters>
                             <stg-ai-search-results></stg-ai-search-results>
                         </div>
                     </div>
