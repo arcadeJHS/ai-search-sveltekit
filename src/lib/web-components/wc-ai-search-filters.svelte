@@ -17,9 +17,6 @@ export let visible: boolean = false;
 let appliedFilters: Filter[] = [];
 let notAppliedFilters: (keyof SuggestionPool)[] = [];
 
-console.log(visible);
-console.log(typeof visible);
-
 $: visibleBoolean = (typeof visible === 'string') ? (visible === 'true') : visible;
 $: appliedFilters = $filtersStore.applied;
 $: notAppliedFilters = $filtersStore.notApplied;
