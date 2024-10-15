@@ -285,8 +285,8 @@ export type WhenFilter = BaseFilter<FilterType.WHEN> & {
     p: string[];
 };
 
-export type BudgetFilter = BaseFilter<FilterType.WHEN> & {
-    p: number;
+export type BudgetFilter = BaseFilter<FilterType.BUDGET> & {
+    p: string[];
 };
 
 export type Filter = LanguageFilter | ShowTypeFilter | ArtistTypeFilter | ArtistSubTypeFilter | ArtistGenreFilter | LocationFilter | WhenFilter | BudgetFilter;
