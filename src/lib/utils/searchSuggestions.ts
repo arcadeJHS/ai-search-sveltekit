@@ -7,7 +7,8 @@ export const suggestionUsefulFilters: Set<keyof SuggestionPool> = new Set([
     FilterType.ARTIST_SUB_TYPE,
     FilterType.ARTIST_GENRE,
     FilterType.LOCATION,
-    FilterType.WHEN
+    FilterType.WHEN,
+    FilterType.BUDGET
 ]);
 
 export const suggestionsPool: SuggestionPool = {
@@ -16,7 +17,8 @@ export const suggestionsPool: SuggestionPool = {
     [FilterType.ARTIST_SUB_TYPE]: Object.values(ArtistSubTypeEnum).filter(Number.isInteger) as number[],
     [FilterType.ARTIST_GENRE]: Object.values(ArtistGenreEnum).filter(Number.isInteger) as number[],
     [FilterType.LOCATION]: ['zurich', 'geneva', 'basel', 'lausanne', 'bern', 'lucerne', 'lugano'],
-    [FilterType.WHEN]: ['suggestion']
+    [FilterType.WHEN]: ['suggestion'],
+    [FilterType.BUDGET]: ['suggestion']
 };
 
 // Returns "maxNumberOfSuggestions" random ids, for the "filterType", from the  suggestionsPool

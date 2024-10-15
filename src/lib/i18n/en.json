@@ -297,6 +297,12 @@
                 "lucerne": "Lucerne", 
                 "lugano": "Lugano"
             }
+        },
+        "BUDGET": {
+            "label": "Budget",
+            "values": {
+                "suggestion": "Try inserting a budget \"hint\": \"500 CHF\", a price range, or \"less than 1000 CHF\""
+            }
         }
     }
 }

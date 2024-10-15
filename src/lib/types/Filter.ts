@@ -254,7 +254,8 @@ export enum FilterType {
     ARTIST_SUB_TYPE = 'ARTIST_SUB_TYPE',
     ARTIST_GENRE = 'ARTIST_GENRE',
     LOCATION = 'LOCATION',
-    WHEN = 'WHEN'
+    WHEN = 'WHEN',
+    BUDGET = 'BUDGET'
 };
 
 export type BaseFilter<T, K = string> = {
@@ -284,7 +285,11 @@ export type WhenFilter = BaseFilter<FilterType.WHEN> & {
     p: string[];
 };
 
-export type Filter = LanguageFilter | ShowTypeFilter | ArtistTypeFilter | ArtistSubTypeFilter | ArtistGenreFilter | LocationFilter | WhenFilter;
+export type BudgetFilter = BaseFilter<FilterType.WHEN> & {
+    p: number;
+};
+
+export type Filter = LanguageFilter | ShowTypeFilter | ArtistTypeFilter | ArtistSubTypeFilter | ArtistGenreFilter | LocationFilter | WhenFilter | BudgetFilter;
 
 export type SuggestionPool = Omit<Record<FilterType, (number | string)[]>, FilterType.LANGUAGE>;
 
