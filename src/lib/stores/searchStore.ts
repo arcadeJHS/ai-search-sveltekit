@@ -60,7 +60,7 @@ const useSearch = () => {
         const url = `${baseUrl}${endpoint}`;
         return await fetchJson(url, {
             method,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json; charset=utf-8' },
             body: body ? JSON.stringify(body) : undefined
         });
     };
@@ -118,7 +118,8 @@ const useSearch = () => {
         setStatus('searching');
 
         try {
-            const response: ApiResponse = await apiCall(`/search/message/${session}`, 'POST', { message: content });
+            const cleanedContent = content.replace(/[\n\r\t]/g, '').replace(/[\\/]/g, ' ').trim();
+            const response: ApiResponse = await apiCall(`/search/message/${session}`, 'POST', { message: cleanedContent });
             const agentMessage: AgentMessage = createMessage(MessageRole.Agent, response.message) as AgentMessage;
 
             updateStore(state => ({

@@ -8,10 +8,6 @@ export let appliedFilters: Filter[] = [];
 export let notAppliedFilters: (keyof SuggestionPool)[] = [];
 export let isOpen: boolean = false;
 
-const hasPProperty = (filter: Filter): filter is (LocationFilter | WhenFilter) => {
-    return 'p' in filter;
-};
-
 const toggleFilters = () => {
     isOpen = !isOpen;
 };
@@ -42,8 +38,8 @@ const toggleFilters = () => {
                         <tr>
                             <td>{f.f}</td>
                             <td>{f.k}</td>
-                            <td>{f.v}</td>
-                            <td>{hasPProperty(f) ? f.p : '---'}</td>
+                            <td>{'v' in f ? f.v : '---'}</td>
+                            <td>{'p' in f ? f.p : '---'}</td>
                         </tr>
                     {/each}
                 </tbody>
