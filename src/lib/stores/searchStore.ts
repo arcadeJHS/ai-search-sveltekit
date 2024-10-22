@@ -5,6 +5,7 @@ import type { SearchThread, SearchThreadStatus } from '$lib/types/SearchThread.t
 import { type Message, type AgentMessage, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 import { UUID } from '$lib/utils/UUID.ts';
+import { type ApiMessageRequest } from '$lib/types/ApiMessageRequest.ts';
 
 const BASE_URL_KEY = 'BASE_URL';
 const LANGUAGE_KEY = 'LANGUAGE';
@@ -55,7 +56,7 @@ const useSearch = () => {
         updateStore(state => ({ messages: [...state.messages, message] }));
     };
 
-    const apiCall = async (endpoint: string, method: 'GET' | 'POST' | 'DELETE', body?: object) => {
+    const apiCall = async <T>(endpoint: string, method: 'GET' | 'POST' | 'DELETE', body?: T) => {
         const { [BASE_URL_KEY]: baseUrl } = get(store);
         const url = `${baseUrl}${endpoint}`;
         return await fetchJson(url, {
@@ -108,7 +109,7 @@ const useSearch = () => {
         }
     };
 
-    const search = async (content: string): Promise<ApiResponse | undefined> => {
+    const search = async (content: string, eventKm: number = 50): Promise<ApiResponse | undefined> => {
         const { session } = get(store);
         if (!session) throw new Error('Session is required');
 
@@ -119,7 +120,12 @@ const useSearch = () => {
 
         try {
             const cleanedContent = content.replace(/[\n\r\t]/g, '').replace(/[\\/]/g, ' ').trim();
-            const response: ApiResponse = await apiCall(`/search/message/${session}`, 'POST', { message: cleanedContent });
+            
+            const response: ApiResponse = await apiCall<ApiMessageRequest>(`/search/message/${session}`, 'POST', { 
+                message: cleanedContent,
+                eventKm
+            });
+            
             const agentMessage: AgentMessage = createMessage(MessageRole.Agent, response.message) as AgentMessage;
 
             updateStore(state => ({
