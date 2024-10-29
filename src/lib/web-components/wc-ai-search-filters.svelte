@@ -11,6 +11,7 @@ import { filtersStore } from '$lib/stores/filtersStore.ts';
 import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import { type Filter, type SuggestionPool } from '$lib/types/Filter.ts';
 import  AiSearchFilters from '$lib/components/AiSearchFilters.svelte';
+import { searchStore } from '$lib/stores/searchStore.ts';
 
 export let visible: boolean = false;
 
@@ -21,8 +22,9 @@ $: visibleBoolean = (typeof visible === 'string') ? (visible === 'true') : visib
 $: appliedFilters = $filtersStore.applied;
 $: notAppliedFilters = $filtersStore.notApplied;
 $: queries = $userQueriesStore;
+$: skippedIds = $searchStore?.currentResultsSetKey ? $searchStore.responses[$searchStore.currentResultsSetKey]?.additionalInfos?.skippedIds : [];
 </script>
 
 {#if visibleBoolean && queries.length}
-    <AiSearchFilters {appliedFilters} {notAppliedFilters} />
+    <AiSearchFilters {appliedFilters} {notAppliedFilters} {skippedIds} />
 {/if}

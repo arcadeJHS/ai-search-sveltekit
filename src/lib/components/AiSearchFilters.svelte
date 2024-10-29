@@ -7,6 +7,7 @@ import button from '$lib/styles/button.module.css';
 export let appliedFilters: Filter[] = [];
 export let notAppliedFilters: (keyof SuggestionPool)[] = [];
 export let isOpen: boolean = false;
+export let skippedIds: number[] = [];
 
 const toggleFilters = () => {
     isOpen = !isOpen;
@@ -56,6 +57,21 @@ const toggleFilters = () => {
                 <tbody>
                     <tr>
                         <td>{notAppliedFilters.join(', ')}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {/if}
+
+        {#if skippedIds.length}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skipped Ids ({skippedIds.length})</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{skippedIds.join(', ')}</td>
                     </tr>
                 </tbody>
             </table>

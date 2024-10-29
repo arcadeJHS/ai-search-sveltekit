@@ -1,5 +1,5 @@
 import type { Message } from './Message.ts';
-import type { ApiResponse } from './ApiResponse.ts';
+import type { ApiSearchResponse } from './ApiResponse.ts';
 
 export type SearchThreadStatus = 'idle' | 'starting' | 'searching' | 'error' | 'ending';
 
@@ -8,7 +8,7 @@ export interface SearchThread {
     messages: Message[];
     currentResultsSetKey: string | null;
     responses: {
-        [key: string]: ApiResponse & { query?: string };
+        [key: string]: ApiSearchResponse & { query?: string };
     },
     status: SearchThreadStatus,
     error: string | null;

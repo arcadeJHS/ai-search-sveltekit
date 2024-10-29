@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import type { SearchStartRequest } from '$lib/types/SearchStartRequest.ts';
-import type { ApiResponse, ApiDeleteResponse } from '$lib/types/ApiResponse.ts';
+import type { ApiMessageResponse, ApiSearchResponse, ApiDeleteResponse } from '$lib/types/ApiResponse.ts';
 import type { SearchThread, SearchThreadStatus } from '$lib/types/SearchThread.ts';
 import { type Message, type AgentMessage, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
@@ -19,7 +19,7 @@ const emptySearchThread = (): SearchThread => ({
     error: null
 });
 
-const fetchJson = async (url: string, options: RequestInit): Promise<ApiResponse> => {
+const fetchJson = async <T>(url: string, options: RequestInit): Promise<T> => {
     const response = await fetch(url, options);
     if (response.headers.get('content-type') !== 'application/json') {
         throw new TypeError(`Server error: Invalid response content-type - expected application/json, got ${response.headers.get('content-type')}`);
@@ -56,7 +56,7 @@ const useSearch = () => {
         updateStore(state => ({ messages: [...state.messages, message] }));
     };
 
-    const apiCall = async <T>(endpoint: string, method: 'GET' | 'POST' | 'DELETE', body?: T) => {
+    const apiCall = async <T, R>(endpoint: string, method: 'GET' | 'POST' | 'DELETE', body?: T): Promise<R> => {
         const { [BASE_URL_KEY]: baseUrl } = get(store);
         const url = `${baseUrl}${endpoint}`;
         return await fetchJson(url, {
@@ -66,13 +66,13 @@ const useSearch = () => {
         });
     };
 
-    const start = async ({ language }: SearchStartRequest): Promise<ApiResponse | undefined> => {
+    const start = async ({ language }: SearchStartRequest): Promise<ApiMessageResponse | undefined> => {
         const { [BASE_URL_KEY]: baseUrl } = get(store);
         if (!baseUrl) throw new Error('apiBaseUrl is required');
 
         setStatus('starting');
         try {
-            const response: ApiResponse = await apiCall(`/search/start?l=${language}`, 'GET');
+            const response: ApiMessageResponse = await apiCall(`/search/start?l=${language}`, 'GET');
             const { session, l, message } = response;
             const agentMessage: AgentMessage = createMessage(MessageRole.Agent, message) as AgentMessage;
 
@@ -109,7 +109,7 @@ const useSearch = () => {
         }
     };
 
-    const search = async (content: string, eventKm: number = 50): Promise<ApiResponse | undefined> => {
+    const search = async (content: string, eventKm: number = 50): Promise<ApiSearchResponse | undefined> => {
         const { session } = get(store);
         if (!session) throw new Error('Session is required');
 
@@ -121,7 +121,7 @@ const useSearch = () => {
         try {
             const cleanedContent = content.replace(/[\n\r\t]/g, '').replace(/[\\/]/g, ' ').trim();
             
-            const response: ApiResponse = await apiCall<ApiMessageRequest>(`/search/message/${session}`, 'POST', { 
+            const response: ApiSearchResponse = await apiCall<ApiMessageRequest, ApiSearchResponse>(`/search/message/${session}`, 'POST', { 
                 message: cleanedContent,
                 eventKm
             });
