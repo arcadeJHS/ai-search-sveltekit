@@ -13,7 +13,7 @@ export interface ApiMessageResponse {
 export type ApiSearchResponse = ApiMessageResponse & { 
     additionalInfos?: {
         skippedIds?: number[]
-    } 
+    }
 };
 
 export interface ApiDeleteResponse {

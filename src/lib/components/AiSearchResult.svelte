@@ -69,6 +69,16 @@
                         cachet_min: "500", 
                         telephone: "+41791234567",
                         level_css: "rockstar",
+
+                        // budgets: [
+                        //     {
+                        //         id: 1,
+                        //         type: "wedding",
+                        //         date: "2024-11-10",
+                        //         price: "1500",
+                        //         currency: "CHF"
+                        //     }
+                        // ]
                     },
                     ...result
                 } as Selection;
@@ -172,6 +182,12 @@
                     on:click={() => dispatch('resultSelected')}>
                     {$t('result.show_more')}
                 </a>
+
+                {#if result?.budgets && result.budgets.length}
+                    <div>
+                        <pre>{ JSON.stringify(result.budgets, null, 2) }</pre>
+                    </div>
+                {/if}
             </div>
         </div>
     </div>

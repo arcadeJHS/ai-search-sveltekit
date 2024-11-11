@@ -1,5 +1,13 @@
 import { type ArtistLevel } from './ArtistLevel.ts';
 
+export interface Budget {
+    id: number;
+    type: string;
+    date: string;
+    price: number;
+    currency: string;
+};
+
 export type Selection = {
     // LLM API core fields
 	id: number;
@@ -32,4 +40,7 @@ export type Selection = {
     cachet_min?: string;
     telephone: string;
     level_css: ArtistLevel;
+
+    // Optional budgets info for given artist
+    budgets?: Budget[]
 };
