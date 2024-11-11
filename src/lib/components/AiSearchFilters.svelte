@@ -62,7 +62,7 @@ const toggleFilters = () => {
             </table>
         {/if}
 
-        {#if skippedIds.length}
+        {#if skippedIds?.length}
             <table>
                 <thead>
                     <tr>

@@ -1,6 +1,9 @@
 <svelte:options customElement={{
 	tag: 'webcomponent-ai-search-prompt-area',
-	shadow: 'none'
+	shadow: 'none',
+    props: {
+		searchFor: { reflect: true, type: 'String', attribute: 'search-for' }
+	},
 }} />
 
 <script lang="ts">
@@ -13,6 +16,9 @@ import { Offcanvas } from '@sveltestrap/sveltestrap';
 import padding from '$lib/styles/padding.module.css';
 import offcanvas from '$lib/styles/offcanvas.module.css';
 import AiSearchQueries from '$lib/components/AiSearchQueries.svelte';
+import { SearchableEntity } from '$lib/types/SearchableEntity.ts';
+
+export let searchFor: SearchableEntity = SearchableEntity.ARTIST;
 
 $: isFollowup = !!$userQueriesStore.length;
 $: searchStatus = $searchStore.status;
@@ -39,7 +45,10 @@ const onUserInput = async (event: CustomEvent) => {
         return;
     }
 
-    return await searchStore.search(content);
+    return await searchStore.search({
+        content,
+        searchFor
+    });
 };
 
 const resetSearch = async () => await searchStore.reset();

@@ -5,7 +5,8 @@ import type { SearchThread, SearchThreadStatus } from '$lib/types/SearchThread.t
 import { type Message, type AgentMessage, type UserMessage, MessageRole } from '$lib/types/Message.ts';
 import type { AllowedLanguages } from '$lib/types/AllowedLanguages.ts';
 import { UUID } from '$lib/utils/UUID.ts';
-import { type ApiMessageRequest } from '$lib/types/ApiMessageRequest.ts';
+import { type ApiMessageRequest, type MessageRequestInputParams } from '$lib/types/ApiMessageRequest.ts';
+import { SearchableEntity } from '$lib/types/SearchableEntity.ts';
 
 const BASE_URL_KEY = 'BASE_URL';
 const LANGUAGE_KEY = 'LANGUAGE';
@@ -109,7 +110,7 @@ const useSearch = () => {
         }
     };
 
-    const search = async (content: string, eventKm: number = 50): Promise<ApiSearchResponse | undefined> => {
+    const search = async ({content, eventKm = 50, searchFor = SearchableEntity.ARTIST }: MessageRequestInputParams): Promise<ApiSearchResponse | undefined> => {
         const { session } = get(store);
         if (!session) throw new Error('Session is required');
 
@@ -119,9 +120,9 @@ const useSearch = () => {
         setStatus('searching');
 
         try {
+            const url = `/search/message/${session}?searchFor=${searchFor}`;
             const cleanedContent = content.replace(/[\n\r\t]/g, '').replace(/[\\/]/g, ' ').trim();
-            
-            const response: ApiSearchResponse = await apiCall<ApiMessageRequest, ApiSearchResponse>(`/search/message/${session}`, 'POST', { 
+            const response: ApiSearchResponse = await apiCall<ApiMessageRequest, ApiSearchResponse>(url, 'POST', { 
                 message: cleanedContent,
                 eventKm
             });
