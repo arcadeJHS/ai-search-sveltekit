@@ -7,6 +7,7 @@
   import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
   import WcAiSearchHints from '$lib/web-components/wc-ai-search-hints.svelte';
   import WcAiSearchFilters from '$lib/web-components/wc-ai-search-filters.svelte';
+	import { SearchableEntity } from '$lib/types/SearchableEntity.ts';
 </script>
 
 <main>
@@ -21,7 +22,7 @@
     language="en">
   </WcAiSearchAppShell>
 
-  <WcAiSearchPromptArea />
+  <WcAiSearchPromptArea searchFor={SearchableEntity.ARTIST} />
 
   <div class="site-ai-search__hints">
     <WcAiSearchHints />

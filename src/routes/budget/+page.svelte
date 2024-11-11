@@ -22,7 +22,7 @@
       language="en">
     </WcAiSearchAppShell>
   
-    <WcAiSearchPromptArea searchFor={SearchableEntity.ARTIST} />
+    <WcAiSearchPromptArea searchFor={SearchableEntity.BUDGET} />
   
     <div class="site-ai-search__hints">
       <WcAiSearchHints />
