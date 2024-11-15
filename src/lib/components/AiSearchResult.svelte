@@ -72,11 +72,15 @@
 
                         // budgets: [
                         //     {
-                        //         id: 1,
-                        //         type: "wedding",
-                        //         date: "2024-11-10",
-                        //         price: "1500",
-                        //         currency: "CHF"
+                        //         "get_in": "19:00:00",
+                        //         "negotiable": true,
+                        //         "proposal": "1500.00",
+                        //         "length": "03:00:00",
+                        //         "members_formation": "2",
+                        //         "soundequip": false,
+                        //         "c_when": "2024-11-28",
+                        //         "cachet": "1200.00",
+                        //         "stagend_fee": 300
                         //     }
                         // ]
                     },

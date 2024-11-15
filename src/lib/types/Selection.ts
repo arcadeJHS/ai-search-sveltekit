@@ -1,11 +1,15 @@
 import { type ArtistLevel } from './ArtistLevel.ts';
 
 export interface Budget {
-    id: number;
-    type: string;
-    date: string;
-    price: number;
-    currency: string;
+    get_in: string;
+    negotiable: boolean;
+    proposal: string;
+    length: string;
+    members_formation: string | number;
+    soundequip: boolean;
+    c_when: string;
+    cachet: string;
+    stagend_fee: string | number;
 };
 
 export type Selection = {
