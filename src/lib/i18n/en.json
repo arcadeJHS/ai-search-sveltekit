@@ -16,7 +16,21 @@
         "reviews": "Reviews",
         "from": "from",
         "on_request": "on request",
-        "show_more": "Show more"
+        "show_more": "Show more",
+        "deal": {
+            "tip": "o restrinct search results and find more useful data, please specify your budget (and, optionally, a date or range of dates)",
+            "deal": "Deal",
+            "time": "Time",
+            "length": "Entertainment length",
+            "artist_pricing_cachet_min": "1-hour gig (1 set or split sets)",
+            "artist_pricing_cachet_low": "2-hour gig (1 set or split sets)",
+            "artist_pricing_cachet_mid": "3-hour gig (1 set or split sets)",
+            "artist_pricing_cachet_max": "Daylong (forfait for the full event / Open End)",
+            "members": "Number of members",
+            "price": "The final price is",
+            "negotiable": "negotiable",
+            "soundsystem": "Sound system"
+        }
     },
     "search_suggestion": {
         "tip_header": "To obtain more relevant results, you could try adding",

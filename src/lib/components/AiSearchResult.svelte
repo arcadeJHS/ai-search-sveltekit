@@ -8,6 +8,7 @@
     import text from '$lib/styles/text.module.css';
     import button from '$lib/styles/button.module.css';
 	import { createEventDispatcher } from 'svelte';
+	import { get } from 'svelte/store';
     
     export let result: Selection;
     export let currentPlayingVideoId: number | undefined;
@@ -70,19 +71,32 @@
                         telephone: "+41791234567",
                         level_css: "rockstar",
 
-                        // budgets: [
-                        //     {
-                        //         "get_in": "19:00:00",
-                        //         "negotiable": true,
-                        //         "proposal": "1500.00",
-                        //         "length": "03:00:00",
-                        //         "members_formation": "2",
-                        //         "soundequip": false,
-                        //         "c_when": "2024-11-28",
-                        //         "cachet": "1200.00",
-                        //         "stagend_fee": 300
-                        //     }
-                        // ]
+                        budgets: [
+                            {
+                                "get_in": "19:00:00",
+                                "negotiable": true,
+                                "proposal": "1500.00",
+                                "length": "artist_pricing_cachet_mid",
+                                "members_formation": "2",
+                                "soundequip": false,
+                                "c_when": "28 November 2024",
+                                "cachet": "1200.00",
+                                "stagend_fee": 300,
+                                "currency": "CHF"
+                            },
+                            {
+                                "get_in": "17:00:00",
+                                "negotiable": false,
+                                "proposal": "500.00",
+                                "length": "artist_pricing_cachet_low",
+                                "members_formation": "4",
+                                "soundequip": true,
+                                "c_when": "25 December 2024",
+                                "cachet": "350.00",
+                                "stagend_fee": 150,
+                                "currency": "CHF"
+                            }
+                        ]
                     },
                     ...result
                 } as Selection;
@@ -188,9 +202,53 @@
                 </a>
 
                 {#if result?.budgets && result.budgets.length}
-                    <div>
+                    <!-- <div>
                         <pre>{ JSON.stringify(result.budgets, null, 2) }</pre>
-                    </div>
+                    </div> -->
+                    {#each result.budgets as deal, index}
+                        <div class="ai-search-result__deal">
+                            <h5>{$t('result.deal.deal')} {++index}</h5>
+                            <ul class="fa-ul">
+                                <li>
+                                    <span><i class="fal fa-calendar-alt"></i></span>
+                                    {deal.c_when}
+                                </li>
+                                {#if deal.get_in}
+                                    <li>
+                                        <span><i class="fal fa-clock"></i></span>
+                                        {$t('result.deal.time')}: {deal.get_in}
+                                    </li>
+                                {/if}
+                                {#if deal.length}
+                                    <li>
+                                        <span><i class="fal fa-hourglass"></i></span>
+                                        {$t('result.deal.length')}: {$t('result.deal.' + deal.length)}
+                                    </li>
+                                {/if}
+                                {#if deal.members_formation}
+                                    <li>
+                                        <span><i class="fal fa-users"></i></span>
+                                        {$t('result.deal.members')}: {deal.members_formation}
+                                    </li>
+                                {/if}
+                                {#if deal.soundequip}
+                                    <li>
+                                        <span><i class="fal fa-volume"></i></span>
+                                        {$t('result.deal.soundsystem')}
+                                    </li>
+                                {/if}
+                                {#if deal.proposal}
+                                    <li>
+                                        <span><i class="fal fa-money-bill-1"></i></span>
+                                        {$t('result.deal.price')}: <b>{deal.proposal} {deal.currency}</b> 
+                                        {#if deal.negotiable}
+                                        ({$t('result.deal.negotiable')})
+                                        {/if}
+                                    </li>
+                                {/if}
+                            </ul>
+                        </div>
+                    {/each}
                 {/if}
             </div>
         </div>
@@ -377,5 +435,28 @@
         font-weight: 700;
         border-radius: 4px;
         margin-top: 15px;
+    }
+
+    /* deal */
+    .ai-search-result__deal {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-top: 1rem;
+        font-size: 14px;
+    }
+    .ai-search-result__deal ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0 0.8rem 0.5rem;
+    }
+    .ai-search-result__deal h5 {
+        font-size: 14px;
+        margin: 0;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        background: #eee;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        padding: 0.5rem 0.8rem;
     }
     </style>

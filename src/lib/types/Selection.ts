@@ -10,6 +10,7 @@ export interface Budget {
     c_when: string;
     cachet: string;
     stagend_fee: string | number;
+    currency: string;
 };
 
 export type Selection = {
