@@ -1,6 +1,7 @@
 import { type ArtistLevel } from './ArtistLevel.ts';
 
 export interface Budget {
+    id: string | number;
     get_in: string;
     negotiable: boolean;
     proposal: string;
@@ -10,6 +11,7 @@ export interface Budget {
     c_when: string;
     cachet: string;
     stagend_fee: string | number;
+    currency_id: string | number;
     currency: string;
 };
 

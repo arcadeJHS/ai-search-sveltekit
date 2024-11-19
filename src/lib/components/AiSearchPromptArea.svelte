@@ -9,6 +9,7 @@ import AiSearchNewSearchButton from '$lib/components/AiSearchNewSearchButton.sve
 export let isFollowup: boolean = false;
 export let searchStatus: string = 'idle';
 export let searchSession: string | null = null;
+export let showFilters: boolean = true;
 export let filters: FilterSuggestion;
 
 const dispatch = createEventDispatcher();
@@ -32,7 +33,7 @@ const dispatch = createEventDispatcher();
             disableTextarea={!!~['starting', 'ending', 'searching'].indexOf(searchStatus)}
             on:userInput />
     
-        {#if filters?.notApplied?.length}
+        {#if showFilters && filters?.notApplied?.length}
             <div class="ai-search-prompt-area__suggestions">
                 <AiSearchSuggestions filters={filters} />
             </div>

@@ -73,6 +73,7 @@
 
                         budgets: [
                             {
+                                "id": "1",
                                 "get_in": "19:00:00",
                                 "negotiable": true,
                                 "proposal": "1500.00",
@@ -82,9 +83,11 @@
                                 "c_when": "28 November 2024",
                                 "cachet": "1200.00",
                                 "stagend_fee": 300,
+                                "currency_id": "1",
                                 "currency": "CHF"
                             },
                             {
+                                "id": "2",
                                 "get_in": "17:00:00",
                                 "negotiable": false,
                                 "proposal": "500.00",
@@ -94,6 +97,7 @@
                                 "c_when": "25 December 2024",
                                 "cachet": "350.00",
                                 "stagend_fee": 150,
+                                "currency_id": "1",
                                 "currency": "CHF"
                             }
                         ]
@@ -210,36 +214,36 @@
                             <h5>{$t('result.deal.deal')} {++index}</h5>
                             <ul class="fa-ul">
                                 <li>
-                                    <span><i class="fal fa-calendar-alt"></i></span>
+                                    <span class="fa-li"><i class="fal fa-calendar-alt"></i></span>
                                     {deal.c_when}
                                 </li>
                                 {#if deal.get_in}
                                     <li>
-                                        <span><i class="fal fa-clock"></i></span>
+                                        <span class="fa-li"><i class="fal fa-clock"></i></span>
                                         {$t('result.deal.time')}: {deal.get_in}
                                     </li>
                                 {/if}
                                 {#if deal.length}
                                     <li>
-                                        <span><i class="fal fa-hourglass"></i></span>
+                                        <span class="fa-li"><i class="fal fa-hourglass"></i></span>
                                         {$t('result.deal.length')}: {$t('result.deal.' + deal.length)}
                                     </li>
                                 {/if}
                                 {#if deal.members_formation}
                                     <li>
-                                        <span><i class="fal fa-users"></i></span>
+                                        <span class="fa-li"><i class="fal fa-users"></i></span>
                                         {$t('result.deal.members')}: {deal.members_formation}
                                     </li>
                                 {/if}
                                 {#if deal.soundequip}
                                     <li>
-                                        <span><i class="fal fa-volume"></i></span>
+                                        <span class="fa-li"><i class="fal fa-volume"></i></span>
                                         {$t('result.deal.soundsystem')}
                                     </li>
                                 {/if}
                                 {#if deal.proposal}
                                     <li>
-                                        <span><i class="fal fa-money-bill-1"></i></span>
+                                        <span class="fa-li"><i class="fal fa-money-bill-1"></i></span>
                                         {$t('result.deal.price')}: <b>{deal.proposal} {deal.currency}</b> 
                                         {#if deal.negotiable}
                                         ({$t('result.deal.negotiable')})
@@ -248,6 +252,7 @@
                                 {/if}
                             </ul>
                         </div>
+                        <button class={`${button.primaryButton} ai-search-result__get-offer request`} value="{result.id};{deal.id};{deal.proposal};{deal.currency_id}">{$t('result.deal.getOffer')}</button>
                     {/each}
                 {/if}
             </div>
@@ -440,14 +445,15 @@
     /* deal */
     .ai-search-result__deal {
         border: 1px solid #ccc;
-        border-radius: 6px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        border-bottom: 0;
         margin-top: 1rem;
         font-size: 14px;
     }
     .ai-search-result__deal ul {
         list-style-type: none;
-        margin: 0;
-        padding: 0 0.8rem 0.5rem;
+        padding: 0.5rem 0.5rem 0 0;
     }
     .ai-search-result__deal h5 {
         font-size: 14px;
@@ -458,5 +464,16 @@
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         padding: 0.5rem 0.8rem;
+    }
+    .ai-search-result__get-offer {
+        text-align: center;
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 700;
+        border-radius: 6px!important;
+        border-top-left-radius: 0!important;
+        border-top-right-radius: 0!important;
     }
     </style>

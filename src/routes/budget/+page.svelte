@@ -19,7 +19,8 @@
     -->
     <WcAiSearchAppShell
       baseUrl="http://192.168.50.58:9910"
-      language="en">
+      language="en"
+      loadBootstrap={true}>
     </WcAiSearchAppShell>
   
     <WcAiSearchPromptArea searchFor={SearchableEntity.BUDGET} />

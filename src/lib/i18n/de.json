@@ -16,7 +16,22 @@
         "reviews": "Bewertungen",
         "from": "ab",
         "on_request": "auf Anfrage",
-        "show_more": "Mehr anzeigen"
+        "show_more": "Mehr anzeigen",
+        "deal": {
+            "tip": "Um die Suchergebnisse einzugrenzen und nützlichere Daten zu finden, geben Sie bitte Ihr Budget an (und optional ein Datum oder einen Datumsbereich)",
+            "deal": "Dealvorlage",
+            "time": "Zeit",
+            "length": "Dauer der Unterhaltung",
+            "artist_pricing_cachet_min": "1 Stunde Auftritt (einmalig oder getrennte Sets)",
+            "artist_pricing_cachet_low": "2 Stunden Auftritt (einmalig oder getrennte Sets)",
+            "artist_pricing_cachet_mid": "3 Stunden Auftritt (einmalig oder getrennte Sets)",
+            "artist_pricing_cachet_max": "Ganzer Tag (forfait für ganzer Anlass / Open End)",
+            "members": "Anzahl der Mitglieder",
+            "price": "Der Endpreis ist",
+            "negotiable": "verhandelbar",
+            "soundsystem": "Tonanlage",
+            "getOffer": "Angebotsanfrage"
+        }
     },
     "search_suggestion": {
         "tip_header": "Um relevantere Ergebnisse zu erhalten, könnten Sie versuchen, hinzuzufügen",

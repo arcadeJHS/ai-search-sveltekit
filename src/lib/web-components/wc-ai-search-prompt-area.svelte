@@ -23,6 +23,7 @@ export let searchFor: SearchableEntity = SearchableEntity.ARTIST;
 $: isFollowup = !!$userQueriesStore.length;
 $: searchStatus = $searchStore.status;
 $: searchSession = $searchStore.session;
+$: showFilters = searchFor == SearchableEntity.ARTIST;
 $: filters = $filtersStore;
 $: queries = $userQueriesStore;
 
@@ -59,12 +60,14 @@ const resetSearch = async () => await searchStore.reset();
         {isFollowup} 
         {searchStatus} 
         {searchSession} 
+        {showFilters}
         {filters}
         on:userInput={onUserInput}
         on:toggleQueriesOffcanvas={toggle} 
         on:resetSearch={resetSearch}
     />
 
+    <!-- Mobile only -->
     <Offcanvas {isOpen} {toggle} backdrop={false} placement="bottom" class={`${offcanvas.offcanvasBottomShow}`}>
         <AiSearchQueries
             class={padding.noPadding} 

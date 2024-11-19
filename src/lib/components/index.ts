@@ -10,3 +10,4 @@ export { default as AiSearchHints } from './AiSearchHints.svelte';
 export { default as AiSearchResultVideoArea } from './AiSearchResultVideoArea.svelte';
 export { default as AiSearchResult } from './AiSearchResult.svelte';
 export { default as AiSearchResults } from './AiSearchResults.svelte';
+export { default as BootstrapStyles } from './BootstrapStyles.svelte';

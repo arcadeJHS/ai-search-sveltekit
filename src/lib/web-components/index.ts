@@ -7,4 +7,5 @@ export { default as WcAiSearchResults } from './wc-ai-search-results.svelte';
 export { default as WcAiSearchNewSearchButton } from './wc-ai-search-new-search-button.svelte';
 export { default as WcAiSearchErrorNotification } from './wc-ai-search-error-notification.svelte';
 export { default as WcAiSearchHints } from './wc-ai-search-hints.svelte';
+export { default as WcAiSearchDealsHint } from './wc-ai-search-deals-hint.svelte';
 export { default as WcAiSearchFilters } from './wc-ai-search-filters.svelte';

@@ -16,7 +16,22 @@
         "reviews": "Recensioni",
         "from": "da",
         "on_request": "su richiesta",
-        "show_more": "Mostra di più"
+        "show_more": "Mostra di più",
+        "deal": {
+            "tip": "Per restringere i risultati di ricerca e ottenere risultati migliori, specificare un budget (e, eventualmente, una data o un intervallo di date)",
+            "deal": "Offerta esempio",
+            "time": "Ora",
+            "length": "Durata intrattenimento",
+            "artist_pricing_cachet_min": "1 ora di performance (set unico o set separati)",
+            "artist_pricing_cachet_low": "2 ore di performance (set unico o set separati)",
+            "artist_pricing_cachet_mid": "3 ore di performance (set unico o set separati)",
+            "artist_pricing_cachet_max": "Giornata (forfait per intero evento / Open End)",
+            "members": "Numero membri",
+            "price": "Il prezzo finale è",
+            "negotiable": "negoziabile",
+            "soundsystem": "Impianto audio",
+            "getOffer": "Richiedi offerta"
+        }
     },
     "search_suggestion": {
         "tip_header": "Per ottenere risultati più pertinenti potresti provare ad aggiungere",
