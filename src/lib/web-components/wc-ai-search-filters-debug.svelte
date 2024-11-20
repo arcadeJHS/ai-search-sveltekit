@@ -1,5 +1,5 @@
 <svelte:options customElement={{
-	tag: 'webcomponent-ai-search-filters',
+	tag: 'webcomponent-ai-search-filters-debug',
 	shadow: 'none',
 	props: {
 		visible: { reflect: true, type: 'Boolean', attribute: 'visible' },
@@ -10,7 +10,7 @@
 import { filtersStore } from '$lib/stores/filtersStore.ts';
 import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
 import { type Filter, type SuggestionPool } from '$lib/types/Filter.ts';
-import  AiSearchFilters from '$lib/components/AiSearchFilters.svelte';
+import  AiSearchFiltersDebug from '$lib/components/AiSearchFiltersDebug.svelte';
 import { searchStore } from '$lib/stores/searchStore.ts';
 
 export let visible: boolean = false;
@@ -26,5 +26,5 @@ $: skippedIds = $searchStore?.currentResultsSetKey ? $searchStore.responses[$sea
 </script>
 
 {#if visibleBoolean && queries.length}
-    <AiSearchFilters {appliedFilters} {notAppliedFilters} {skippedIds} />
+    <AiSearchFiltersDebug {appliedFilters} {notAppliedFilters} {skippedIds} />
 {/if}

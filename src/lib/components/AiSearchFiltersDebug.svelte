@@ -14,7 +14,7 @@ const toggleFilters = () => {
 };
 </script>
 
-<div class="ai-search-filters">
+<div class="ai-search-filters-debug">
     <button
         class={button.iconButton} 
         on:click={toggleFilters}  
@@ -80,7 +80,7 @@ const toggleFilters = () => {
 </div>
 
 <style>
-.ai-search-filters {
+.ai-search-filters-debug {
     text-transform: uppercase;
     font-size: 0.8rem;
     padding: 0 0.5rem 0.5rem;

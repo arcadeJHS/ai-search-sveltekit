@@ -1,17 +1,17 @@
 <script context="module" lang="ts">
 import type { Meta } from '@storybook/svelte';
-import AiSearchFilters from '../../src/lib/components/AiSearchFilters.svelte';
+import AiSearchFiltersDebug from '../../src/lib/components/AiSearchFiltersDebug.svelte';
 
 export const meta = {
-    title: 'Svelte Components/AiSearchFilters',
-    component: AiSearchFilters,
+    title: 'Svelte Components/AiSearchFiltersDebug',
+    component: AiSearchFiltersDebug,
     tags: ['autodocs'],
     argTypes: {
         appliedFilters: { control: 'object' },
         notAppliedFilters: { control: 'object' },
         isOpen: { control: 'boolean' }
     }
-} satisfies Meta<AiSearchFilters>;
+} satisfies Meta<AiSearchFiltersDebug>;
 </script>
 
 <script lang="ts">
@@ -30,7 +30,7 @@ const defaultArgs = {
 </script>
 
 <Template let:args>
-    <AiSearchFilters {...args} />
+    <AiSearchFiltersDebug {...args} />
 </Template>
 
 <Story name="Default" args={defaultArgs} />

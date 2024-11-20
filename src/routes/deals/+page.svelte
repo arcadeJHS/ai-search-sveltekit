@@ -6,7 +6,7 @@
   import WcAiSearchNewSearchButton from '$lib/web-components/wc-ai-search-new-search-button.svelte';
   import WcAiSearchErrorNotification from '$lib/web-components/wc-ai-search-error-notification.svelte';
   import WcAiSearchDealsHint from '$lib/web-components/wc-ai-search-deals-hint.svelte';
-  import WcAiSearchFilters from '$lib/web-components/wc-ai-search-filters.svelte';
+  import WcAiSearchFiltersDebug from '$lib/web-components/wc-ai-search-filters-debug.svelte';
   import { SearchableEntity } from '$lib/types/SearchableEntity.ts';
 </script>
   
@@ -46,7 +46,7 @@
           </div>
           
           <div class="site-ai-search__column site-ai-search__results">
-            <WcAiSearchFilters visible />
+            <WcAiSearchFiltersDebug visible />
             <WcAiSearchResults />
           </div>
         </div>
