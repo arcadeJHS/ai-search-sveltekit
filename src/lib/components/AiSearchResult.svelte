@@ -206,9 +206,7 @@
                 </a>
 
                 {#if result?.budgets && result.budgets.length}
-                    <!-- <div>
-                        <pre>{ JSON.stringify(result.budgets, null, 2) }</pre>
-                    </div> -->
+                    <hr />
                     {#each result.budgets as deal, index}
                         <div class="ai-search-result__deal">
                             <h5>{$t('result.deal.deal')} {++index}</h5>
@@ -443,6 +441,9 @@
     }
 
     /* deal */
+    hr {
+        margin-bottom: 0;
+    }
     .ai-search-result__deal {
         border: 1px solid #ccc;
         border-top-left-radius: 6px;

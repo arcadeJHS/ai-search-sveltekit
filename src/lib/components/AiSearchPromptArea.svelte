@@ -114,7 +114,11 @@ const dispatch = createEventDispatcher();
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0.5rem 1rem;
+    padding: 0.2rem 0.5rem 0.5rem;
+
+    @media (min-width: 768px) {
+        padding: 0 0.5rem 0.5rem;
+    }
 }
 .ai-search-prompt-area__suggestions {
     margin-top: 0.5rem;
