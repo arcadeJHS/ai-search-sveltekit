@@ -21,5 +21,11 @@ onMount(() => {
 </script>
 
 {#if !$userQueriesStore.length}
-	{tip}
+	<p>{tip}</p>
 {/if}
+
+<style>
+p {
+	margin: 0;
+}
+</style>

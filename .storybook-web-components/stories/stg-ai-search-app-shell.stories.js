@@ -6,7 +6,8 @@ const meta = {
     component: 'stg-ai-search-app-shell',
     argTypes: {
         baseUrl: { control: 'text' },
-        language: { control: 'select', options: ['en', 'de', 'fr', 'it'] }
+        language: { control: 'select', options: ['en', 'de', 'fr', 'it'] },
+        loadBootstrap: { control: 'boolean' }
     }
 };
 
@@ -15,9 +16,10 @@ export default meta;
 export const AppShell = {
     args: { 
         baseUrl: 'http://localhost:8099',
-        language: 'en'
+        language: 'en',
+        loadBootstrap: true
     },
     render: (args) => html`
-        <stg-ai-search-app-shell base-url=${args.baseUrl} language=${args.language}></stg-ai-search-app-shell>
+        <stg-ai-search-app-shell base-url=${args.baseUrl} language=${args.language} load-bootstrap=${args.loadBootstrap}></stg-ai-search-app-shell>
     `
 };
