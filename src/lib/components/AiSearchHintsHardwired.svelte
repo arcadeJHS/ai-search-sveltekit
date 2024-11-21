@@ -11,10 +11,10 @@ const setHints = async () => {
     await waitLocale();
     hintHeader = $t('search_suggestion.hint_header');
     hints = [
-        $t('search_suggestion.hardwired.1'),
-        $t('search_suggestion.hardwired.2'),
-        $t('search_suggestion.hardwired.3'),
-        $t('search_suggestion.hardwired.4')
+        $t('search_suggestion.hardwired-hints.1'),
+        $t('search_suggestion.hardwired-hints.2'),
+        $t('search_suggestion.hardwired-hints.3'),
+        $t('search_suggestion.hardwired-hints.4')
     ];
 };
 

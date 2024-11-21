@@ -2,7 +2,8 @@
 import { createEventDispatcher } from 'svelte';
 import AiSearchUserInputForm from '$lib/components/AiSearchUserInputForm.svelte';
 import AiSearchQueriesOffcanvasShowButton from '$lib/components/AiSearchQueriesOffcanvasShowButton.svelte';
-import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
+// import AiSearchSuggestions from '$lib/components/AiSearchSuggestions.svelte';
+import AiSearchSuggestionsHardwired from '$lib/components/AiSearchSuggestionsHardwired.svelte';
 import { type FilterSuggestion } from '$lib/types/Filter.ts';
 import AiSearchNewSearchButton from '$lib/components/AiSearchNewSearchButton.svelte';
 
@@ -35,7 +36,8 @@ const dispatch = createEventDispatcher();
     
         {#if showFilters && filters?.notApplied?.length}
             <div class="ai-search-prompt-area__suggestions">
-                <AiSearchSuggestions filters={filters} />
+                <!-- <AiSearchSuggestions filters={filters} /> -->
+                <AiSearchSuggestionsHardwired />
             </div>
         {/if}
     </div>

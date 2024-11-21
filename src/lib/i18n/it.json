@@ -37,11 +37,29 @@
         "tip_header": "Per ottenere risultati più pertinenti potresti provare ad aggiungere",
         "hint": "Un {artistGenre} {type} per un {showType} in {location}",
         "hint_header": "Per una ricerca più efficace prova a inserire più dettagli possibili. Ad esempio:",
-        "hardwired": {
+        "hardwired-hints": {
             "1": "Gruppo Pop Rock per un evento aziendale a Zurigo",
             "2": "DJ per un matrimonio a Basilea",
             "3": "Una cantante per un evento a Zurigo",
             "4": "Un mago per un evento a Berna"
+        },
+        "hardwired-suggestions": {
+            "1": {
+                "label": "Categoria di evento",
+                "value": "Evento aziendale, Matrimonio, Festa"
+            },
+            "2": {
+                "label": "Tipo di artista",
+                "value": "Gruppo, Duo, Mago"
+            },
+            "3": {
+                "label": "Genere",
+                "value": "Pop, Rock, Canzonetta"
+            },
+            "4": {
+                "label": "Quand",
+                "value": "Essayez d'insérer une \"suggestion\" temporelle : une date, une plage de dates, ou \"fin août\""
+            }
         }
     },
     "filters": {
@@ -68,7 +86,7 @@
         "ARTIST_TYPE": {
             "label": "Tipo di artista",
             "values": {
-                "1": "Banda",
+                "1": "Gruppo",
                 "2": "Musicista",
                 "3": "DJ",
                 "4": "Ensemble",
@@ -252,7 +270,7 @@
                 "27": "Rockabilly",
                 "28": "Musica da Ballo",
                 "29": "Musica Folk",
-                "30": "Schlager",
+                "30": "Canzonetta",
                 "31": "Band Oldies",
                 "32": "Celtica",
                 "33": "Irlandese",

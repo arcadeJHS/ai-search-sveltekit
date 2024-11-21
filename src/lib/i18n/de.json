@@ -37,11 +37,29 @@
         "tip_header": "Um relevantere Ergebnisse zu erhalten, könnten Sie versuchen, hinzuzufügen",
         "hint": "Ein {artistGenre} {type} für ein {showType} in {location}",
         "hint_header": "Für eine effektivere Suche versuchen Sie, so viele Details wie möglich einzugeben. Zum Beispiel:",
-        "hardwired": {
+        "hardwired-hints": {
             "1": "Pop Rock Band für Firmenanlass in Zürich",
             "2": "DJ für eine Hochzeit in Basel",
             "3": "Eine Sängerin für eine Veranstaltung in Zürich",
             "4": "Ein Zauberer für eine Veranstaltung in Bern"
+        },
+        "hardwired-suggestions": {
+            "1": {
+                "label": "Verastaltungs-kategorie",
+                "value": "Firmenanlass, Hochzeit, Party"
+            },
+            "2": {
+                "label": "Art des Unterhalters",
+                "value": "Band, Duo, Zauberer"
+            },
+            "3": {
+                "label": "Genre",
+                "value": "Pop, Rock, Schlager"
+            },
+            "4": {
+                "label": "Wann",
+                "value": "Versuche einen zeitlichen \"Hinweis\" einzufügen: ein Datum, einen Datumsbereich oder \"Ende August\""
+            }
         }
     },
     "filters": {
@@ -304,7 +322,7 @@
         "WHEN": {
             "label": "Wann",
             "values": {
-                "suggestion": "Prova ad inserire un \"suggerimento\" temporale: una data, un range di date, o \"fine agosto\""
+                "suggestion": "Versuche einen zeitlichen \"Hinweis\" einzufügen: ein Datum, einen Datumsbereich oder \"Ende August\""
             }
         },
         "LOCATION": {
