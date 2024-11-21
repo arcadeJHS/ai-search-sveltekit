@@ -9,3 +9,4 @@ export { default as WcAiSearchErrorNotification } from './wc-ai-search-error-not
 export { default as WcAiSearchHints } from './wc-ai-search-hints.svelte';
 export { default as WcAiSearchDealsHint } from './wc-ai-search-deals-hint.svelte';
 export { default as WcAiSearchFiltersDebug } from './wc-ai-search-filters-debug.svelte';
+export { default as WcAiSearchFilters } from './wc-ai-search-filters.svelte';
