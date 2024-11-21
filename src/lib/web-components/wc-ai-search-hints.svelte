@@ -5,11 +5,13 @@
 
 <script lang="ts">
 import { userQueriesStore } from '$lib/stores/userQueriesStore.ts';
-import AiSearchHints from '$lib/components/AiSearchHints.svelte';
+// import AiSearchHints from '$lib/components/AiSearchHints.svelte';
+import AiSearchHintsHardwired from '$lib/components/AiSearchHintsHardwired.svelte';
 
-const hintsToShow = 4;
+// const hintsToShow = 4;
 </script>
 
 {#if !$userQueriesStore.length}
-    <AiSearchHints {hintsToShow} />
+    <!-- <AiSearchHints {hintsToShow} /> -->
+	 <AiSearchHintsHardwired />
 {/if}

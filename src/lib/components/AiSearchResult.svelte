@@ -160,7 +160,9 @@
                     class="card-title ai-search-result__card-title ai-search-result__card-title--shorted" 
                     itemprop="description" 
                     content="{result.itemprop_desc}">
-                    {result.tagline}
+                    {#if result.tagline}
+                        {result.tagline}
+                    {/if}
                 </h5>
                 {#if result.subtypes}
                     <p class="ai-search-result__card-text ai-search-result__card-text--shorted mb-3">{getSubtypesString(result.subtypes)}</p>
@@ -299,6 +301,7 @@
     }
     .ai-search-result__date-area p span.ai-search-result__book {
         font-weight: bold;
+        color: #ffffff;
     }
     .ai-search-result__membership-area {
         position: absolute;

@@ -36,7 +36,13 @@
     "search_suggestion": {
         "tip_header": "Um relevantere Ergebnisse zu erhalten, könnten Sie versuchen, hinzuzufügen",
         "hint": "Ein {artistGenre} {type} für ein {showType} in {location}",
-        "hint_header": "Für eine effektivere Suche versuchen Sie, so viele Details wie möglich einzugeben. Zum Beispiel:"
+        "hint_header": "Für eine effektivere Suche versuchen Sie, so viele Details wie möglich einzugeben. Zum Beispiel:",
+        "hardwired": {
+            "1": "Pop Rock Band für Firmenanlass in Zürich",
+            "2": "DJ für eine Hochzeit in Basel",
+            "3": "Eine Sängerin für eine Veranstaltung in Zürich",
+            "4": "Ein Zauberer für eine Veranstaltung in Bern"
+        }
     },
     "filters": {
         "SHOW_TYPE": {
