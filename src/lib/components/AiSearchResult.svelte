@@ -71,7 +71,7 @@
                         telephone: "+41791234567",
                         level_css: "rockstar",
 
-                        budgets: [
+                        deals: [
                             {
                                 "id": "1",
                                 "get_in": "19:00:00",
@@ -207,9 +207,9 @@
                     {$t('result.show_more')}
                 </a>
 
-                {#if result?.budgets && result.budgets.length}
+                {#if result?.deals && result.deals.length}
                     <hr />
-                    {#each result.budgets as deal, index}
+                    {#each result.deals as deal, index}
                         <div class="ai-search-result__deal">
                             <h5>{$t('result.deal.deal')} {++index}</h5>
                             <ul class="fa-ul">

@@ -23,7 +23,7 @@
     loadBootstrap={true}>
   </WcAiSearchAppShell>
 
-  <WcAiSearchPromptArea searchFor={SearchableEntity.BUDGET} />
+  <WcAiSearchPromptArea searchFor={SearchableEntity.DEAL} />
 
   <div class="site-ai-search__hints">
     <WcAiSearchDealsHint />

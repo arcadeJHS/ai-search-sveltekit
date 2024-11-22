@@ -1,6 +1,6 @@
 import { type ArtistLevel } from './ArtistLevel.ts';
 
-export interface Budget {
+export interface Deals {
     id: string | number;
     get_in: string;
     negotiable: boolean;
@@ -48,6 +48,6 @@ export type Selection = {
     telephone: string;
     level_css: ArtistLevel;
 
-    // Optional budgets info for given artist
-    budgets?: Budget[]
+    // Optional deals info for given artist
+    deals?: Deals[]
 };
